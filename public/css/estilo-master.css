@@ -1,0 +1,206 @@
+/*
+|--------------------------------------------------------------------------
+| LAYOUT MASTER - Estilo general para todas las páginas
+|--------------------------------------------------------------------------
+*/
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+#cabecera{
+    font-family: 'Amatic SC';
+    font-size: 900%;
+    color: #DCC7AA;
+}
+
+#cabecera #logo{
+    padding-left: 5%;
+
+}
+
+.cabeceraRedes{
+    margin-left: 8%;
+    padding-left: 10%;
+}
+
+/*
+|---------------
+| SCROLL ARRIBA 
+|---------------
+*/
+#scroll {
+    right:10px;
+    bottom:10px;
+    width:50px;
+    height:50px;
+    background-color:#DCC7AA;
+    -webkit-border-radius:60px;
+    -moz-border-radius:60px;
+    border-radius:60px
+}
+#scroll span img{
+    width: 10px;
+    height: 10px;
+}
+#scroll,#huella {
+    position:fixed;
+    cursor:pointer;
+}
+#scroll:hover {
+    background-color:#80725F;
+}
+#huella{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+/*
+|---------------
+| NEVEGADOR
+|---------------
+*/
+#navegador,#navegador div ul{
+    background-color: #F7882F;
+}
+
+#navegador .nav-link{
+    color: white;
+    font-size: 1.1em;
+
+}
+#navegador .nav-link:hover{
+    color: white;
+    font-size: 1.1em;
+    box-shadow: 2px 2px 10px #666;        /* Sombra normal */
+
+}
+
+#navegador .dropdown-item:hover{
+    color: white;
+    background-color: #F7882F;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px #666;        /* Sombra normal */
+}
+
+img.redes{
+    height: 40px;
+    width: 40px;
+}
+#navegador #inicio:hover{
+    content:url("/img/web/icons/huella-dark.svg");
+}
+
+.navbar-nav li:hover > ul.dropdown-menu{
+    display: block;
+}
+
+/* rotate caret on hover */
+.dropdown-menu > li > a:hover:after {
+    text-decoration: underline;
+    transform: rotate(-90deg);
+}
+.navbar-brand{
+    padding: 0px;
+}
+
+
+/*
+|---------------
+| FOOTER
+|---------------
+*/
+footer{
+    background-color: #DCC7AA; 
+    color: #9E8E78;
+}
+
+footer span:hover{
+    color: #80725F;
+}
+footer h5{
+    font-weight: bold;
+    color: #80725F;
+
+}
+
+footer a{
+    color: #9E8E78;
+    text-decoration: none;
+}
+footer a:hover{
+    color: #80725F;
+    text-decoration: none;
+
+}
+
+/*
+|---------------
+| ICONOS REDES
+|---------------
+*/
+#facebook{
+    content:url("/img/web/icons/facebook.svg");
+}
+#facebook:hover{
+    content:url("/img/web/icons/facebook-dark.svg");
+}
+#instagram{
+    content:url("/img/web/icons/instagram.svg");
+}
+#instagram:hover{
+    content:url("/img/web/icons/instagram-dark.svg");
+}
+#twitter{
+    content:url("/img/web/icons/twitter.svg");
+}
+#twitter:hover{
+    content:url("/img/web/icons/twitter-dark.svg");
+}
+
+/*
+|---------------
+| API Maps
+|---------------
+*/
+
+#map{
+    width: 400px;
+    height: 350px;
+    box-shadow: 5px 5px 5px #888;
+}
+
+div#contenidoLayout{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*
+|---------------
+| MODAL
+|---------------
+*/
+#modalLogin{
+    margin-top: 10%;
+    color:#80725F;
+
+}
+#modalLogin .modal-header{
+    background-color: #F7882F;
+    color: white;
+}
+
+#inferiorLogin button{
+    background-color: #DCC7AA;
+    border: 1px solid #9E8E78;
+    color: #80725F;
+}
+#inferiorLogin button:hover{
+    background-color: #9E8E78;
+    border: 1px solid #80725F;
+    color:white;
+}
