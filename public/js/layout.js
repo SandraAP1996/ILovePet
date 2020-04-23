@@ -1,5 +1,4 @@
-$(document).ready(function(){ 
-
+$(function() {
     /* Comprueba cuando se hace scroll para mostrar o ocultar el id 'scroll' */
     $(window).scroll(function(){ 
         if ($(this).scrollTop() > 100) { 

@@ -19,3 +19,6 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/buscar', function () {
+    return view('animal.filtrar-animal');
+});

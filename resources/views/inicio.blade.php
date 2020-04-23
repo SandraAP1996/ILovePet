@@ -29,7 +29,7 @@ Inicio
                 <div>
                     <h3>{{__('Adopción')}}</h3>
                     <p>{{__('Desafortunadamente sigue siendo habitual que algunos propietarios que compran un cachorro de forma impulsiva decidan abandonarlo o dejarlo en una protectora de perros cuando se dan cuenta de que convivir con él implica un compromiso importante que puede superar los 10 años.')}}</p>
-                    <a class="btn btn-sm btn-outline-secondary">{{__('Click aquí')}}</a>
+                    <a href="{{url('/buscar')}}" class="btn btn-sm btn-outline-secondary">{{__('Click aquí')}}</a>
                 </div>
             </div>
         </div>
@@ -159,63 +159,62 @@ Inicio
 <div id="contenedorCategoria">
     <hr>
     <h1>{{__('Categorias')}} <img src="/img/web/icons/huellas-de-garras-dark.svg" alt="img12"></h1>
-
     <div class="row">
-        <div class="col-md-3 adopcionCategoria">
+        <div class="col-sm-12 col-md-3 adopcionCategoria">
             <div class="descripcionCategoria">
-                <span>Adopción</span>
+                <span>{{__('Adopción')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="#" title="todos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar')}}" title="todos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
             </div>
         </div>
-        <div class="col-md-4 perrosCategoria">
+        <div class="col-sm-12 col-md-4 perrosCategoria">
             <div class="descripcionCategoria">
                 <span>{{__('Perros')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="#" title="perros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar')}}" title="perros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
 
             </div>
         </div>
-        <div class="col-md-4 gatosCategoria"> 
+        <div class="col-sm-12 col-md-4 gatosCategoria"> 
             <div class="descripcionCategoria">
                 <span>{{__('Gatos')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="#" title="gatos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar')}}" title="gatos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
 
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 pajarosCategoria" >
+        <div class="col-sm-12 col-md-4 pajarosCategoria" >
             <div class="descripcionCategoria">
-                <span>Pájaros</span>
+                <span>{{__('Pájaros')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="#" title="pajaros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar')}}" title="pajaros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
 
             </div>
         </div>
-        <div class="col-md-7 ganadoCategoria" style="background-color:lavenderblush;">
+        <div class="col-sm-12 col-md-7 ganadoCategoria" style="background-color:lavenderblush;">
             <div class="descripcionCategoria">
                 <span>{{__('Ganado')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="#" title="ganado" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar')}}" title="ganado" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 roedoresCategoria" style="background-color:lavender;">
+        <div class="col-sm-12 col-md-6 roedoresCategoria" style="background-color:lavender;">
             <div class="descripcionCategoria">
                 <span>{{__('Roedores')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="#" title="roedores" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar')}}" title="roedores" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
 
             </div>
         </div>
-        <div class="col-md-5 exoticosCategoria" style="background-color:lavenderblush;">
+        <div class="col-sm-12 col-md-5 exoticosCategoria" style="background-color:lavenderblush;">
             <div class="descripcionCategoria">
                 <span>Exóticos</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="#" title="exoticos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar')}}" title="exoticos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
             </div>
         </div>
     </div>

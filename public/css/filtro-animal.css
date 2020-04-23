@@ -1,107 +1,78 @@
 /*
 |--------------------------------------------------------------------------
-| Página Principal - Estilo de la página de inicio
+| BUSCAR ANIMALES - Estilo general para la página de buscar animales
 |--------------------------------------------------------------------------
 */
 
 /*
 |---------------
-| GENERAL 
+| GENERAL COLUMNAS 
 |---------------
 */
-
-.container{
-    margin:0px;
+.row div{
+    padding: 10px;
+    padding-left: 12px;
 }
-.row{
-    margin-right: 0px;
-    margin-left: 0px;    
-}
-.grid {
-    position: relative;
-    padding: 1em 0 4em;
-    max-width: 1000px;
-    list-style: none;
-    text-align: center;
-}
-
-
-/*
-|---------------
-| CAROUSEL 
-|---------------
-*/
-#carouselInicio{
-    background:#F7882F;
-}
-
-
-.carousel-item .img-fluid{
-    width: 100%;
-}
-
-#carouselInicio .cajaCarousel{
-    width: 20%;
-    height: 70%;
-    background-color: rgba(255,255,255,0.6);
-    color: black;
-    text-align: center;
-    justify-content: center;
-    padding: 1%;
-    margin-bottom: 2.5%;
-}
-#carouselInicio .cajaCarousel a{
-    opacity: 1;
-    width: 100%;
-
-}
-#carouselInicio .cajaCarousel h3{
-    font-family: 'Amatic SC';
-    color: #687A8F;
-    font-weight: bold;
-    font-size: 4vw;    
-}
-#carouselInicio .cajaCarousel p{
-    color: #687A8F;
-    font-size: 0.8vw;    
-
-}
-#carouselInicio .cajaCarousel a{
-    background-color: #687A8F;
-    border-color: #687A8F;
-    color: white;
-}
-#carouselInicio .cajaCarousel a:hover{
+.filtro{
     background-color: #526071;
-    border-color: #687A8F;
     color: white;
 }
+
+
 /*
 |---------------
-| Titulos y Párrafos
+| FILTRO 
 |---------------
 */
-#contenedorUrgentes{
-    margin-top: 3.5%;
-    margin-left: 20%;
+#filtroAnimal button{
+    color:white;
+    background-color: #687A8F; 
+    border: 1px solid #526071;
+}
+#filtroAnimal button:hover{
+    box-shadow: 2px 2px 10px #444F5B;        /* Sombra normal */
 }
 
-#contenedorUrgentes h1,
-#contenedorCategoria h1{
-    font-family: 'Amatic SC';
+/*
+|---------------
+| CONTENIDO BUSCADO 
+|---------------
+*/
+
+/* Navegador de Busqueda */
+.contenidoFiltro .breadcrumb {
+    background-color: #DCC7AA;
+}
+.contenidoFiltro .breadcrumb span{
     color: #9E8E78;
-    font-size: 5vw;
-    margin-bottom: 3%;
-    margin-left: 4%;
-    margin-right: 5%;
-
+    cursor: default ;
 }
 
-#contenedorUrgentes h1 img,
-#contenedorCategoria img{
-    width: 10%;
-    height: 10%;
+.contenidoFiltro .breadcrumb img{
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    padding: 4px;
 }
+.contenidoFiltro .breadcrumb img:hover{
+    cursor: pointer;
+    background-color: #9E8E78;
+    content:url("/img/web/icons/cruz-light.svg");
+}
+
+
+/* Paginación */
+.container .pagination{
+    justify-content:center;
+}
+.container .pagination a{
+    color: #80725F;
+}
+.container .pagination li.seleccionado a{
+    background-color: #80725F;
+    color: white;
+}
+
 
 /*
 |---------------
@@ -115,10 +86,11 @@
 }
 
 #tarjetaAnimal{
+    /*
     margin-bottom: 2%;
     margin-left: 0.2%;
     margin-top: 0.1%;
-
+    */
 }
 
 .grid{
@@ -267,69 +239,3 @@ figure.effect-card:hover .descripcion{
 div.descripcion{
     visibility: hidden;
 }
-
-/*
-|---------------
-| CATEGORIAS
-|---------------
-*/
-#contenedorCategoria{
-    margin-left: 5%;
-}
-#contenedorCategoria hr{
-width: 95%;
-    margin-left: 30px;
-}
-#contenedorCategoria .row{
-    height: 400px;
-    margin-bottom: 2%;
-}#contenedorCategoria .row div{
-    margin-left: 0.5%;
-}
-.descripcionCategoria span{
-    font-weight: 800;
-    font-size: 3vw;
-}
-.descripcionCategoria p{
-    font-size: 0.7vw;
-}
-
-.descripcionCategoria{
-    padding-top: 210px;
-    height: 100%;
-    width: 100%;
-}
-
-/*IMAGENES*/
-#contenedorCategoria .pajarosCategoria{
-    background-image: url(/img/web/pagina/categoria-pajaros.jpg);
-}
-
-#contenedorCategoria .gatosCategoria{
-    background-image: url(/img/web/pagina/categoria-gatos.jpg);
-}
-#contenedorCategoria .perrosCategoria{
-    background-image: url(/img/web/pagina/categoria-perros.jpg);
-}
-#contenedorCategoria .ganadoCategoria{
-    background-image: url(/img/web/pagina/categoria-ganado.jpg);
-}
-#contenedorCategoria .roedoresCategoria{
-    background-image: url(/img/web/pagina/categoria-roedores.jpg);
-}
-#contenedorCategoria .exoticosCategoria{
-    background-image: url(/img/web/pagina/categoria-exoticos.jpg);
-}
-#contenedorCategoria .adopcionCategoria{
-    background-image: url(/img/web/pagina/categoria-adopcion.jpg);
-}
-#contenedorCategoria .adopcionCategoria .descripcionCategoria{
-    background-color: rgba(104,122,143,0.5);
-    padding-left: 5%;
-
-}#contenedorCategoria .adopcionCategoria{
-    padding: 0px;    
-}
-
-/*DESCRIPCIÓN*/
-

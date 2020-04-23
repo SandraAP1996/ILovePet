@@ -63,9 +63,9 @@
                         <a class="nav-link"  data-toggle="dropdown" style="cursor:pointer;">{{__('Adopción')}}</a>
                         <div class="dropdown-menu dropdown-default" >
 
-                            <a class="dropdown-item" href="#">{{__('Domésticos')}}</a>
-                            <a class="dropdown-item" href="#">{{__('Granja')}}</a>
-                            <a class="dropdown-item" href="#">{{__('Exóticos')}}</a>
+                            <a class="dropdown-item" href="{{url('/buscar')}}">{{__('Domésticos')}}</a>
+                            <a class="dropdown-item" href="{{url('/buscar')}}">{{__('Granja')}}</a>
+                            <a class="dropdown-item" href="{{url('/buscar')}}">{{__('Exóticos')}}</a>
 
                         </div>
                     </li>
@@ -224,11 +224,11 @@
                         <ul class="list-unstyled">
                             <li><a href="{{url('/')}}">{{__('Inicio') }}</a></li>
                             <li>
-                                <a href="#!">{{__('Adopción') }}</a>
+                                <a href="{{url('/buscar')}}">{{__('Adopción') }}</a>
                                 <ul >
-                                    <li class="list-unstyled">  <a href="#!">{{__('Domésticos') }}</a></li>
-                                    <li class="list-unstyled"> <a href="#!">{{__('Granja') }}</a></li>
-                                    <li class="list-unstyled"> <a href="#!">{{__('Exóticos') }}</a></li>
+                                    <li class="list-unstyled">  <a href="{{url('/buscar')}}">{{__('Domésticos') }}</a></li>
+                                    <li class="list-unstyled"> <a href="{{url('/buscar')}}">{{__('Granja') }}</a></li>
+                                    <li class="list-unstyled"> <a href="{{url('/buscar')}}">{{__('Exóticos') }}</a></li>
                                 </ul>
                             </li>
                             <li>

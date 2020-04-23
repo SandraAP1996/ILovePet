@@ -38,7 +38,8 @@ body{
     background-color:#DCC7AA;
     -webkit-border-radius:60px;
     -moz-border-radius:60px;
-    border-radius:60px
+    border-radius:60px;
+    z-index: 3;
 }
 #scroll span img{
     width: 10px;
@@ -204,3 +205,36 @@ div#contenidoLayout{
     border: 1px solid #80725F;
     color:white;
 }
+
+/*
+|---------------
+| REGISTRO
+|---------------
+*/
+
+#contenedorRegistro,
+#contenedorReset{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    color:#80725F;
+
+}
+#contenedorRegistro .card-header,
+#contenedorReset .card-header{
+    background-color: #F7882F;
+    color: white;
+}
+
+#inferiorRegistro button,
+#inferiorReset button{
+      background-color: #DCC7AA;
+    border: 1px solid #9E8E78;
+    color: #80725F;
+}
+#inferiorRegistro button:hover,
+#inferiorReset button:hover{
+    background-color: #9E8E78;
+    border: 1px solid #80725F;
+    color:white;
+}
+
