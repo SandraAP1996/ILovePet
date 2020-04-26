@@ -19,7 +19,7 @@ class CreateAnimalTable extends Migration
             $table->integer('chip')->nullable();
             $table->string('raza')->nullable();
             $table->enum('tipo', ['Doméstico', 'Exótico', 'Granja'])->nullable();
-            $table->enum('especie', ['Perro', 'Gato', 'Ave', 'Reptil', 'Roedor', 'Ganado', 'Equino'])->nullable();
+            $table->enum('especie', ['Perro', 'Gato', 'Pájaro', 'Reptil', 'Roedor', 'Venado', 'Equino'])->nullable();
             $table->enum('sexo', ['Hembra', 'Macho'])->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->enum('situacion', ['centro', 'acogida', 'adoptado'])->nullable();

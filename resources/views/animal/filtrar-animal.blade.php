@@ -28,15 +28,16 @@ Buscar Animal
                 </select><br>
                 <h6><label for="inputState">{{__('Especie')}}</label></h6>
                 <select class="form-control especieAnimal">
-                    <option selected>{{__('Todos')}}</option>
+<!--                    <option selected>{{__('Todos')}}</option>-->
                 </select>
                 <hr>
                 <h6><label for="inputState">{{__('Sexo')}}</label></h6>        <!-- Sexo -->
-                {{__('Macho')}}&nbsp&nbsp<input name="sexo" value="sexo" type="radio">
-                {{__('Hembra')}}&nbsp&nbsp<input name="sexo" value="jakd" type="radio">
+                {{__('Todos')}}&nbsp<input name="sexo" value="Todos" type="radio" checked>&nbsp&nbsp&nbsp
+                {{__('Macho')}}&nbsp<input name="sexo" value="Macho" type="radio">&nbsp&nbsp&nbsp
+                {{__('Hembra')}}&nbsp<input name="sexo" value="Hembra" type="radio">
                 <hr>
                  <h6><label for="inputState">{{__('Talla')}}</label></h6>         <!-- Talla -->
-                <select class="form-control">
+                <select class="form-control tallaAnimal">
                     <option selected>{{__('Todos')}}</option>
                     <option>{{__('Pequeña')}}</option>
                     <option>{{__('Media')}}</option>
@@ -44,7 +45,7 @@ Buscar Animal
                 </select> 
                 <hr>
                 <h6><label for="inputState">{{__('Edad')}}</label></h6>         <!-- Edad -->
-                <select class="form-control">
+                <select class="form-control edadAnimal">
                     <option selected>{{__('Todos')}}</option>
                     <option>{{__('Cachorro')}}</option>
                     <option>{{__('Joven')}}</option>
@@ -52,7 +53,7 @@ Buscar Animal
                 </select> 
                 <hr>
                 <h6><label for="inputState">{{__('Estado')}}</label></h6>         <!-- Estado -->
-                <select class="form-control">
+                <select class="form-control estadoAnimal">
                     <option selected>{{__('Todos')}}</option>
                     <option>{{__('Urgente')}}</option>
                     <option>{{__('Recien llegado')}}</option>
@@ -67,8 +68,7 @@ Buscar Animal
             <!-- NAVEGADOR DE BUSQUEDA -->
             <ul class="breadcrumb navBusqueda">
                 <li class="breadcrumb-item active"><span>Adopción</span></li>
-                <li class="breadcrumb-item tipo"><span class="todos">Domésticos </span><span class="borrar"><img src="/img/web/icons/cruz.svg"></span></li>
-                <li class="breadcrumb-item especie"><span class="todos">Perros</span><img src="/img/web/icons/cruz.svg"></li>
+                <!-- Rellenarlo con Jquery -->
             </ul>
 
             <!-- RESULTADO DE LA BUSQUEDA -->
