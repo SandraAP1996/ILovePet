@@ -24,6 +24,7 @@ class CreateAnimalTable extends Migration
             $table->date('fecha_nacimiento')->nullable();
             $table->enum('situacion', ['centro', 'acogida', 'adoptado'])->nullable();
             $table->enum('nivel', ['urgente', 'normal', 'nuevo'])->nullable();
+            $table->bigInteger('id_persona')->nullable()->unsigned();
             $table->timestamps();
         });
     }

@@ -18,6 +18,9 @@ class CreatePhotoTable extends Migration
             $table->string('nombre')->nullable();
             $table->enum('formato', ['jpg', 'png'])->nullable()->nullable();
             $table->enum('ruta', ['animal/', 'evento/', 'perfil/'])->nullable();
+            $table->bigInteger('id_persona')->nullable()->unsigned();
+            $table->bigInteger('id_animal')->nullable()->unsigned();
+            $table->bigInteger('id_evento')->nullable()->unsigned();
             $table->timestamps();
         });
     }

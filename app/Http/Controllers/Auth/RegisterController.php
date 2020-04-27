@@ -64,9 +64,9 @@ class RegisterController extends Controller{
     protected function create(array $data)
     {
         return User::create([
-            'nif' => $data['nif'].self::validarNIF($data['nif']),
+            'nif' => $data['nif'], /*.self::validarNIF($data['nif'])*/
             'nombre' => $data['name'],
-            'fecha_nacimiento' => $data['fecha_nacimiento'].self::mayorEdad($data['fecha_nacimiento']),
+            'fecha_nacimiento' => $data['fecha_nacimiento'], /*.self::mayorEdad($data['fecha_nacimiento'])*/
             'rol' => 'Usuario',
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

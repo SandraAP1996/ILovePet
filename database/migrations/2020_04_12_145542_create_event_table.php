@@ -21,6 +21,7 @@ class CreateEventTable extends Migration
             $table->date('hora_inicio')->nullable();
             $table->date('hora_fin')->nullable();
             $table->string('descripcion')->nullable();
+            $table->bigInteger('id_direccion')->unsigned();
             $table->timestamps();
         });
     }
