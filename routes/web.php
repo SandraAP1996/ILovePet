@@ -12,13 +12,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('inicio');
-});
+//Route::get('/', function () {
+//    return view('inicio');
+//});
+
+
+//Route::get('/inicio', 'AnimalController@inicioTarjetas');
+Route::get('/', 'AnimalController@inicioTarjetas');
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/buscar', function () {
-    return view('animal.filtrar-animal');
+
+
+Route::group(['prefix' => 'animal'], function(){
+    Route::get('buscar{filtro}', 'AnimalController@buscarAnimal');
 });

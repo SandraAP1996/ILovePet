@@ -144,6 +144,8 @@
     min-height: 100%;
     max-width: 100%;
     opacity: 0.8;
+    width: 370px;
+    height: 305px;
 }
 
 .grid figure figcaption {

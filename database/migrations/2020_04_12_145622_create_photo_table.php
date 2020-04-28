@@ -15,7 +15,7 @@ class CreatePhotoTable extends Migration
     {
         Schema::create('photo', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre')->nullable();
+            $table->string('titulo')->nullable();
             $table->enum('formato', ['jpg', 'png'])->nullable()->nullable();
             $table->enum('ruta', ['animal/', 'evento/', 'perfil/'])->nullable();
             $table->bigInteger('id_persona')->nullable()->unsigned();

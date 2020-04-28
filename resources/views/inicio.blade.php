@@ -10,7 +10,6 @@ Inicio
 
 
 @section('contenido')
-
 <!-- CAROUSEL -->
 <div id="carouselInicio" class="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
@@ -79,79 +78,21 @@ Inicio
     <h1>{{__('Adopciones URGENTES')}} <img src="/img/web/icons/huella-pulso.svg" alt="img12"></h1>
 
     <div id="exposicionAnimal" class="row">
+       
+        @foreach($animales as $animal)
         <div id="tarjetaAnimal" class="col-md-3 grid">
             <figure class="effect-card">
-                <img src="/img/animal/101.jpg" alt="img12"/>
+                <img src="/img/{{$animal->ruta}}{{$animal->titulo}}.{{$animal->formato}}" alt="img12"/>
                 <figcaption>
                     <div class="descripcion">
-                        <h2>{{__('Urgente')}} <span>{{__('Lily')}}</span></h2>
+                        <h2>{{$animal->nivel}} <span>{{$animal->nombre}}</span></h2>
                         <p>{{__('Lily likes to play with crayons and pencils')}}</p>
                     </div>
                     <a href="#" title="Detalles">{{__('Detalles')}}</a>
                 </figcaption>			
             </figure>
         </div>
-        <div id="tarjetaAnimal" class="col-md-3 grid">
-            <figure class="effect-card">
-                <img src="/img/animal/101.jpg" alt="img12"/>
-                <figcaption>
-                    <div class="descripcion">
-                        <h2>Urgente <span>Lily</span></h2>
-                        <p>Lily likes to play with crayons and pencils</p>
-                    </div>
-                    <a href="#" title="Detalles">{{__('Detalles')}}</a>
-                </figcaption>			
-            </figure>
-        </div>
-        <div id="tarjetaAnimal" class="col-md-3 grid">
-            <figure class="effect-card">
-                <img src="/img/animal/101.jpg" alt="img12"/>
-                <figcaption>
-                    <div class="descripcion">
-                        <h2>Urgente <span>Lily</span></h2>
-                        <p>Lily likes to play with crayons and pencils</p>
-                    </div>
-                    <a href="#" title="Detalles">{{__('Detalles')}}</a>
-                </figcaption>			
-            </figure>
-        </div>
-
-        <div id="tarjetaAnimal" class="col-md-3 grid">
-            <figure class="effect-card">
-                <img src="/img/animal/101.jpg" alt="img12"/>
-                <figcaption>
-                    <div class="descripcion">
-                        <h2>{{__('Urgente')}} <span>{{__('Lily')}}</span></h2>
-                        <p>{{__('Lily likes to play with crayons and pencils')}}</p>
-                    </div>
-                    <a href="#" title="Detalles">{{__('Detalles')}}</a>
-                </figcaption>			
-            </figure>
-        </div>
-        <div id="tarjetaAnimal" class="col-md-3 grid">
-            <figure class="effect-card">
-                <img src="/img/animal/101.jpg" alt="img12"/>
-                <figcaption>
-                    <div class="descripcion">
-                        <h2>Urgente <span>Lily</span></h2>
-                        <p>Lily likes to play with crayons and pencils</p>
-                    </div>
-                    <a href="#" title="Detalles">{{__('Detalles')}}</a>
-                </figcaption>			
-            </figure>
-        </div>
-        <div id="tarjetaAnimal" class="col-md-3 grid">
-            <figure class="effect-card">
-                <img src="/img/animal/101.jpg" alt="img12"/>
-                <figcaption>
-                    <div class="descripcion">
-                        <h2>Urgente <span>Lily</span></h2>
-                        <p>Lily likes to play with crayons and pencils</p>
-                    </div>
-                    <a href="#" title="Detalles">{{__('Detalles')}}</a>
-                </figcaption>			
-            </figure>
-        </div>
+        @endforeach
     </div>
 </div>
 
