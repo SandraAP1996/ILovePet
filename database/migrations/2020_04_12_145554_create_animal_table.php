@@ -15,15 +15,18 @@ class CreateAnimalTable extends Migration
     {
         Schema::create('animal', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre')->nullable();
+            $table->string('nombre');
             $table->integer('chip')->nullable();
-            $table->string('raza')->nullable();
-            $table->enum('tipo', ['Doméstico', 'Exótico', 'Granja'])->nullable();
-            $table->enum('especie', ['Perro', 'Gato', 'Pájaro', 'Reptil', 'Roedor', 'Venado', 'Equino'])->nullable();
+            $table->string('raza');
+            $table->enum('tipo', ['Doméstico', 'Exótico', 'Granja']);
+            $table->enum('especie', ['Perro', 'Gato', 'Pájaro', 'Reptil', 'Roedor', 'Ganado', 'Equino']);
+            $table->string('descripcion')->nullable();
             $table->enum('sexo', ['Hembra', 'Macho'])->nullable();
+            $table->enum('talla', ['Pequeña', 'Media','Grande']);
+            $table->enum('edad', ['Cachorro', 'Joven','Adulto']);
             $table->date('fecha_nacimiento')->nullable();
             $table->enum('situacion', ['centro', 'acogida', 'adoptado'])->nullable();
-            $table->enum('nivel', ['urgente', 'normal', 'nuevo'])->nullable();
+            $table->enum('estado', ['urgente', 'normal', 'nuevo']);
             $table->bigInteger('id_persona')->nullable()->unsigned();
             $table->timestamps();
         });

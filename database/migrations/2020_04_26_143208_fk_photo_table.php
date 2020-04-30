@@ -15,7 +15,7 @@ class FkPhotoTable extends Migration
     {
         Schema::table('photo', function (Blueprint $table) {
             $table->foreign('id_evento')->references('id')->on('event')->onDelete('cascade');
-            $table->foreign('id_persona')->references('id')->on('person')->onDelete('cascade');
+            $table->foreign('id_persona')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_animal')->references('id')->on('animal')->onDelete('cascade');
         });
     }

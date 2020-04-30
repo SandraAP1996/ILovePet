@@ -14,7 +14,7 @@ class FkAnimalTable extends Migration
     public function up()
     {
         Schema::table('animal', function (Blueprint $table) {
-            $table->foreign('id_persona')->references('id')->on('person')->onDelete('cascade');
+            $table->foreign('id_persona')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

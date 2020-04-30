@@ -3,31 +3,88 @@
 | BUSCAR ANIMALES CON FILTRO - GENERAL
 |---------------
 */
-$(function(){
+$(function(){    
 
     /*** INICIO ***/
 
     /* Control de Select al cargar la página*/
     rellenarSelect($( "#filtroAnimal .tipoAnimal" ).val());
+
+    /*Cargar el filtrado*/
+    cambiarFormulario($('#inicioCampo').text(),$('#inicioFiltro').text());
+
     /*Navegador de Busqueda*/
     navBuscador($( "#filtroAnimal .tipoAnimal" ).val(),$("#filtroAnimal .tipoAnimal" ).val(),$('input:radio[name=sexo]:checked').val(),$("#filtroAnimal .tallaAnimal" ).val(),$("#filtroAnimal .edadAnimal" ).val(), $("#filtroAnimal .estadoAnimal" ).val());
 
+    /*Buscar por Filtrado*/
+    buscarPorFiltro();
 
     /*EVENTOS*/
-    $("#filtroAnimal .tipoAnimal").blur(function(){
+    $("#filtroAnimal .tipoAnimal").change(function(){
         rellenarSelect($( "#filtroAnimal .tipoAnimal" ).val());
+        buscarPorFiltro();
     });
     /* Control de Select seleccionar otra opción*/
-    $("#filtroAnimal select, #filtroAnimal input:radio[name=sexo]").blur(function(){
+    $("#filtroAnimal select, #filtroAnimal input:radio[name=sexo]").change(function(){
         navBuscador($( "#filtroAnimal .tipoAnimal" ).val(),$("#filtroAnimal .especieAnimal" ).val(),$('input:radio[name=sexo]:checked').val(),$("#filtroAnimal .tallaAnimal" ).val(),$("#filtroAnimal .edadAnimal" ).val(), $("#filtroAnimal .estadoAnimal" ).val());
+        buscarPorFiltro();
     });
 
     /* Controlar el click de los botones del NavBuscador*/
     $('body').on('click', 'ul.navBusqueda img', function(){
         borrarNavBuscador($(this).attr('class'));
+        buscarPorFiltro();
     });
-
+    /*BOTON REINICIAR*/
+    $('button').click(function(){
+        $('#filtroAnimal').reset();
+    })
 });
+
+/**
+* FILTAR: Función que hace una petición Ajax a partir de lo que hemos filtrado
+*
+* @param  string  opcion
+* @return void
+*/
+
+function buscarPorFiltro(){
+    $.ajax({
+        url: "/animal/buscar/",
+        method: "GET",
+        data: $("form#filtroAnimal").serialize(), 
+        success: function(animales){
+            $('div#exposicionAnimal').empty();
+            $('div#paginacionBusqueda').show();
+            $('div#exposicionAnimal').removeClass('justify-content-center');
+            $('.row div').css({ "padding-bottom": '10px'});
+            
+            if(animales.length != 0){
+                for(var i in animales){
+                    $('div#exposicionAnimal').append('<div class="col-12 col-md-6 col-lg-3 grid tarjetaAnimal"><figure class="effect-card"><img src="/img/'+animales[i].ruta+''+animales[i].titulo+'.'+animales[i].formato+'" alt="'+animales[i].nombre+'"/><figcaption><div class="descripcion"><h2>'+animales[i].estado+' <span>'+animales[i].nombre+'</span></h2><p>Descripción del animal</p></div><a href="#" title="Detalles'+animales[i].id+'">Detalles</a></figcaption></figure></div>');
+                }
+            }else{
+                $('div#paginacionBusqueda').hide();
+                $('div#exposicionAnimal').addClass('justify-content-center');
+                $('div#exposicionAnimal').append('<div id="imagenError" class="row"><img src="/img/web/pagina/404.png"></div>');
+                $('.row div').css({ "padding-bottom": '0px'});
+
+            }
+        }
+    });
+}
+
+
+function cambiarFormulario(campo, filtro){
+    if(campo == 'especie'){
+        $('.especieAnimal').val(filtro).prop('selected', true);
+    }else if(campo == 'tipo'){
+        $('.tipoAnimal').val(filtro).prop('selected', true);
+
+    }
+
+
+}
 
 /**
 * BORRAR NAVBUSCADOR: Función para borrar la opcion seleccionada en el navBuscador
@@ -92,16 +149,16 @@ function navBuscador(tipo, especie, sexo, talla, edad, estado){
 function rellenarSelect(tipo){
     $("#filtroAnimal .especieAnimal").empty();
     switch(tipo){
-        case '0':
-            $("#filtroAnimal .especieAnimal").append("<option value='todo'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='equino'>Equinos</option><option value='venado'>Venados</option><option value='reptil'>Reptiles</option>"); break;
-        case '1':  
-            $("#filtroAnimal .especieAnimal").append("<option value='todo'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option>"); break;
-        case '2':  
-            $("#filtroAnimal .especieAnimal").append("<option value='todo'>Todos</option><option value='equino'>Equinos</option><option value='venado'>Venados</option>"); break;
-        case '3':  
-            $("#filtroAnimal .especieAnimal").append("<option value='todo'>Todos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='reptil'>Reptiles</option>"); break;
+        case 'Todos':
+            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='equino'>Equinos</option><option value='venado'>Venados</option><option value='reptil'>Reptiles</option>"); break;
+        case 'domestico':  
+            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option>"); break;
+        case 'granja':  
+            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='equino'>Equinos</option><option value='venado'>Venados</option>"); break;
+        case 'exotico':  
+            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='reptil'>Reptiles</option>"); break;
         default: 
             console.log('no entra .especieAnimal');
-            $("#filtroAnimal .especieAnimal").append("<option value='todo'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='equino'>Equinos</option><option value='venado'>Venados</option><option value='reptil'>Reptiles</option>");
+            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='equino'>Equinos</option><option value='venado'>Venados</option><option value='reptil'>Reptiles</option>");
     }
 }

@@ -28,7 +28,7 @@ Inicio
                 <div>
                     <h3>{{__('Adopción')}}</h3>
                     <p>{{__('Desafortunadamente sigue siendo habitual que algunos propietarios que compran un cachorro de forma impulsiva decidan abandonarlo o dejarlo en una protectora de perros cuando se dan cuenta de que convivir con él implica un compromiso importante que puede superar los 10 años.')}}</p>
-                    <a href="{{url('/buscar')}}" class="btn btn-sm btn-outline-secondary">{{__('Click aquí')}}</a>
+                    <a href="{{url('/buscar/todos/todos')}}" class="btn btn-sm btn-outline-secondary">{{__('Click aquí')}}</a>
                 </div>
             </div>
         </div>
@@ -105,14 +105,14 @@ Inicio
             <div class="descripcionCategoria">
                 <span>{{__('Adopción')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar')}}" title="todos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar/todos/todos')}}" title="todos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
             </div>
         </div>
         <div class="col-sm-12 col-md-4 perrosCategoria">
             <div class="descripcionCategoria">
                 <span>{{__('Perros')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar')}}" title="perros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar/especie/perro')}}" title="perros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
 
             </div>
         </div>
@@ -120,7 +120,7 @@ Inicio
             <div class="descripcionCategoria">
                 <span>{{__('Gatos')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar')}}" title="gatos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar/especie/gato')}}" title="gatos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
 
             </div>
         </div>
@@ -130,7 +130,7 @@ Inicio
             <div class="descripcionCategoria">
                 <span>{{__('Pájaros')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar')}}" title="pajaros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar/especie/pajaro')}}" title="pajaros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
 
             </div>
         </div>
@@ -138,7 +138,7 @@ Inicio
             <div class="descripcionCategoria">
                 <span>{{__('Ganado')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar')}}" title="ganado" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar/tipo/granja')}}" title="ganado" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
             </div>
         </div>
     </div>
@@ -147,7 +147,7 @@ Inicio
             <div class="descripcionCategoria">
                 <span>{{__('Roedores')}}</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar')}}" title="roedores" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar/especie/roedor')}}" title="roedores" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
 
             </div>
         </div>
@@ -155,7 +155,7 @@ Inicio
             <div class="descripcionCategoria">
                 <span>Exóticos</span>
                 <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar')}}" title="exoticos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <a href="{{url('/buscar/tipo/exotico')}}" title="exoticos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
             </div>
         </div>
     </div>

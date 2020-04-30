@@ -24,8 +24,15 @@ Route::get('/', 'AnimalController@inicioTarjetas');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('buscar/{campo}/{filtro}', function ($campo,$filtro) {
+    return view('animal.filtrar-animal')
+        ->with('campo',$campo)
+        ->with('filtro',$filtro);
+});
 
 
 Route::group(['prefix' => 'animal'], function(){
-    Route::get('buscar{filtro}', 'AnimalController@buscarAnimal');
+    //Route::get('buscar/{filtro}', 'AnimalController@buscarAnimal');
+    Route::get('buscar/', 'AnimalController@buscarAnimal');
+
 });
