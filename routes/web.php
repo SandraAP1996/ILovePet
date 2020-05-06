@@ -34,5 +34,16 @@ Route::get('buscar/{campo}/{filtro}', function ($campo,$filtro) {
 Route::group(['prefix' => 'animal'], function(){
     //Route::get('buscar/{filtro}', 'AnimalController@buscarAnimal');
     Route::get('buscar/', 'AnimalController@buscarAnimal');
+    Route::get('detalle/{id}', 'AnimalController@detalleAnimal');
+});
+
+Route::group(['prefix' => 'informacion'], function(){
+
+    Route::get('/conocenos', function () {
+        return view('informacion.conocenos');
+    });
+    Route::get('/adoptar', function () {
+        return view('informacion.adoptar');
+    });
 
 });

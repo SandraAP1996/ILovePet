@@ -88,7 +88,7 @@ Inicio
                         <h2>{{$animal->nivel}} <span>{{$animal->nombre}}</span></h2>
                         <p>{{__('Lily likes to play with crayons and pencils')}}</p>
                     </div>
-                    <a href="#" title="Detalles">{{__('Detalles')}}</a>
+                    <a href="{{url('/animal/detalle/'.$animal->id)}}" title="Detalles">{{__('Detalles')}}</a>
                 </figcaption>			
             </figure>
         </div>

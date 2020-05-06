@@ -78,7 +78,7 @@
                         <a class="nav-link" href="#">{{__('Donaciones')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{__('Conocenos')}}</a>
+                        <a class="nav-link" href="{{url('/informacion/conocenos')}}">{{__('Conocenos')}}</a>
                     </li>
 
                 </ul>
@@ -224,7 +224,7 @@
                         <ul class="list-unstyled">
                             <li><a href="{{url('/')}}">{{__('Inicio') }}</a></li>
                             <li>
-                                <a href="{{url('/buscar')}}">{{__('Adopción') }}</a>
+                                <a href="{{url('/buscar/todos/todos')}}">{{__('Adopción') }}</a>
                                 <ul >
                                     <li class="list-unstyled">  <a href="{{url('/buscar')}}">{{__('Domésticos') }}</a></li>
                                     <li class="list-unstyled"> <a href="{{url('/buscar')}}">{{__('Granja') }}</a></li>
@@ -244,10 +244,10 @@
                         <h5 class="text-uppercase">{{__('Información') }}</h5>
                         <ul class="list-unstyled">
                             <li>
-                                <a href="#!">{{__('Conocenos') }}</a>
+                                <a href="{{url('/informacion/conocenos')}}">{{__('Conocenos') }}</a>
                             </li>
                             <li>
-                                <a href="#!">{{__('¿Por qué adoptar?') }}</a>
+                                <a href="{{url('/informacion/adoptar')}}">{{__('¿Por qué adoptar?') }}</a>
                             </li>
                             <li>
                                 <a href="#!">{{__('¿Qué son las donaciones?') }}</a>

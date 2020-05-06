@@ -1,0 +1,42 @@
+
+/*
+|--------------------------------------------------------------------------
+| DETALLE INFORMACION - Estilo para las vistas informacion.blade.php | adoptar.blade.php
+|--------------------------------------------------------------------------
+*/
+#informacion{
+    background-color:#DCC7AA; 
+    margin: 7%;
+    border-radius: 15px;
+    padding: 1%;
+    padding-bottom: 3%;
+}
+#informacion h1{
+    font-family: 'Amatic SC';
+    font-size: 7vw;
+    margin-left: 1em;
+    color: #80725F;  
+    margin-bottom: 2%;
+}
+
+#informacion p{
+    text-align: justify;
+    color: #80725F;
+    font-size: 1vw;
+    
+}
+#informacion span{
+    font-weight: bold;
+}
+
+.container{
+    margin-left: 10%;
+    margin-right: 10%;
+
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+#informacion img{
+    margin-left: 25px;
+}

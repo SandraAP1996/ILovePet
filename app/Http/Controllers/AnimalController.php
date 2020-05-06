@@ -69,4 +69,22 @@ class AnimalController extends Controller
         return $busqueda;
 
     }
+
+    /**
+     * Función que saca toda la información del animal.
+     *
+     * @param  int $id
+     * @return objeto $animal
+     */
+
+    public static function detalleAnimal( $id){
+
+        $animal= Animal::select('animal.*','photo.titulo','photo.ruta','photo.formato')
+            ->join('photo','photo.id_animal','=','animal.id')
+            ->where('animal.id',$id)
+            ->get();
+
+        return view('animal.detalle')
+            ->with('animal',$animal);
+    }
 }
