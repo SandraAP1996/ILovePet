@@ -28,8 +28,6 @@ Gestión Animales
                     <div class="col-md-2">
                         <div class="form-group">
                             Raza <select name="raza"  class="form-control">
-                            
-
                             </select>
                         </div> 
                         <div class="form-group">
@@ -69,18 +67,40 @@ Gestión Animales
 
     </div>
 
-    <div id="ficha" class="border">
-        <h3>Ficha del Animal </h3>
+    <div id="ficha" >
+        <div class="row justify-content-center">
+            <div class="fichaAnimal col-md-6 border">
+                <h3>Ficha del Animal </h3>
+                <div class="row justify-content-center">
+                    <div class="fichaDescripcion col-md-6">
+                        <p><span>Chip</span>&nbsp&nbsp  </p>
+                        <p><span>Edad</span>&nbsp&nbsp () </p>
+                        <p><span>Fecha de nacimiento</span>&nbsp&nbsp  </p>
+                        <p><span>Raza</span>&nbsp&nbsp </p>
+                        <p><span>Sexo</span>&nbsp&nbsp </p>
+                        <p><span>Talla</span>&nbsp&nbsp </p>
+                        <p><span>Descripción</span> <br> </p>
+                    </div>
+                    <div class="fichaBotones col-md-2"></div>
+                    <div class="fichaBotones col-md-2"></div>
+                    <div class="fichaBotones col-md-2">
+                    <button type="button" class="btn btn-sm reiniciar">{{__('Reiniciar')}}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="fichaPersona col-md-6 border">
+                <h3>Ficha de la Persona </h3>
 
-        <p><span>Chip</span>&nbsp&nbsp  </p>
-        <p><span>Edad</span>&nbsp&nbsp () </p>
-        <p><span>Fecha de nacimiento</span>&nbsp&nbsp  </p>
-        <p><span>Raza</span>&nbsp&nbsp </p>
-        <p><span>Sexo</span>&nbsp&nbsp </p>
-        <p><span>Talla</span>&nbsp&nbsp </p>
-        <p><span>Descripción</span> <br> </p>
+                <p><span>Chip</span>&nbsp&nbsp  </p>
+                <p><span>Edad</span>&nbsp&nbsp () </p>
+                <p><span>Fecha de nacimiento</span>&nbsp&nbsp  </p>
+                <p><span>Raza</span>&nbsp&nbsp </p>
+                <p><span>Sexo</span>&nbsp&nbsp </p>
+                <p><span>Talla</span>&nbsp&nbsp </p>
+                <p><span>Descripción</span> <br> </p>
+            </div>
+        </div>
     </div>
-
     <div id="resultado">
         <table class="table">
             <thead class="cabecera">
@@ -90,9 +110,9 @@ Gestión Animales
                     <th scope="col">Fecha de nacimiento / Edad</th>
                     <th scope="col">Raza</th>
                     <th scope="col">Talla</th>
-                    <th scope="col">Fotos</th>
-                    <th scope="col">Situación</th>
                     <th scope="col">Estado</th>
+                    <th scope="col">Situación</th>
+                    <th scope="col">Fotos</th>
                     <th scope="col"></th>
                 </tr>
             </thead>

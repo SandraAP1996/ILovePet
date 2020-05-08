@@ -37,7 +37,7 @@ div#filtro{
 }
 
 .botones{
-float: right;    right: 0;
+    float: right;    right: 0;
 }
 
 ul.error{
@@ -45,7 +45,7 @@ ul.error{
 }
 
 input.error{
-box-shadow: 2px 2px 2px 1px red;
+    box-shadow: 2px 2px 2px 1px red;
 }
 
 /*
@@ -82,7 +82,9 @@ button.buscar:hover{
     box-shadow: 2px 2px 10px #444F5B;        /* Sombra normal */
 }
 
-
+.col-md-6{
+    padding: 0px;
+}
 
 
 
@@ -91,7 +93,10 @@ button.buscar:hover{
 | TABLA
 |---------------
 */
+#resultado table{
+    text-align: center;
 
+}
 thead.cabecera{
     background-color: #80725F;
     color: white;
@@ -101,4 +106,28 @@ tbody tr:hover{
 }
 tbody tr{
     cursor: pointer;
+}
+
+#resultado span{
+    border-radius: 15px;
+    padding: 5px;
+}
+
+span.normal{
+    background-color: #EEF495;
+}
+span.urgente{
+    background-color: #FF1717;
+}
+
+span.nuevo{
+    background-color: #A9FBFF;
+    color: black;
+}
+tr.seleccionado:hover{
+        background-color: #DCC7AA;
+
+}
+tr.seleccionado{
+    background-color:#DCC7AA ;
 }

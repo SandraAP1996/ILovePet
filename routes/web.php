@@ -45,6 +45,7 @@ Route::group(['prefix' => 'gestion'], function(){
     });
     
     Route::get('/animales/buscar', 'AnimalController@gestionAnimal');
+    Route::get('/animales/id/{id}', 'AnimalController@fichaAnimal');
 });
 
 

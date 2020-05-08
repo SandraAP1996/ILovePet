@@ -27,8 +27,29 @@ $(function(){
         validarFormulario();
         buscarPorFiltro();
     });
+    
+    
+    $('body').on('click','tr',function(){
+        $('tr').removeClass('seleccionado');
+        $(this).addClass('seleccionado');
+        var id=$(this).attr('class');
+        id=id.split('id');
+        detallesAnimal(id[1]);
+    });
 });
 
+function detallesAnimal(id){
+    
+    $.ajax({
+            url: "/gestion/animales/id/"+id,
+            method: "GET", 
+            success: function(animal){
+                
+                console.log(animal);
+            }});
+    
+    
+}
 
 /**
 * FILTRAR ANIMALES: Función que valida los datos de los inputs
@@ -49,7 +70,7 @@ function buscarPorFiltro(){
             success: function(animales){
                 for(var i in animales){
                     var fotos=animales[i].img.length;
-                    $('tbody').append('<tr class="id'+animales[i].id+'"><th scope="row" class="chip">'+animales[i].chip+'</th><td class="nombre">'+animales[i].nombre+'</td><td class="nacimiento">'+animales[i].fecha_nacimiento+'</td><td class="raza">'+animales[i].raza+'</td><td class="talla">'+animales[i].talla+'</td><td class="fotos">'+fotos+'</td><td class="situacion">'+animales[i].situacion+'</td><td class="estado">'+animales[i].estado+'</td> <td class="eliminar"><img src="/img/web/icons/papelera.svg" alt="papelera" title="Eliminar"></td></tr>');
+                    $('tbody').append('<tr class="id'+animales[i].id+'"><th scope="row" class="chip">'+animales[i].chip+'</th><td class="nombre">'+animales[i].nombre+'</td><td class="nacimiento">'+animales[i].fecha_nacimiento+'</td><td class="raza">'+animales[i].raza+'</td><td class="talla">'+animales[i].talla+'</td><td class="estado"><span class="'+animales[i].estado+'">'+animales[i].estado+'</span></td><td class="situacion">'+animales[i].situacion+'</td> <td class="fotos">'+fotos+'</td><td class="eliminar"><img src="/img/web/icons/papelera.svg" alt="papelera" title="Eliminar"></td></tr>');
                 }
 
                 /*Rellenar el select*/

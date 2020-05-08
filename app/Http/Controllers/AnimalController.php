@@ -137,7 +137,7 @@ class AnimalController extends Controller
         $animal= DB::select("SELECT * FROM animal a ".$consulta.";");
 
         /*Sacamos las imagenes de cada animal*/
-        
+
         for($i = 0; $i<count($animal) ; $i++){
             $imagenes = DB::select('SELECT p.titulo, p.principal , p.formato, p.ruta  FROM photo p WHERE p.id_animal = '.$animal[$i]->id.';');
             $animal[$i]->img = $imagenes;
@@ -151,7 +151,21 @@ class AnimalController extends Controller
         return $animal;
     }
 
+    public static function fichaAnimal($id){
+        
+        $animal= Animal::select()
+            ->where('animal.id',$id)
+            ->get();
 
+        $imagenes = DB::select('SELECT p.titulo, p.formato, p.ruta  FROM photo p WHERE p.id_animal = "'.$id.'";');
+        
+        for($i = 0; $i<count($animal) ; $i++){
+
+            $animal[$i]->img = $imagenes;
+        }
+
+        return $animal;
+    }
 
 
     /**
