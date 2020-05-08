@@ -37,6 +37,20 @@ Route::group(['prefix' => 'animal'], function(){
     Route::get('detalle/{id}', 'AnimalController@detalleAnimal');
 });
 
+
+
+Route::group(['prefix' => 'gestion'], function(){
+    Route::get('/animales', function () {
+        return view('gestion.animales');
+    });
+    
+    Route::get('/animales/buscar', 'AnimalController@gestionAnimal');
+});
+
+
+
+
+
 Route::group(['prefix' => 'informacion'], function(){
 
     Route::get('/conocenos', function () {
@@ -45,5 +59,4 @@ Route::group(['prefix' => 'informacion'], function(){
     Route::get('/adoptar', function () {
         return view('informacion.adoptar');
     });
-
 });

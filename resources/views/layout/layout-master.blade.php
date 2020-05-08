@@ -34,7 +34,7 @@
         <div href="javascript:void(0);" id="scroll" title="Arriba" ><img id="huella" src="/img/web/icons/huella.svg" alt="foto huella" ></div>
 
 
-       <!-- CABECERA -->
+        <!-- CABECERA -->
         <div id="cabecera" class="container-fluid text-center text-md-left">
             <div class="row">
                 <div id="logo" class="col-sm-12 col-s-6 col-lg-8 ">
@@ -48,7 +48,6 @@
                 </div>
             </div>
         </div>
-
 
         <!--BARRA DE NAVEGACIÓN -->
 
@@ -94,8 +93,17 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-default">
                             <a class="dropdown-item" href="#">{{__('Pérfil')}}</a>
-                            <a class="dropdown-item" href="#">Cosa2</a>
-                            <div class="dropdown-divider"></div>
+                            @if(Auth::user()->rol == 'Empleado')
+
+                            <a class="dropdown-item" href="{{url('/gestion/animales')}}">Gestionar Animales</a>
+                            <a class="dropdown-item" href="#">Gestionar Usuarios</a>
+                                                        
+
+                            <div class="dropdown-divider"></div>                            
+                            @else
+
+                            @endif
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

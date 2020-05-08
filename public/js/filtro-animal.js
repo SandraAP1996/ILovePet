@@ -183,15 +183,15 @@ function rellenarSelect(tipo){
     $("#filtroAnimal .especieAnimal").empty();
     switch(tipo){
         case 'Todos':
-            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='equino'>Equinos</option><option value='venado'>Venados</option><option value='reptil'>Reptiles</option>"); break;
+            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='equino'>Equinos</option><option value='ganado'>Ganado</option><option value='reptil'>Reptiles</option>"); break;
         case 'domestico':  
             $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option>"); break;
         case 'granja':  
-            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='equino'>Equinos</option><option value='venado'>Venados</option>"); break;
+            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='equino'>Equinos</option><option value='ganado'>Ganado</option>"); break;
         case 'exotico':  
             $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='reptil'>Reptiles</option>"); break;
         default: 
             console.log('no entra .especieAnimal');
-            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='equino'>Equinos</option><option value='venado'>Venados</option><option value='reptil'>Reptiles</option>");
+            $("#filtroAnimal .especieAnimal").append("<option value='Todos'>Todos</option><option value='perro'>Perros</option><option value='gato'>Gatos</option><option value='pajaro'>Pájaros</option><option value='roedor'>Roedores</option><option value='equino'>Equinos</option><option value='ganado'>Ganado</option><option value='reptil'>Reptiles</option>");
     }
 }
