@@ -57,10 +57,18 @@ input.error{
 div#ficha p{
     margin-left: 15px;
 }
-div#ficha h3{
+div.fichaTitulo{
+    padding: 5px;
     color:white;
     background-color: #526071;
-    padding: 1%;
+}
+
+div.fichaTitulo img{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    cursor:pointer;
+
 }
 
 div#ficha{
@@ -72,11 +80,19 @@ a.insertar{
     background-color: #4DD295;
 }
 
-button.insertar{
+button.insertar,
+button.insertarFoto{
     color:white;
     background-color: #4DD295; 
     border: 1px solid #4DD295;
 }
+
+button.eliminarFoto{
+    background-color:red;
+    color: white;
+}
+
+
 button.insertar:hover,
 button.buscar:hover{
     box-shadow: 2px 2px 10px #444F5B;        /* Sombra normal */
@@ -84,6 +100,92 @@ button.buscar:hover{
 
 .col-md-6{
     padding: 0px;
+}
+div.fichaDescripcion span{
+    font-weight: bold;
+}
+div.fichaAnimal,
+div.fichaPersona{
+    display: none;
+}
+div.fichaAnimal .fichaDescripcion,
+div.fichaAnimal .fichaBotones{
+    padding-top: 10px;
+}
+
+button.elimianar{
+    background-color: red;
+}
+/*Ficha FOTOS*/
+div.fichaFotos h5{
+    padding-left: 30px;
+}
+
+.fichaFotos img:hover{
+    box-shadow: 2px 2px 10px #666;        /* Sombra normal */
+
+}
+
+img.principal{
+    border: 2px solid orange;
+}
+img.seleccionado{
+    /*        box-shadow: 0px 0px 20px #444F5B;         Sombra normal */
+
+    border: 4px solid #444F5B;
+}
+
+div.fichaFotos span.botones{
+    padding-right: 5px;
+}
+span.botones button.eliminarFoto{
+    visibility: hidden;
+}
+div.galeria {
+    color: gray;
+    padding: 10px;
+    
+}
+div.galeria img{
+    width: 130px;
+    height: 100px;
+    margin: 10px;
+    cursor:pointer;
+}
+div.fichaFotos div.d-flex{
+    margin-bottom: 10px;
+}
+
+
+/*
+|---------------
+| MODALS
+|---------------
+*/
+
+/*Modal Eliminar Animal*/
+#eliminarModal,
+#informacionModal{
+    margin-top: 15%;
+    color:#80725F;
+}
+#eliminarModal .card-body,
+#informacionModal .card-body{
+    font-size: 25px;
+}
+#eliminarModal .modal-header{
+    background-color: #F7882F;
+    color: white;
+}
+
+/*Modal información*/
+#informacionModal div.correcto .modal-header{
+    background-color: mediumseagreen;
+    color: white;
+}
+#informacionModal div.incorrecto .modal-header{
+    background-color:darkred;
+    color: white;
 }
 
 
@@ -125,9 +227,14 @@ span.nuevo{
     color: black;
 }
 tr.seleccionado:hover{
-        background-color: #DCC7AA;
+    background-color: #DCC7AA;
 
 }
 tr.seleccionado{
     background-color:#DCC7AA ;
+}
+
+img.papelera{
+    width: 25px;
+    height: 25px;
 }

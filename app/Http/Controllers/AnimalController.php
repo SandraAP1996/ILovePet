@@ -139,7 +139,7 @@ class AnimalController extends Controller
         /*Sacamos las imagenes de cada animal*/
 
         for($i = 0; $i<count($animal) ; $i++){
-            $imagenes = DB::select('SELECT p.titulo, p.principal , p.formato, p.ruta  FROM photo p WHERE p.id_animal = '.$animal[$i]->id.';');
+            $imagenes = DB::select('SELECT * FROM photo p WHERE p.id_animal = '.$animal[$i]->id.';');
             $animal[$i]->img = $imagenes;
         }
 
@@ -151,14 +151,20 @@ class AnimalController extends Controller
         return $animal;
     }
 
+    /**
+     * Función que saca toda la información del animal a partir del id.
+     *
+     * @param  int $id
+     * @return objeto $animal
+     */
     public static function fichaAnimal($id){
-        
+
         $animal= Animal::select()
             ->where('animal.id',$id)
             ->get();
 
-        $imagenes = DB::select('SELECT p.titulo, p.formato, p.ruta  FROM photo p WHERE p.id_animal = "'.$id.'";');
-        
+        $imagenes = DB::select('SELECT *  FROM photo p WHERE p.id_animal = "'.$id.'";');
+
         for($i = 0; $i<count($animal) ; $i++){
 
             $animal[$i]->img = $imagenes;
@@ -181,7 +187,7 @@ class AnimalController extends Controller
             ->where('animal.id',$id)
             ->get();
 
-        $imagenes = DB::select('SELECT p.titulo, p.formato, p.ruta  FROM photo p WHERE p.id_animal = "'.$id.'";');
+        $imagenes = DB::select('SELECT *  FROM photo p WHERE p.id_animal = "'.$id.'";');
         for($i = 0; $i<count($animal) ; $i++){
 
             $animal[$i]->img = $imagenes;
@@ -189,5 +195,70 @@ class AnimalController extends Controller
 
         return view('animal.detalle')
             ->with('animal',$animal);
+    }
+
+    /**
+     * Función para eliminar un animal a partir del id.
+     *
+     * @param  int $id
+     * @return objeto $existe
+     */
+
+    public static function eliminarAnimal($id){
+        $animal = Animal::find($id);
+        $animal->delete();
+
+        $existe = Animal::find($id);
+
+        return $existe;
+    }
+
+    /**
+     * Función para eliminar una foto a partir del id.
+     *
+     * @param  int $id
+     * @return objeto $existe
+     */
+    public static function eliminarFoto($id){
+
+        $principal=false;
+
+        $consulta = Photo::select()
+            ->where('photo.id', $id)
+            ->where('photo.principal','=','1')
+            ->get();
+
+        /*Comporbamos si la foto seleccionada es una principal en base a la consulta anterior*/
+        if(count($consulta) != 0){
+
+            $numero = DB::select('SELECT COUNT(*) as numero FROM photo WHERE id_animal = '.$consulta[0]->id_animal.' AND id != '.$id.';');
+
+            /*Comprobamos si el animal tiene más de una foto*/
+            if($numero[0]->numero != 0){
+
+                $limit= Photo::select()
+                    ->where('photo.id_animal',$consulta[0]->id_animal)
+                    ->where('photo.id','!=',$id)
+                    ->take(1)
+                    ->get();
+                /*Comprobamos que esa foto no sea la misma que la principal para cambiar la principal*/
+                if(count($limit) != 0){
+                    $limit[0]->principal = '1';
+                    $limit[0]->save();
+
+                }
+            }
+        }
+
+        /*Eliminamos la foto*/
+        $foto = Photo::find($id);
+        $foto->delete();
+
+        /*Comprobamos que no exista*/
+        $existe = Photo::find($id);
+        return $existe;
+
+
+
     }
 }

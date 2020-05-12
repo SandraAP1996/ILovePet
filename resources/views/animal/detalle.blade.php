@@ -52,9 +52,8 @@ $mes=$edad->format('%m');
                 <p><span>Descripción</span> <br> {{$animal[0]->descripcion}}</p>
             </div>
             <div class="imagenes carousel col-sm-12 col-md-6 order-2 order-2 order-sm-2 order-md-3  ">
-
                 @for($i=0;count($animal[0]->img)>$i;$i++)
-                @if($i == 0)
+                @if($animal[0]->img[$i]->principal == 1)
                 <img class="seleccionado img{{$i}}" src="/img/{{$animal[0]->img[$i]->ruta}}{{$animal[0]->img[$i]->titulo}}.{{$animal[0]->img[$i]->formato}}" alt="imgDetalle">
                 @else
                 <img class="img{{$i}}" src="/img/{{$animal[0]->img[$i]->ruta}}{{$animal[0]->img[$i]->titulo}}.{{$animal[0]->img[$i]->formato}}" alt="imgDetalle">
