@@ -62,9 +62,10 @@
                         <a class="nav-link"  data-toggle="dropdown" style="cursor:pointer;">{{__('Adopción')}}</a>
                         <div class="dropdown-menu dropdown-default" >
 
-                            <a class="dropdown-item" href="{{url('/buscar')}}">{{__('Domésticos')}}</a>
-                            <a class="dropdown-item" href="{{url('/buscar')}}">{{__('Granja')}}</a>
-                            <a class="dropdown-item" href="{{url('/buscar')}}">{{__('Exóticos')}}</a>
+                            <a class="dropdown-item" href="{{url('/buscar/todos/todos')}}">{{__('Todos')}}</a>
+                            <a class="dropdown-item" href="{{url('/buscar/tipo/domestico')}}">{{__('Domésticos')}}</a>
+                            <a class="dropdown-item" href="{{url('/buscar/tipo/granja')}}">{{__('Granja')}}</a>
+                            <a class="dropdown-item" href="{{url('/buscar/tipo/exotico')}}">{{__('Exóticos')}}</a>
 
                         </div>
                     </li>
@@ -97,7 +98,7 @@
 
                             <a class="dropdown-item" href="{{url('/gestion/animales')}}">Gestionar Animales</a>
                             <a class="dropdown-item" href="#">Gestionar Usuarios</a>
-                                                        
+
 
                             <div class="dropdown-divider"></div>                            
                             @else
@@ -234,9 +235,9 @@
                             <li>
                                 <a href="{{url('/buscar/todos/todos')}}">{{__('Adopción') }}</a>
                                 <ul >
-                                    <li class="list-unstyled">  <a href="{{url('/buscar')}}">{{__('Domésticos') }}</a></li>
-                                    <li class="list-unstyled"> <a href="{{url('/buscar')}}">{{__('Granja') }}</a></li>
-                                    <li class="list-unstyled"> <a href="{{url('/buscar')}}">{{__('Exóticos') }}</a></li>
+                                    <li class="list-unstyled">  <a href="{{url('/buscar/tipo/domestico')}}">{{__('Domésticos') }}</a></li>
+                                    <li class="list-unstyled"> <a href="{{url('/buscar/tipo/granja')}}">{{__('Granja') }}</a></li>
+                                    <li class="list-unstyled"> <a href="{{url('/buscar/tipo/exotico')}}">{{__('Exóticos') }}</a></li>
                                 </ul>
                             </li>
                             <li>

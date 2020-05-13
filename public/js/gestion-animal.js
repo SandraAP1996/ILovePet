@@ -5,6 +5,7 @@
 */
 
 $(function(){  
+
     $('#filtroAnimal select[name="raza"]').empty();
     $('#filtroAnimal select[name="raza"]').append('<option value="todo"></option>');
 
@@ -58,10 +59,40 @@ $(function(){
         $("#eliminarModal .modal-title").text("Eliminar Foto");
         $('#eliminarModal .modal-content').attr('id', $(this).parent().attr('class'));
         $("#eliminarModal button.acepta").addClass("foto");
+    });
+
+    /* INSERTAR ANIMAL */
+    $('#filtroAnimal button.insertar').click(function(){
+        $("#insertarModal").modal("show");
+
+    });
+
+    /*FORMULARIO INSERTAR*/
+    $("#insertarModal form").on('submit', function(evt){
+        evt.preventDefault();
+        validaInsertar('boton');
+        insertarBD();
+    });
+
+    /*REINICIAR FORMULARIO*/
+    $('#insertarModal form .cancelar').click(function(){
+        $('#insertarModal form')[0].reset();
+        $('#insertarModal form .error').removeClass('error');
+        $('.form-group h6 span').text('');
 
 
-        //        eliminarFoto($('div.galeria img.seleccionado').attr('id').split('foto')[1])
+    });
 
+
+    $("#insertarModal form input").blur(function(){
+        validaInsertar('input',$(this));
+    });
+    $("#insertarModal form select").change(function(){
+        validaInsertar('select',$(this));
+    });
+
+    $("#insertarModal form textarea").blur(function(){
+        validaInsertar('textarea',$(this));
     });
 
 
@@ -104,9 +135,196 @@ $(function(){
         $('tr').removeClass('seleccionado'); 
     });
 
+
 });
 
+/**
+* INSERTAR DATOS: Función para insertar los parametros
+*
+* @param void
+* @return void
+*/
+function insertarBD(){
 
+    if($('#insertarModal form .error').length == 0){
+        $.ajax({
+            url: "/gestion/animales/insertar",
+            method: "GET", 
+            success: function(insertado){
+                console.log(insertado);
+            }
+        });  
+
+    }
+}
+
+
+
+/**
+* VALIDAR DATOS: Función que valida los datos del formulario
+*
+* @param string modo
+* @param string elemento
+* @return void
+*/
+function validaInsertar(modo,elemento){
+
+    if(modo == 'boton'){
+        var inputs=$('#insertarModal form input');
+        var selects=$('#insertarModal form select');
+    }
+
+    if(modo == 'input'){
+        var inputs=elemento;
+    }
+    if(modo == 'select'){
+        var selects=elemento;
+    }
+
+
+    var msg='';
+
+    //    $('ul.msgError').empty();
+
+    /*INPUTS Validación*/
+    if(modo == 'input' || modo == 'boton'){
+        for(var i=0;i<inputs.length;i++){
+
+            /*CHIP*/
+            if($(inputs[i]).attr('name') == 'chip'){
+                if($(inputs[i]).val() == ''){
+                    $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                    $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                }else{
+                    if($(inputs[i]).val().match(/^[0-9]+$/) && 11 >= $(inputs[i]).val().length){
+                        $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').removeClass('error');
+                        $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('');
+                        $('ul.msgError li.'+$(inputs[i]).attr("name")).remove();
+                    }else{
+                        if( $('ul.msgError li.'+$(inputs[i]).attr("name")).length == 0){
+                            $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                            $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                            msg+='<li class="chip">El campo '+$(inputs[i]).attr('name')+' no puede contener letras ni espacios y tiene que tener un maximo de 11 caracteres</li>';
+                        }
+                    }
+                }
+            }
+            /*NOMBRE*/
+            if($(inputs[i]).attr('name') == 'nombre' ){
+                if($(inputs[i]).val() == ''){
+                    $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                    $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                }else{
+                    if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]+$/) && 25 >= $(inputs[i]).val().length && $(inputs[i]).val() != ''){
+                        $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').removeClass('error');
+                        $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('');
+                        $('ul.msgError li.'+$(inputs[i]).attr("name")+'').remove();
+
+
+                    }else{
+                        if( $('ul.msgError li.'+$(inputs[i]).attr("name")).length == 0){
+
+                            $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                            $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                            msg+='<li class="'+$(inputs[i]).attr('name')+'" >El campo '+$(inputs[i]).attr('name')+' no puede contener numeros y tiene que tener un maximo de 25 caracteres</li>';
+                        }
+                    }
+                }
+            }
+            /*RAZA*/
+            if($(inputs[i]).attr('name') == 'raza'){
+
+                if($(inputs[i]).val() == ''){
+                    $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                    $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                }else{
+                    if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]+$/) && 40 >= $(inputs[i]).val().length && $(inputs[i]).val() != ''){
+                        $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').removeClass('error');
+                        $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('');
+                        $('ul.msgError li.'+$(inputs[i]).attr("name")+'').remove();
+
+
+                    }else{
+                        if( $('ul.msgError li.'+$(inputs[i]).attr("name")).length == 0){
+                            $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                            $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                            msg+='<li class="'+$(inputs[i]).attr('name')+'">El campo '+$(inputs[i]).attr('name')+' no puede contener numeros y tiene que tener un maximo de 40 caracteres</li>';
+                        }
+                    }
+                }
+            }
+            /*FECHA*/
+            if($(inputs[i]).attr('name') == 'fecha'){
+
+                if($(inputs[i]).val() == ''){
+                    $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                    $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                }else{
+                    var hoy = new Date();
+                    var fechaFormulario = new Date($(inputs[i]).val());
+
+                    /*Comprueba que no se haya insertado una fecha futura*/
+                    if (hoy > fechaFormulario){
+                        $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').removeClass('error');
+                        $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('');
+                        $('ul.msgError li.'+$(inputs[i]).attr("name")+'').remove();
+
+                    }else{
+                        if( $('ul.msgError li.'+$(inputs[i]).attr("name")).length == 0){
+                            $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                            $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                            msg+='<li class="'+$(inputs[i]).attr('name')+'">El campo '+$(inputs[i]).attr('name')+' nacimiento no puede ser días futuros</li>';
+                        }
+                    }
+                }
+            }
+
+            /*SEXO*/
+            if($(inputs[i]).attr('name') == 'sexo'){
+
+                if($('input:radio[name=sexo]:checked').val() != null){
+                    $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').removeClass('error');
+                    $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('');
+                }else{
+                    $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                    $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                }
+            }
+
+            /*FOTO*/
+            if($(inputs[i]).attr('name') == 'foto'){
+                console.log($(inputs[i]).val());
+            }
+
+        }
+    }
+
+    /*SELECTS Validación*/
+    if(modo == 'select' || modo == 'boton'){
+        for(var i=0;i<selects.length;i++){
+
+            if($(selects[i]).val() == 'todo'){
+                $('#insertarModal .form-group select[name='+$(selects[i]).attr("name")+']').addClass('error');
+                $('.form-group .'+$(selects[i]).attr("name")+'Error span').text('*');
+            }else{
+                $('#insertarModal .form-group select[name='+$(selects[i]).attr("name")+']').removeClass('error');
+                $('.form-group .'+$(selects[i]).attr("name")+'Error span').text('');
+            }
+        }
+    }
+
+    /*TEXTAREA Validación*/
+    if(modo == 'textarea' || modo == 'boton'){
+        if($('#insertarModal .form-group textarea').val() == ''){
+            $('#insertarModal .form-group textarea').addClass('error');
+            $('.form-group .descripcionError span').text('*');
+        }else{
+            $('#insertarModal .form-group textarea').removeClass('error');
+            $('.form-group .descripcionError span').text('');
+        }
+    }
+    $('ul.msgError').append(msg);
+}
 
 /**
 * ELIMINAR ANIMAL: Función que con una peticón ajax elimina el animal de BD
@@ -153,7 +371,6 @@ function eliminarFoto(id){
         url: "/gestion/animales/eliminar/foto/"+id,
         method: "GET", 
         success: function(eliminado){
-            console.log(eliminado);
             detallesAnimal($('tr.seleccionado').attr('class').split(' ')[0].split('id')[1]);
             buscarPorFiltro();
 
@@ -162,7 +379,6 @@ function eliminarFoto(id){
             /*Comprobar si se ha eliminado correctamente y crear el mensaje de respuesta*/
             if(eliminado.length == 0){
                 msgError+='Se ha eliminado correctamente la foto'; 
-                buscarPorFiltro();
                 $('#informacionModal div.modal-content').addClass('correcto');
 
                 /*Eliminar la seleccion del animal eliminado*/
@@ -209,7 +425,7 @@ function detallesAnimal(id){
                 /*Visualizar la ficha de animal*/
                 $('div.fichaAnimal').css('display','block');
                 $('div.fichaAnimal .fichaDescripcion').empty();
-                $('div.fichaAnimal .fichaDescripcion').append('<p><span>Chip</span>&nbsp&nbsp '+animal[0].chip+' </p><p><span>Edad</span>&nbsp&nbsp ('+animal[0].edad+') </p><p><span>Fecha de nacimiento</span>&nbsp&nbsp '+animal[0].fecha_nacimiento+' </p><p><span>Raza</span>&nbsp&nbsp '+animal[0].raza+'</p><p><span>Sexo</span>&nbsp&nbsp '+animal[0].sexo+' </p><p><span>Talla</span>&nbsp&nbsp'+animal[0].talla+' </p><p><span>Descripción</span> <br>'+animal[0].descripcion+' </p>');
+                $('div.fichaAnimal .fichaDescripcion').append('<p><span>Chip</span>&nbsp&nbsp '+animal[0].chip+' </p><p><span>Nombre</span>&nbsp&nbsp '+animal[0].nombre+' </p><p><span>Edad</span>&nbsp&nbsp ('+animal[0].edad+') </p><p><span>Fecha de nacimiento</span>&nbsp&nbsp '+animal[0].fecha_nacimiento+' </p><p><span>Raza</span>&nbsp&nbsp '+animal[0].raza+'</p><p><span>Sexo</span>&nbsp&nbsp '+animal[0].sexo+' </p><p><span>Talla</span>&nbsp&nbsp'+animal[0].talla+' </p><p><span>Descripción</span> <br>'+animal[0].descripcion+' </p>');
 
                 $('button.eliminar').removeAttr('id');
                 $('button.eliminar').attr('id','id'+animal[0].id);
@@ -244,7 +460,6 @@ function detallesAnimal(id){
 
 function buscarPorFiltro(){
     $('tbody').empty();
-
     if($('input').hasClass( "error" ) != true){
 
         $.ajax({

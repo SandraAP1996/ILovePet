@@ -7,8 +7,16 @@ use App\Animal;
 use App\Photo;
 use App\User;
 use DB;
-class AnimalController extends Controller
-{
+class AnimalController extends Controller{
+
+
+    /*
+|--------------------------------------------------------------------------
+| INICIO - inicio.blade.php
+|--------------------------------------------------------------------------
+*/
+
+
     /**
      * Función que saca todos los animales y sus fotos en orden aleatorio y con un limite de 6.
      *
@@ -29,11 +37,17 @@ class AnimalController extends Controller
             ->with('animales',$animales);
     }
 
+    /*
+|--------------------------------------------------------------------------
+| FILTRO ANIMALES - filtrar-animal.blade.php
+|--------------------------------------------------------------------------
+*/
+
 
     /**
      * Función que saca todos los animales a partir de los parametros pasados .
      *
-     * @param  objeto $filtro
+     * @param  Request $request
      * @return objeto $animales
      */
     public static function buscarAnimal(Request $request){
@@ -71,10 +85,17 @@ class AnimalController extends Controller
 
     }
 
+    /*
+|--------------------------------------------------------------------------
+| GESTIÓN ANIMALES - animales.blade.php
+|--------------------------------------------------------------------------
+*/
+
+
     /**
-     * Función que saca toda la información del animal y de las fotografias.
+     * Función para filtrar los animales a partir del formulario
      *
-     * @param  int $id
+     * @param  Request $request
      * @return objeto $animal
      */
     public static function gestionAnimal(Request $request){
@@ -257,8 +278,37 @@ class AnimalController extends Controller
         /*Comprobamos que no exista*/
         $existe = Photo::find($id);
         return $existe;
+    }
 
+    /**
+     * Función para insertar un animal a al BD
+     *
+     * @param  Request $request
+     * @return objeto $existe
+     */
+    public static function insertarAnimal(Request $request){
 
+        $animal = new Animal;
+        $animal->chip = $request->chip;
+        
+        
+        
+//        $animal->nombre = $request->input('nombre');
+//        $animal->raza = $request->input('raza');
+//        $animal->raza = $request->raza;
+//        $animal->tipo = $request->tipo;
+//        $animal->especie = $request->especie;
+////        $animal->descripcion = $request->descripcion;
+//        $animal->sexo = $request->sexo;
+//        $animal->talla = $request->talla;
+//        $animal->fecha_nacimiento = $request->input('fecha');
+//        $animal->situacion = $request->situacion;
+//        $animal->estado = $request->estado;
+
+        $animal->save();
+        
+        return $animal;
 
     }
+
 }

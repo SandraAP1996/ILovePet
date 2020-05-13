@@ -80,7 +80,7 @@ function buscarPorFiltro(pagina){
                 for(var i in animales){
                     enlace="<a href='/animal/detalle/"+animales[i].id+"'' title='"+animales[i].id+"'>Detalles</a>";
 
-                    $('div#exposicionAnimal').append('<div class="col-12 col-md-6 col-lg-3 grid tarjetaAnimal"><figure class="effect-card"><img src="/img/'+animales[i].ruta+''+animales[i].titulo+'.'+animales[i].formato+'" alt="'+animales[i].nombre+'"/><figcaption><div class="descripcion"><h2>'+animales[i].estado+' <span>'+animales[i].nombre+'</span></h2><p>Descripción del animal</p></div>'+enlace+' </figcaption></figure></div>');
+                    $('div#exposicionAnimal').append('<div class="col-12 col-md-6 col-lg-3 grid tarjetaAnimal"><figure class="effect-card"><img src="/img/'+animales[i].ruta+''+animales[i].titulo+'.'+animales[i].formato+'" alt="'+animales[i].nombre+'"/><figcaption><div class="descripcion"><h2>'+animales[i].estado+' <span>'+animales[i].nombre+'</span></h2></div>'+enlace+' </figcaption></figure></div>');
                 }
             }else{
                 $('div#paginacionBusqueda').hide();

@@ -44,7 +44,9 @@ ul.error{
     color: red;
 }
 
-input.error{
+input.error,
+select.error,
+textarea.error{
     box-shadow: 2px 2px 2px 1px red;
 }
 
@@ -87,7 +89,8 @@ button.insertarFoto{
     border: 1px solid #4DD295;
 }
 
-button.eliminarFoto{
+button.eliminarFoto,
+.fichaBotones .eliminar{
     background-color:red;
     color: white;
 }
@@ -107,6 +110,7 @@ div.fichaDescripcion span{
 div.fichaAnimal,
 div.fichaPersona{
     display: none;
+    margin-right: 10px;
 }
 div.fichaAnimal .fichaDescripcion,
 div.fichaAnimal .fichaBotones{
@@ -144,7 +148,7 @@ span.botones button.eliminarFoto{
 div.galeria {
     color: gray;
     padding: 10px;
-    
+
 }
 div.galeria img{
     width: 130px;
@@ -164,16 +168,24 @@ div.fichaFotos div.d-flex{
 */
 
 /*Modal Eliminar Animal*/
+
 #eliminarModal,
 #informacionModal{
     margin-top: 15%;
+}
+
+#eliminarModal,
+#informacionModal,
+#insertarModal{
     color:#80725F;
 }
 #eliminarModal .card-body,
 #informacionModal .card-body{
     font-size: 25px;
 }
-#eliminarModal .modal-header{
+/*Modal Eliminar Animal - Insertar Animal*/
+#eliminarModal .modal-header,
+#insertarModal .modal-header{
     background-color: #F7882F;
     color: white;
 }
@@ -187,7 +199,28 @@ div.fichaFotos div.d-flex{
     background-color:darkred;
     color: white;
 }
+/* Insertar Animal*/
+#insertarModal input,
+#insertarModal select{
+    width: 70%;
+}
+#insertarModal input[name=sexo]{
+    width: auto;
+}
+#insertarModal input[name=fecha]{
+    width: 90%;
+}
+#insertarModal textarea{
+    width: 100%;
+}
 
+/*MSG Errores*/
+.form-group h6 span{
+    color: red;
+}
+ul.msgError{
+    color: red;
+}
 
 
 /*
