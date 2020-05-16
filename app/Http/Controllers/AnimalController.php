@@ -307,32 +307,32 @@ class AnimalController extends Controller{
         //        $id =$id->last()->titulo+1;
         //        return '$id;';
 
-//        $imagen = $request->file('foto');
-//        $photo = new Photo;
-//        $photo->ruta = 'animal/';
-//        $photo->titulo=8;
-//        $photo->formato=$imagen->getClientOriginalExtension();
-//        $photo->id_animal = $animal->id;
-//        $photo->principal=1;
-//        $imagen->move('img/animal/', $photo->titulo.'.'.$imagen->getClientOriginalExtension());
-//        $photo->save();
+        //        $imagen = $request->file('foto');
+        //        $photo = new Photo;
+        //        $photo->ruta = 'animal/';
+        //        $photo->titulo=8;
+        //        $photo->formato=$imagen->getClientOriginalExtension();
+        //        $photo->id_animal = $animal->id;
+        //        $photo->principal=1;
+        //        $imagen->move('img/animal/', $photo->titulo.'.'.$imagen->getClientOriginalExtension());
+        //        $photo->save();
 
 
     }
 
-    public static function insertarFoto(Request $request){
-
-        $id=Photo::all();
-        $id=$id->last()->titulo+1;
+    public static function insertarFoto(Request $request, $id){
+      
+        $titulo=Photo::all();
+        $titulo=$titulo->last()->titulo+1;
 
         $imagen = $request->file('foto');
         $photo = new Photo;
         $photo->ruta = 'animal/';
-        $photo->titulo=$id;
+        $photo->titulo=$titulo;
         $photo->formato='jpg';
-        $photo->id_animal = 8;
+        $photo->id_animal = $id;
         $photo->principal=1;
-        $imagen->move('img/animal/', $id.'.'.$imagen->getClientOriginalExtension());
+        $imagen->move('img/animal/', $titulo.'.'.$imagen->getClientOriginalExtension());
         $photo->save();
 
         return view('gestion.animales')

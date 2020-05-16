@@ -49,7 +49,7 @@ Route::group(['prefix' => 'gestion'], function(){
     Route::get('/animales/eliminar/id/{id}', 'AnimalController@eliminarAnimal');
     Route::get('/animales/eliminar/foto/{id}', 'AnimalController@eliminarFoto');
     Route::put('/animales/insertar', 'AnimalController@insertarAnimal');
-    Route::post('/animales/insertar/foto', 'AnimalController@insertarFoto');
+    Route::post('/animales/insertar/foto/{id}', 'AnimalController@insertarFoto');
 });
 
 

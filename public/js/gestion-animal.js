@@ -29,12 +29,17 @@ $(function(){
     });
 
     /*Añadir los detalles del animal*/
-    $('body').on('click','tbody tr',function(){        
+    $('body').on('click','tbody tr',function(){ 
+        var id=$(this).attr('class');
+
         $('tr').removeClass('seleccionado');    
         $(this).addClass('seleccionado');
-        var id=$(this).attr('class');
         id=id.split('id');
         $('.fichaAnimal').attr('id',id[1]);
+        console.log(id[1]);
+        $('.fichaFotos form').attr('action','http://localhost.ilovepet/gestion/animales/insertar/foto/'+id[1]);
+
+
         detallesAnimal(id[1]);
     });
 
@@ -105,6 +110,7 @@ $(function(){
             eliminarAnimal($('#eliminarModal .modal-content').attr('id').split('id')[1]);
         }else{
             $(this).removeClass('foto');
+            console.log($('div.galeria img.seleccionado').attr('id').split('foto')[1]);
             eliminarFoto($('div.galeria img.seleccionado').attr('id').split('foto')[1]);
         }
 
@@ -183,8 +189,8 @@ function modificar(){
 
     var especie=$('.fichaDescripcion span.especie').text();
     var tipo=$('.fichaDescripcion span.tipo').text();
-    //    var estado=$('.fichaDescripcion span.estado').text();
-    //    var situacion=$('.fichaDescripcion span.situacion').text();
+    var estado=$('.fichaDescripcion span.estado').text();
+    var situacion=$('.fichaDescripcion span.situacion').text();
     var talla=$('.fichaDescripcion span.talla').text();
     var descripcion=$('.fichaDescripcion span.descripcion').text();
 
@@ -193,6 +199,8 @@ function modificar(){
     var arrayEdad = ['Cachorro','Joven','Adulto'];
     var arrayTalla = ['Pequeña','Media','Grande'];
     var arraySexo = ['Hembra','Macho'];
+    var arraySituacion = ['centro','acogida'];
+    var arrayEstado = ['urgente','normal','nuevo'];
 
 
     $('.fichaDescripcion span.chip').html('<input type="text" name="chip" value="'+chip+'">');
@@ -202,7 +210,34 @@ function modificar(){
     $('.fichaDescripcion span.raza').html('<input type="text" name="raza" value="'+raza+'">');
     $('.fichaDescripcion span.descripcion').html('<textarea name="descripcion" >'+descripcion+'</textarea>');
 
-    //    /*ESPECIE*/
+    /*SITUACION*/
+    if(situacion != 'adoptado'){
+        $('.fichaDescripcion span.situacion').empty();
+        var select=$('.fichaDescripcion span.situacion').append('<select name="situacion"></select>');
+        for(var i in arraySituacion){
+            
+
+            if(arraySituacion[i] != situacion ){
+                $('.fichaDescripcion span.situacion select').append('<option value="'+arraySituacion[i]+'">'+arraySituacion[i]+'</option>');
+            }else{
+                $('.fichaDescripcion span.situacion select').append('<option value="'+arraySituacion[i]+'" selected>'+situacion+'</option>');
+            }
+        }
+
+    }
+    /*ESTADO*/
+    $('.fichaDescripcion span.estado').empty();
+    var select=$('.fichaDescripcion span.estado').append('<select name="estado"></select>');
+    for(var i in arrayEstado){
+
+        if(arrayEstado[i] != estado ){
+            $('.fichaDescripcion span.estado select').append('<option value="'+arrayEstado[i]+'">'+arrayEstado[i]+'</option>');
+        }else{
+            $('.fichaDescripcion span.estado select').append('<option value="'+arrayEstado[i]+'" selected>'+estado+'</option>');
+        }
+    }
+
+    /*ESPECIE*/
     $('.fichaDescripcion span.especie').empty();
     var select=$('.fichaDescripcion span.especie').append('<select name="especie"></select>');
     for(var i in arrayEspecie){
@@ -242,8 +277,6 @@ function modificar(){
     var select=$('.fichaDescripcion span.edad').append('<select name="edad"></select>');
 
     for(var i in arrayEdad){
-        console.log('INPUT'+arrayEdad[i]);
-        console.log('SPAN'+edad);
         if(arrayEdad[i] != edad ){
             $('.fichaDescripcion span.edad select').append('<option value="'+arrayEdad[i]+'">'+arrayEdad[i]+'</option>');
 
@@ -535,7 +568,8 @@ function eliminarFoto(id){
 
                 /*Eliminar la seleccion del animal eliminado*/
                 $('div.fichaAnimal').css('display','none');
-                $('tbody tr').toggleClass('seleccionado'); /*MODIFICADO*/
+                $('tbody tr').removeClass('seleccionado');
+                $('tbody tr#id'+$('.fichaAnimal').attr('id')).addClass('seleccionado'); /*MODIFICADO*/
             }else{
                 msgError+='No se ha eliminado correctamente la foto'; 
                 $('#informacionModal div.modal-content').addClass('incorrecto');
@@ -577,7 +611,7 @@ function detallesAnimal(id){
                 /*Visualizar la ficha de animal*/
                 $('div.fichaAnimal').css('display','block');
                 $('div.fichaAnimal .fichaDescripcion').empty();
-                $('div.fichaAnimal .fichaDescripcion').append('<p><span class="titulo">Chip</span>&nbsp&nbsp<span class="chip">'+animal[0].chip+'</span> </p><p><span class="titulo">Nombre</span>&nbsp&nbsp <span class="nombre">'+animal[0].nombre+' </span></p><p><span class="titulo">Tipo</span>&nbsp&nbsp <span class="tipo">'+animal[0].tipo+'</span></p><p><span class="titulo">Especie</span>&nbsp&nbsp <span class="especie">'+animal[0].especie+'</span></p><p><span class="titulo">Edad</span>&nbsp&nbsp<span class="edad">'+animal[0].edad+'</span></p><p><span class="titulo">Fecha de nacimiento</span>&nbsp&nbsp <span class="fecha">'+animal[0].fecha_nacimiento+'</span> </p><p><span class="titulo">Raza</span>&nbsp&nbsp <span class="raza">'+animal[0].raza+'</span></p><p><span class="titulo">Sexo</span>&nbsp&nbsp <span class="sexo">'+animal[0].sexo+'</span></p><p><span class="titulo">Talla</span>&nbsp&nbsp <span class="talla">'+animal[0].talla+'</span></p><p><span class="titulo">Situación</span>&nbsp&nbsp <span class="situacion">'+animal[0].situacion+'</span></p><p><span class="titulo">Descripción</span> <br><span class="descripcion">'+animal[0].descripcion+'</span> </p>');
+                $('div.fichaAnimal .fichaDescripcion').append('<p><span class="titulo">Chip</span>&nbsp&nbsp<span class="chip">'+animal[0].chip+'</span> </p><p><span class="titulo">Nombre</span>&nbsp&nbsp <span class="nombre">'+animal[0].nombre+' </span></p><p><span class="titulo">Tipo</span>&nbsp&nbsp <span class="tipo">'+animal[0].tipo+'</span></p><p><span class="titulo">Especie</span>&nbsp&nbsp <span class="especie">'+animal[0].especie+'</span></p><p><span class="titulo">Edad</span>&nbsp&nbsp<span class="edad">'+animal[0].edad+'</span></p><p><span class="titulo">Fecha de nacimiento</span>&nbsp&nbsp <span class="fecha">'+animal[0].fecha_nacimiento+'</span> </p><p><span class="titulo">Raza</span>&nbsp&nbsp <span class="raza">'+animal[0].raza+'</span></p><p><span class="titulo">Sexo</span>&nbsp&nbsp <span class="sexo">'+animal[0].sexo+'</span></p><p><span class="titulo">Talla</span>&nbsp&nbsp <span class="talla">'+animal[0].talla+'</span></p><p><span class="titulo">Situación</span>&nbsp&nbsp <span class="situacion">'+animal[0].situacion+'</span></p><p><span class="titulo">Estado</span>&nbsp&nbsp <span class="estado">'+animal[0].estado+'</span></p><p><span class="titulo">Descripción</span> <br><span class="descripcion">'+animal[0].descripcion+'</span> </p>');
 
                 $('button.eliminar').removeAttr('id');
                 $('button.eliminar').attr('id','id'+animal[0].id);
