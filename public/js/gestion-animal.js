@@ -122,10 +122,10 @@ $(function(){
 
         if($(this).hasClass('seleccionado') == true){
             $('span.botones button.eliminarFoto').css('visibility','visible');
-            $('span.botones button.insertarFoto').css('visibility','hidden');
+            $('span.botones button.subirFoto').css('visibility','hidden');
         }else{
             $('span.botones button.eliminarFoto').css('visibility','hidden');
-            $('span.botones button.insertarFoto').css('visibility','visible');
+            $('span.botones button.subirFoto').css('visibility','visible');
         }
     });
 
@@ -134,7 +134,16 @@ $(function(){
         $('div.fichaAnimal').css('display','none');
         $('tr').removeClass('seleccionado'); 
     });
-
+    /*SUBIR FOTO*/
+    $('div.fichaFotos span.botones .subirFoto').click(function(){
+        $(this).css('display','none');
+       $('.fichaFotos .seleccionarFoto').css('display','block');
+    });
+    /*CANCELAR FOTO*/
+    $('div.fichaFotos .seleccionarFoto .cancelarFoto').click(function(){
+        $('div.fichaFotos span.botones .subirFoto').css('display','block');
+        $('.fichaFotos .seleccionarFoto').css('display','none');
+    });
 
 });
 
@@ -149,14 +158,37 @@ function insertarBD(){
     if($('#insertarModal form .error').length == 0){
         $.ajax({
             url: "/gestion/animales/insertar",
-            method: "GET", 
+            method: "PUT",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: $('#insertarModal form').serialize(),
             success: function(insertado){
                 console.log(insertado);
+                //                var msgError='';
+                //                if(insertado.length == 1){
+                //                    msgError+='Se ha insertado correctamente el animal'; 
+                //                    buscarPorFiltro();
+                //                    $('#informacionModal div.modal-content').addClass('correcto');
+                //
+                //                }else{
+                //                    msgError+='No se ha insertado correctamente el animal'; 
+                //                    $('#informacionModal div.modal-content').addClass('incorrecto');
+                //                }
+                //                $('#informacionModal h4.modal-title').text('Insertar Animal');
+                //
+                //                $('#informacionModal div.card-body').text(msgError);
             }
+
         });  
 
     }
-}
+    //    $("#informacionModal").modal("show");
+    //    $("#insertarModal").modal("hide");
+
+}  
+
+
+
 
 
 
@@ -180,7 +212,6 @@ function validaInsertar(modo,elemento){
     if(modo == 'select'){
         var selects=elemento;
     }
-
 
     var msg='';
 
@@ -293,7 +324,7 @@ function validaInsertar(modo,elemento){
 
             /*FOTO*/
             if($(inputs[i]).attr('name') == 'foto'){
-                console.log($(inputs[i]).val());
+                //                console.log($(inputs[i]).val());
             }
 
         }
@@ -371,8 +402,8 @@ function eliminarFoto(id){
         url: "/gestion/animales/eliminar/foto/"+id,
         method: "GET", 
         success: function(eliminado){
+            console.log($('tr.seleccionado').attr('class').split(' ')[0].split('id')[1]);
             detallesAnimal($('tr.seleccionado').attr('class').split(' ')[0].split('id')[1]);
-            buscarPorFiltro();
 
 
             var msgError='';
@@ -411,10 +442,10 @@ function detallesAnimal(id){
 
     if($('div.fichaFotos div.d-flex img').hasClass('seleccionado') == true){
         $('span.botones button.eliminarFoto').css('visibility','visible');
-        $('span.botones button.insertarFoto').css('visibility','hidden');
+        $('span.botones button.subirFoto').css('visibility','hidden');
     }else{
         $('span.botones button.eliminarFoto').css('visibility','hidden');
-        $('span.botones button.insertarFoto').css('visibility','visible');
+        $('span.botones button.subirFoto').css('visibility','visible');
     }
     $.ajax({
         url: "/gestion/animales/id/"+id,

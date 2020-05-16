@@ -83,7 +83,8 @@ a.insertar{
 }
 
 button.insertar,
-button.insertarFoto{
+button.insertarFoto,
+button.subirFoto{
     color:white;
     background-color: #4DD295; 
     border: 1px solid #4DD295;
@@ -160,7 +161,10 @@ div.fichaFotos div.d-flex{
     margin-bottom: 10px;
 }
 
-
+/*Subir Foto*/
+.fichaFotos .seleccionarFoto{
+    display: none;
+}
 /*
 |---------------
 | MODALS

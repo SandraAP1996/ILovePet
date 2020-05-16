@@ -24,6 +24,8 @@
         <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 
+       <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <!-- SCRIPTS especificos -->
         @yield('enlaces')
 

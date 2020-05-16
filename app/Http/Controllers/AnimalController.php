@@ -287,27 +287,56 @@ class AnimalController extends Controller{
      * @return objeto $existe
      */
     public static function insertarAnimal(Request $request){
-
         $animal = new Animal;
         $animal->chip = $request->chip;
-        
-        
-        
-//        $animal->nombre = $request->input('nombre');
-//        $animal->raza = $request->input('raza');
-//        $animal->raza = $request->raza;
-//        $animal->tipo = $request->tipo;
-//        $animal->especie = $request->especie;
-////        $animal->descripcion = $request->descripcion;
-//        $animal->sexo = $request->sexo;
-//        $animal->talla = $request->talla;
-//        $animal->fecha_nacimiento = $request->input('fecha');
-//        $animal->situacion = $request->situacion;
-//        $animal->estado = $request->estado;
+        $animal->nombre = $request->nombre;
+        $animal->raza = $request->raza;
+        $animal->tipo = $request->tipo;
+        $animal->especie = $request->especie;
+        $animal->descripcion = $request->descripcion;
+        $animal->sexo = $request->sexo;
+        $animal->talla = $request->talla;
+        $animal->fecha_nacimiento = $request->fecha;
+        $animal->situacion = $request->situacion;
+        $animal->estado = $request->estado;
 
         $animal->save();
-        
-        return $animal;
+
+        //        $id=DB::select('SELECT * FROM photo');
+        //
+        //        $id =$id->last()->titulo+1;
+        //        return '$id;';
+
+//        $imagen = $request->file('foto');
+//        $photo = new Photo;
+//        $photo->ruta = 'animal/';
+//        $photo->titulo=8;
+//        $photo->formato=$imagen->getClientOriginalExtension();
+//        $photo->id_animal = $animal->id;
+//        $photo->principal=1;
+//        $imagen->move('img/animal/', $photo->titulo.'.'.$imagen->getClientOriginalExtension());
+//        $photo->save();
+
+
+    }
+
+    public static function insertarFoto(Request $request){
+
+        $id=Photo::all();
+        $id=$id->last()->titulo+1;
+
+        $imagen = $request->file('foto');
+        $photo = new Photo;
+        $photo->ruta = 'animal/';
+        $photo->titulo=$id;
+        $photo->formato='jpg';
+        $photo->id_animal = 8;
+        $photo->principal=1;
+        $imagen->move('img/animal/', $id.'.'.$imagen->getClientOriginalExtension());
+        $photo->save();
+
+        return view('gestion.animales')
+            ->with('foto','$photo->save()');
 
     }
 

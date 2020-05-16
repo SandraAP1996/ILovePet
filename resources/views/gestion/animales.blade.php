@@ -10,11 +10,12 @@ Gestión Animales
 @endsection
 
 @section('contenido')
+{{$foto ?? ''}}
 <div class="contenedor">
     <div id="filtro">
         <h3>Gestión Animales</h3>
         <div class="container-fluid">
-            <form method="get" action="#" id="filtroAnimal">
+            <form method="PUT" action="#" id="filtroAnimal">
                 <div class="row justify-content-center">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -26,7 +27,7 @@ Gestión Animales
                     </div>       
                     <div class="col-md-2">
                         <div class="form-group">
-                            Raza <select name="raza"  class="form-control">
+                            Raza <select name="raza"  class="form-control " >
                             </select>
                         </div> 
                         <div class="form-group">
@@ -85,11 +86,33 @@ Gestión Animales
                     </div>
                     <div class="fichaFotos col-md-12">
                         <hr>
-                        <div class="d-flex">
-                            <span class="mr-auto"><h5>Fotos</h5></span> 
-                            <span class="botones">
-                                <button type="button" class="btn btn-sm insertarFoto">{{__('Insertar')}}</button>&nbsp<button type="button" class="btn btn-sm eliminarFoto">{{__('Eliminar')}}</button></span><br>   
-                        </div>
+                        <form  method="post" action="{{url('/gestion/animales/insertar/foto')}}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="d-flex">
+                                <span class="mr-auto"><h5>Fotos</h5></span> 
+                                <span class="botones">
+                                    <!-- Foto -->
+                                    <button type="button" class="btn btn-sm  subirFoto">{{__('Subir Foto')}}</button>
+                                    &nbsp<button type="button" class="btn btn-sm eliminarFoto">{{__('Eliminar')}}</button></span><br>   
+                            </div>
+                            <div class="seleccionarFoto">
+                                <hr>
+
+                                <div class="d-flex">
+                                    <span class="mr-auto"><h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6> 
+                                        <input name="foto" type="file" class="form-control-file">
+
+                                    </span> 
+                                    <span class="botonesInsertar">
+                                        <!-- Foto -->
+                                        <button type="submit" class="btn btn-sm insertarFoto">{{__('Insertar')}}</button>
+                                        <button type="button" class="btn btn-sm cancelarFoto">{{__('Cancelar')}}</button>
+                                    </span><br>   
+                                </div>
+                            </div>
+
+                        </form>
+
                         <div class="galeria border">
 
                         </div>
@@ -131,11 +154,14 @@ Gestión Animales
 
     </div>
 </div>
+
 <!-- MODAL INSERTAR ANIMALES -->
 <div class="modal fade" id="insertarModal" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- MODAL contenido-->
-        <form method="get" action="#" >
+        <form method="GET" action="#" enctype="multipart/form-data">
+            @csrf
+            @method('POST')
 
             <div class="modal-content">
                 <div class="modal-header">
@@ -254,7 +280,7 @@ Gestión Animales
                                     </div>
 
                                     <div class="form-group">
-                                        <h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6>         <!-- Foto -->
+                                        <h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6>          Foto 
                                         <input name="foto" type="file" class="form-control-file" id="exampleFormControlFile1">
                                     </div>
                                 </div>
