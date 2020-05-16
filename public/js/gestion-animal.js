@@ -34,6 +34,7 @@ $(function(){
         $(this).addClass('seleccionado');
         var id=$(this).attr('class');
         id=id.split('id');
+        $('.fichaAnimal').attr('id',id[1]);
         detallesAnimal(id[1]);
     });
 
@@ -137,7 +138,7 @@ $(function(){
     /*SUBIR FOTO*/
     $('div.fichaFotos span.botones .subirFoto').click(function(){
         $(this).css('display','none');
-       $('.fichaFotos .seleccionarFoto').css('display','block');
+        $('.fichaFotos .seleccionarFoto').css('display','block');
     });
     /*CANCELAR FOTO*/
     $('div.fichaFotos .seleccionarFoto .cancelarFoto').click(function(){
@@ -145,7 +146,128 @@ $(function(){
         $('.fichaFotos .seleccionarFoto').css('display','none');
     });
 
+    /*MODIFICAR ANIMAL*/
+    $('.fichaBotones button.modificar').click(function(){
+        $(this).css('display','none');
+        $('.fichaBotones button.eliminar').css('display','none');
+        $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').css('display','block');
+        modificar();
+    });
+
+    /*CANCELAR MODIFICAR*/
+    $('.fichaBotones button.cancelarModificar').click(function(){
+        $('.fichaBotones button.modificar').css('display','block');
+        $('.fichaBotones button.eliminar').css('display','block');
+        $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').css('display','none');
+        detallesAnimal($('.fichaAnimal').attr('id'));
+
+    });
+
 });
+
+/**
+* MODIFICAR DATOS: Función para modificar los parametros del animal seleccionado
+*
+* @param void
+* @return void
+*/
+function modificar(){
+
+    var chip=$('.fichaDescripcion span.chip').text();
+    var nombre=$('.fichaDescripcion span.nombre').text();
+    var edad=$('.fichaDescripcion span.edad').text();
+    var fecha=$('.fichaDescripcion span.fecha').text();
+    var raza=$('.fichaDescripcion span.raza').text();
+
+    var sexo=$('.fichaDescripcion span.sexo').text();
+
+    var especie=$('.fichaDescripcion span.especie').text();
+    var tipo=$('.fichaDescripcion span.tipo').text();
+    //    var estado=$('.fichaDescripcion span.estado').text();
+    //    var situacion=$('.fichaDescripcion span.situacion').text();
+    var talla=$('.fichaDescripcion span.talla').text();
+    var descripcion=$('.fichaDescripcion span.descripcion').text();
+
+    var arrayTipo = ['Doméstico','Granja','Exótico'];
+    var arrayEspecie = ['Perro','Gato','Pájaro','Roedor','Equino','Ganado','Reptil'];
+    var arrayEdad = ['Cachorro','Joven','Adulto'];
+    var arrayTalla = ['Pequeña','Media','Grande'];
+    var arraySexo = ['Hembra','Macho'];
+
+
+    $('.fichaDescripcion span.chip').html('<input type="text" name="chip" value="'+chip+'">');
+    $('.fichaDescripcion span.nombre').html('<input type="text" name="nombre" value="'+nombre+'">');
+
+    $('.fichaDescripcion span.fecha').html('<input type="date" name="fecha" value="'+fecha+'">');
+    $('.fichaDescripcion span.raza').html('<input type="text" name="raza" value="'+raza+'">');
+    $('.fichaDescripcion span.descripcion').html('<textarea name="descripcion" >'+descripcion+'</textarea>');
+
+    //    /*ESPECIE*/
+    $('.fichaDescripcion span.especie').empty();
+    var select=$('.fichaDescripcion span.especie').append('<select name="especie"></select>');
+    for(var i in arrayEspecie){
+
+        if(arrayEspecie[i] != especie ){
+            $('.fichaDescripcion span.especie select').append('<option value="'+arrayEspecie[i]+'">'+arrayEspecie[i]+'</option>');
+        }else{
+            $('.fichaDescripcion span.especie select').append('<option value="'+arrayEspecie[i]+'" selected>'+especie+'</option>');
+        }
+    }
+
+    /*TIPO*/
+    $('.fichaDescripcion span.tipo').empty();
+    var select=$('.fichaDescripcion span.tipo').append('<select name="tipo"></select>');
+    for(var i in arrayTipo){    
+        if(arrayTipo[i] != tipo ){
+            $('.fichaDescripcion span.tipo select').append('<option value="'+arrayTipo[i]+'" value="'+arrayTipo[i]+'">'+arrayTipo[i]+'</option>');
+        }else{
+            $('.fichaDescripcion span.tipo select').append('<option value="'+arrayTipo[i]+'" value="'+arrayTipo[i]+'" selected>'+tipo+'</option>');
+        }
+    }
+    /*SEXO*/
+    $('.fichaDescripcion span.sexo').empty();
+    var select=$('.fichaDescripcion span.sexo').append('<select name="sexo"></select>');
+    for(var i in arraySexo){
+        if(arraySexo[i] != sexo ){
+            $('.fichaDescripcion span.sexo select').append('<option value="'+arraySexo[i]+'">'+arraySexo[i]+'</option>');
+
+        }else{
+            $('.fichaDescripcion span.sexo select').append('<option value="'+arraySexo[i]+'" selected>'+arraySexo[i]+'</option>');
+
+        }
+    }
+
+    /*EDAD*/
+    $('.fichaDescripcion span.edad').empty();
+    var select=$('.fichaDescripcion span.edad').append('<select name="edad"></select>');
+
+    for(var i in arrayEdad){
+        console.log('INPUT'+arrayEdad[i]);
+        console.log('SPAN'+edad);
+        if(arrayEdad[i] != edad ){
+            $('.fichaDescripcion span.edad select').append('<option value="'+arrayEdad[i]+'">'+arrayEdad[i]+'</option>');
+
+        }else{
+            $('.fichaDescripcion span.edad select').append('<option value="'+arrayEdad[i]+'" selected>'+arrayEdad[i]+'</option>');
+        }
+    }
+
+    /*TALLA*/
+    $('.fichaDescripcion span.talla').empty();
+    var select=$('.fichaDescripcion span.talla').append('<select name="talla"></select>');
+
+    for(var i in arrayTalla){
+        if(arrayTalla[i] != talla ){
+            $('.fichaDescripcion span.talla select').append('<option  value="'+arrayTalla[i]+'">'+arrayTalla[i]+'</option>');
+        }else{
+            $('.fichaDescripcion span.talla select').append('<option value="'+arrayTalla[i]+'" selected>'+arrayTalla[i]+'</option>');
+        }
+    }
+
+
+
+
+}
 
 /**
 * INSERTAR DATOS: Función para insertar los parametros
@@ -402,8 +524,7 @@ function eliminarFoto(id){
         url: "/gestion/animales/eliminar/foto/"+id,
         method: "GET", 
         success: function(eliminado){
-            console.log($('tr.seleccionado').attr('class').split(' ')[0].split('id')[1]);
-            detallesAnimal($('tr.seleccionado').attr('class').split(' ')[0].split('id')[1]);
+            detallesAnimal($('.fichaAnimal').attr('id'));
 
 
             var msgError='';
@@ -456,7 +577,7 @@ function detallesAnimal(id){
                 /*Visualizar la ficha de animal*/
                 $('div.fichaAnimal').css('display','block');
                 $('div.fichaAnimal .fichaDescripcion').empty();
-                $('div.fichaAnimal .fichaDescripcion').append('<p><span>Chip</span>&nbsp&nbsp '+animal[0].chip+' </p><p><span>Nombre</span>&nbsp&nbsp '+animal[0].nombre+' </p><p><span>Edad</span>&nbsp&nbsp ('+animal[0].edad+') </p><p><span>Fecha de nacimiento</span>&nbsp&nbsp '+animal[0].fecha_nacimiento+' </p><p><span>Raza</span>&nbsp&nbsp '+animal[0].raza+'</p><p><span>Sexo</span>&nbsp&nbsp '+animal[0].sexo+' </p><p><span>Talla</span>&nbsp&nbsp'+animal[0].talla+' </p><p><span>Descripción</span> <br>'+animal[0].descripcion+' </p>');
+                $('div.fichaAnimal .fichaDescripcion').append('<p><span class="titulo">Chip</span>&nbsp&nbsp<span class="chip">'+animal[0].chip+'</span> </p><p><span class="titulo">Nombre</span>&nbsp&nbsp <span class="nombre">'+animal[0].nombre+' </span></p><p><span class="titulo">Tipo</span>&nbsp&nbsp <span class="tipo">'+animal[0].tipo+'</span></p><p><span class="titulo">Especie</span>&nbsp&nbsp <span class="especie">'+animal[0].especie+'</span></p><p><span class="titulo">Edad</span>&nbsp&nbsp<span class="edad">'+animal[0].edad+'</span></p><p><span class="titulo">Fecha de nacimiento</span>&nbsp&nbsp <span class="fecha">'+animal[0].fecha_nacimiento+'</span> </p><p><span class="titulo">Raza</span>&nbsp&nbsp <span class="raza">'+animal[0].raza+'</span></p><p><span class="titulo">Sexo</span>&nbsp&nbsp <span class="sexo">'+animal[0].sexo+'</span></p><p><span class="titulo">Talla</span>&nbsp&nbsp <span class="talla">'+animal[0].talla+'</span></p><p><span class="titulo">Situación</span>&nbsp&nbsp <span class="situacion">'+animal[0].situacion+'</span></p><p><span class="titulo">Descripción</span> <br><span class="descripcion">'+animal[0].descripcion+'</span> </p>');
 
                 $('button.eliminar').removeAttr('id');
                 $('button.eliminar').attr('id','id'+animal[0].id);

@@ -84,10 +84,10 @@ a.insertar{
 
 button.insertar,
 button.insertarFoto,
-button.subirFoto{
+button.subirFoto,
+.fichaBotones .guardar{
     color:white;
     background-color: #4DD295; 
-    border: 1px solid #4DD295;
 }
 
 button.eliminarFoto,
@@ -105,7 +105,7 @@ button.buscar:hover{
 .col-md-6{
     padding: 0px;
 }
-div.fichaDescripcion span{
+div.fichaDescripcion span.titulo{
     font-weight: bold;
 }
 div.fichaAnimal,
@@ -160,10 +160,27 @@ div.galeria img{
 div.fichaFotos div.d-flex{
     margin-bottom: 10px;
 }
-
+.fichaFotos{
+    padding: 0px;
+}
 /*Subir Foto*/
 .fichaFotos .seleccionarFoto{
     display: none;
+}
+
+/*Modificar Animal*/
+
+.fichaBotones .modificar{
+    background-color: #EEF495;
+}
+
+
+.fichaBotones button.guardar,
+.fichaBotones button.cancelarModificar{
+    display: none
+}
+.fichaDescripcion span.descripcion textarea{
+    width: 100%;
 }
 /*
 |---------------

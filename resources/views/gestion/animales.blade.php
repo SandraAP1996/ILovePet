@@ -76,14 +76,19 @@ Gestión Animales
                         <img src="/img/web/icons/cruz-blanca.svg" alt="hola" title="Cancelar"></span> 
                 </div>
 
-                <div class="row justify-content-center">
-                    <div class="fichaDescripcion col-md-9">
-
-                    </div>
-                    <div class="fichaBotones col-md-3">
-                        <button type="button" class="btn btn-sm eliminar">{{__('Eliminar Animal')}}</button><br><br>
-                        <button type="button" class="btn btn-sm modificar">{{__('Modificar')}}</button>
-                    </div>
+<!--                <div class="row justify-content-center">-->
+                    <form  method="post" action="#">
+                        <div class="row justify-content-center">
+                            <div class="fichaDescripcion col-md-9">
+                            </div>
+                            <div class="fichaBotones col-md-3">
+                                <button type="button" class="btn btn-sm eliminar">{{__('Eliminar Animal')}}</button><br><br>
+                                <button type="button" class="btn btn-sm modificar">{{__('Modificar')}}</button>
+                                <button type="button" class="btn btn-sm guardar">{{__('Guardar')}}</button><br>
+                                <button type="button" class="btn btn-sm cancelarModificar">{{__('Cancelar')}}</button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="fichaFotos col-md-12">
                         <hr>
                         <form  method="post" action="{{url('/gestion/animales/insertar/foto')}}" enctype="multipart/form-data">
@@ -117,7 +122,7 @@ Gestión Animales
 
                         </div>
                     </div>
-                </div>
+<!--                </div>-->
             </div>
             <div class="fichaPersona col-md-4 border">
                 <h3>Ficha de la Persona </h3>
