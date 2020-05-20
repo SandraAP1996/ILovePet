@@ -37,21 +37,26 @@ Route::group(['prefix' => 'animal'], function(){
     Route::get('detalle/{id}', 'AnimalController@detalleAnimal');
 });
 
-
+/*GESTIÓN DEL EMPLEADO*/
 
 Route::group(['prefix' => 'gestion'], function(){
     Route::get('/animales', function () {
         return view('gestion.animales');
     });
-    
     Route::get('/animales/buscar', 'AnimalController@gestionAnimal');
     Route::get('/animales/id/{id}', 'AnimalController@fichaAnimal');
     Route::get('/animales/eliminar/id/{id}', 'AnimalController@eliminarAnimal');
     Route::get('/animales/eliminar/foto/{id}', 'AnimalController@eliminarFoto');
-    Route::put('/animales/insertar', 'AnimalController@insertarAnimal');
+    Route::post('/animales/modificar/id/{id}', 'AnimalController@modificarAnimal');
     Route::post('/animales/insertar/foto/{id}', 'AnimalController@insertarFoto');
+
+    Route::post('/animales/insertar', 'AnimalController@insertarAnimal');
 });
 
+
+Route::group(['prefix' => 'usuario'], function(){
+    Route::middleware('auth')->get('/perfil', 'UserController@perfilUsuario');
+});
 
 
 

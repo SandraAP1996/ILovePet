@@ -24,8 +24,6 @@
         <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 
-       <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <!-- SCRIPTS especificos -->
         @yield('enlaces')
 
@@ -95,7 +93,7 @@
                             <img id="login" class="redes" src="/img/web/icons/perfil2.png" alt="foto perfil" title="Login">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-default">
-                            <a class="dropdown-item" href="#">{{__('Pérfil')}}</a>
+                            <a class="dropdown-item" href="{{url('/usuario/perfil')}}">{{__('Pérfil')}}</a>
                             @if(Auth::user()->rol == 'Empleado')
 
                             <a class="dropdown-item" href="{{url('/gestion/animales')}}">Gestionar Animales</a>

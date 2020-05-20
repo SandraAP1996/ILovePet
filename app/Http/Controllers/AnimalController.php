@@ -10,7 +10,7 @@ use DB;
 class AnimalController extends Controller{
 
 
-    /*
+/*
 |--------------------------------------------------------------------------
 | INICIO - inicio.blade.php
 |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ class AnimalController extends Controller{
             ->with('animales',$animales);
     }
 
-    /*
+/*
 |--------------------------------------------------------------------------
 | FILTRO ANIMALES - filtrar-animal.blade.php
 |--------------------------------------------------------------------------
@@ -173,7 +173,7 @@ class AnimalController extends Controller{
     }
 
     /**
-     * Función que saca toda la información del animal a partir del id.
+     * Función que saca toda la información del animal a partir del id y si tiene una persona relacionada datos de la persona relacionada o fotografia.
      *
      * @param  int $id
      * @return objeto $animal
@@ -189,6 +189,12 @@ class AnimalController extends Controller{
         for($i = 0; $i<count($animal) ; $i++){
 
             $animal[$i]->img = $imagenes;
+        }
+
+        $persona = DB::select('SELECT u.id, u.nif, u.nombre, u.apellidos, u.telefono, u.rol,u.tipo, u.email, d.localidad, d.provincia, d.cod_postal, d.numero,d.calle FROM animal a, users u,address d WHERE a.id_persona=u.id AND a.id='.$id.' AND u.id=d.id_persona;');
+
+        for($i = 0;$i<count($animal);$i++){
+            $animal[$i]->persona = $persona;
         }
 
         return $animal;
@@ -281,13 +287,69 @@ class AnimalController extends Controller{
     }
 
     /**
+     * Función para insertar modificar los datos del animal seleccionado
+     *
+     * @param  Request $request
+     * @return objeto $animal->save()
+     */
+    public static function modificarAnimal(Request $request,$id){
+
+        $animal = Animal::find($id);
+
+        if($request->chip != $animal->chip){
+            $animal->chip=$request->chip;
+        }
+        if($request->nombre != $animal->nombre){
+            $animal->nombre=$request->nombre;
+        }
+
+        if($request->tipo != $animal->tipo){
+            $animal->tipo=$request->tipo;
+        }
+        if($request->especie != $animal->especie){
+            $animal->especie=$request->especie;
+        }
+
+        if($request->edad != $animal->edad){
+            $animal->edad=$request->edad;
+        }
+
+        if($request->fecha != $animal->fecha_nacimiento){
+            $animal->fecha_nacimiento=$request->fecha;
+        }
+        if($request->raza != $animal->raza){
+            $animal->raza=$request->raza;
+        }
+
+        if($request->sexo != $animal->sexo){
+            $animal->sexo=$request->sexo;
+        }
+
+        if($request->talla != $animal->talla){
+            $animal->talla=$request->talla;
+        }
+        if($request->estado != $animal->estado){
+            $animal->estado=$request->estado;
+        }
+        if($request->descripcion != $animal->descripcion){
+            $animal->descripcion=$request->descripcion;
+        }
+
+
+        return $animal->save();
+
+
+    }
+
+    /**
      * Función para insertar un animal a al BD
      *
      * @param  Request $request
-     * @return objeto $existe
+     * @return objeto $animal->save()
      */
     public static function insertarAnimal(Request $request){
         $animal = new Animal;
+        //        return $animal->chip;
         $animal->chip = $request->chip;
         $animal->nombre = $request->nombre;
         $animal->raza = $request->raza;
@@ -300,30 +362,31 @@ class AnimalController extends Controller{
         $animal->situacion = $request->situacion;
         $animal->estado = $request->estado;
 
-        $animal->save();
+        return $animal->save();
 
-        //        $id=DB::select('SELECT * FROM photo');
-        //
-        //        $id =$id->last()->titulo+1;
-        //        return '$id;';
+//        $titulo=Photo::all();
+//        $titulo=$titulo->last()->titulo+1;
+//
+//        $imagen = $request->file('foto');
+//        $photo = new Photo;
+//        $photo->ruta = 'animal/';
+//        $photo->titulo=$titulo;
+//        $photo->formato='jpg';
+//        $photo->id_animal = 1;
+//        $photo->principal=1;
+//        $imagen->move('img/animal/', $titulo.'.'.$imagen->getClientOriginalExtension());
+//        return $photo->save();
 
-        //        $imagen = $request->file('foto');
-        //        $photo = new Photo;
-        //        $photo->ruta = 'animal/';
-        //        $photo->titulo=8;
-        //        $photo->formato=$imagen->getClientOriginalExtension();
-        //        $photo->id_animal = $animal->id;
-        //        $photo->principal=1;
-        //        $imagen->move('img/animal/', $photo->titulo.'.'.$imagen->getClientOriginalExtension());
-        //        $photo->save();
 
 
     }
 
     public static function insertarFoto(Request $request, $id){
-      
+
         $titulo=Photo::all();
         $titulo=$titulo->last()->titulo+1;
+
+        $principal = DB::select('SELECT * FROM photo p, animal a WHERE p.id_animal = a.id AND a.id = '.$id.' AND p.principal=1;');
 
         $imagen = $request->file('foto');
         $photo = new Photo;
@@ -331,12 +394,19 @@ class AnimalController extends Controller{
         $photo->titulo=$titulo;
         $photo->formato='jpg';
         $photo->id_animal = $id;
-        $photo->principal=1;
-        $imagen->move('img/animal/', $titulo.'.'.$imagen->getClientOriginalExtension());
-        $photo->save();
 
+        //        return count($principal);
+
+        if(count($principal) == 1){
+            $photo->principal=0;
+        }else{
+            $photo->principal=1;
+        }
+
+        $imagen->move('img/animal/', $titulo.'.'.$imagen->getClientOriginalExtension());
         return view('gestion.animales')
-            ->with('foto','$photo->save()');
+            ->with('foto',$photo->save())
+            ->with('idAnimal',$id);
 
     }
 

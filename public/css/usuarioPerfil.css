@@ -1,0 +1,66 @@
+/*
+|--------------------------------------------------------------------------
+| PÉRFIL DE USUARIOS - Estilo para la vista perfil.blade.php
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+div.perfilPersona{
+    background-color:#DCC7AA;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    color:#80725F;
+}
+
+/*DETALLES PERSONA*/
+.perfilPersona .detalles{
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+img.editar{
+    width: 30px;
+    height: 30px;
+    cursor:pointer;
+}
+
+.error{
+    color: red;
+}
+
+.errorInput{
+    box-shadow: 2px 2px 2px 1px red;
+}
+
+
+/*NAV ANIMALES/DONACIÓN*/
+div.donacionCards{
+    /*    display: none;*/
+}
+
+.perfilPersona .card a{
+    cursor:pointer;
+}
+
+.text-center {
+    text-align: left!important;
+}
+
+.donacionCards,
+.animalCards{
+    padding: 2%;
+}
+.situacion h5{
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.animalCards .form-row{
+    height: 140px;
+}

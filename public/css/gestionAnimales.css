@@ -102,7 +102,7 @@ button.buscar:hover{
     box-shadow: 2px 2px 10px #444F5B;        /* Sombra normal */
 }
 
-.col-md-6{
+.fichaAnimal{
     padding: 0px;
 }
 div.fichaDescripcion span.titulo{
@@ -113,9 +113,17 @@ div.fichaPersona{
     display: none;
     margin-right: 10px;
 }
+div.fichaPersona{
+    padding: 0px;
+    opacity: 0.80;
+}
 div.fichaAnimal .fichaDescripcion,
+div.fichaPersona .fichaDescripcion,
 div.fichaAnimal .fichaBotones{
     padding-top: 10px;
+}
+div.fichaPersona{
+    height: 50%;
 }
 
 button.elimianar{

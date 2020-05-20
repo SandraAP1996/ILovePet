@@ -10,7 +10,8 @@ Gestión Animales
 @endsection
 
 @section('contenido')
-{{$foto ?? ''}}
+
+<span id="idAnimal{{$idAnimal ?? ''}}" class="respuestaFoto" style="display:none">{{$foto ?? ''}}</span>
 <div class="contenedor">
     <div id="filtro">
         <h3>Gestión Animales</h3>
@@ -73,67 +74,64 @@ Gestión Animales
                 <div class="d-flex fichaTitulo">
                     <span class="mr-auto"><h3>Ficha del Animal</h3></span> 
                     <span class="botones">
-                        <img src="/img/web/icons/cruz-blanca.svg" alt="hola" title="Cancelar"></span> 
+                        <img src="/img/web/icons/cruz-blanca.svg" alt="salida" title="Cancelar">
+                    </span> 
                 </div>
 
-<!--                <div class="row justify-content-center">-->
-                    <form  method="post" action="#">
-                        <div class="row justify-content-center">
-                            <div class="fichaDescripcion col-md-9">
-                            </div>
-                            <div class="fichaBotones col-md-3">
-                                <button type="button" class="btn btn-sm eliminar">{{__('Eliminar Animal')}}</button><br><br>
-                                <button type="button" class="btn btn-sm modificar">{{__('Modificar')}}</button>
-                                <button type="button" class="btn btn-sm guardar">{{__('Guardar')}}</button><br>
-                                <button type="button" class="btn btn-sm cancelarModificar">{{__('Cancelar')}}</button>
-                            </div>
+                <form  method="post" action="#">
+                    <div class="row justify-content-center">
+                        <div class="fichaDescripcion col-md-9">
                         </div>
-                    </form>
-                    <div class="fichaFotos col-md-12">
-                        <hr>
-                        <form  method="post" action="{{url('/gestion/animales/insertar/foto')}}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="d-flex">
-                                <span class="mr-auto"><h5>Fotos</h5></span> 
-                                <span class="botones">
-                                    <!-- Foto -->
-                                    <button type="button" class="btn btn-sm  subirFoto">{{__('Subir Foto')}}</button>
-                                    &nbsp<button type="button" class="btn btn-sm eliminarFoto">{{__('Eliminar')}}</button></span><br>   
-                            </div>
-                            <div class="seleccionarFoto">
-                                <hr>
-
-                                <div class="d-flex">
-                                    <span class="mr-auto"><h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6> 
-                                        <input name="foto" type="file" class="form-control-file">
-
-                                    </span> 
-                                    <span class="botonesInsertar">
-                                        <!-- Foto -->
-                                        <button type="submit" class="btn btn-sm insertarFoto">{{__('Insertar')}}</button>
-                                        <button type="button" class="btn btn-sm cancelarFoto">{{__('Cancelar')}}</button>
-                                    </span><br>   
-                                </div>
-                            </div>
-
-                        </form>
-
-                        <div class="galeria border">
-
+                        <div class="fichaBotones col-md-3">
+                            <button type="button" class="btn btn-sm eliminar">{{__('Eliminar Animal')}}</button><br><br>
+                            <button type="button" class="btn btn-sm modificar">{{__('Modificar')}}</button>
+                            <button type="button" class="btn btn-sm guardar">{{__('Guardar')}}</button><br>
+                            <button type="button" class="btn btn-sm cancelarModificar">{{__('Cancelar')}}</button>
                         </div>
                     </div>
-<!--                </div>-->
+                </form>
+                <div class="fichaFotos col-md-12">
+                    <hr>
+                    <form  method="post" action="{{url('/gestion/animales/insertar/foto')}}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="d-flex">
+                            <span class="mr-auto"><h5>Fotos</h5></span> 
+                            <span class="botones">
+                                <!-- Foto -->
+                                <button type="button" class="btn btn-sm  subirFoto">{{__('Subir Foto')}}</button>
+                                &nbsp<button type="button" class="btn btn-sm eliminarFoto">{{__('Eliminar')}}</button></span><br>   
+                        </div>
+                        <div class="seleccionarFoto">
+                            <hr>
+
+                            <div class="d-flex">
+                                <span class="mr-auto"><h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6> 
+                                    <input name="foto" type="file" class="form-control-file" accept="image/png, image/jpeg">
+
+                                </span> 
+                                <span class="botonesInsertar">
+                                    <!-- Foto -->
+                                    <button type="submit" class="btn btn-sm insertarFoto">{{__('Insertar')}}</button>
+                                    <button type="button" class="btn btn-sm cancelarFoto">{{__('Cancelar')}}</button>
+                                </span><br>   
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <div class="galeria border">
+
+                    </div>
+                </div>
             </div>
             <div class="fichaPersona col-md-4 border">
-                <h3>Ficha de la Persona </h3>
-
-                <p><span>Chip</span>&nbsp&nbsp  </p>
-                <p><span>Edad</span>&nbsp&nbsp () </p>
-                <p><span>Fecha de nacimiento</span>&nbsp&nbsp  </p>
-                <p><span>Raza</span>&nbsp&nbsp </p>
-                <p><span>Sexo</span>&nbsp&nbsp </p>
-                <p><span>Talla</span>&nbsp&nbsp </p>
-                <p><span>Descripción</span> <br> </p>
+                <div class="d-flex fichaTitulo">
+                    <span class="mr-auto"><h3>Ficha de la Persona</h3></span> 
+                    <span class="tipo"><h3><!-- CONTENIDO DE JQuery--></h3></span>
+                </div>
+                <div id="descripcionASD" class="fichaDescripcion col-md-9">
+                   <!-- CONTENIDO DE JQuery-->
+                </div>
             </div>
         </div>
     </div>
@@ -164,9 +162,8 @@ Gestión Animales
 <div class="modal fade" id="insertarModal" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- MODAL contenido-->
-        <form method="GET" action="#" enctype="multipart/form-data">
+        <form method="POST" action="{{url('/gestion/animales/insertar')}}" enctype="multipart/form-data">
             @csrf
-            @method('POST')
 
             <div class="modal-content">
                 <div class="modal-header">
@@ -196,7 +193,6 @@ Gestión Animales
                                     <div class="form-group">
                                         <h6 class="nombreError"><label for="inputState">{{__('Nombre')}}</label><span></span></h6><input name="nombre" class="form-control" type="text" >
                                     </div> 
-
                                     <div class="form-group">
                                         <h6 class="especieError"><label for="inputState">{{__('Especie')}}</label><span></span></h6>
                                         <select class="form-control especieAnimal" name="especie">
@@ -284,10 +280,12 @@ Gestión Animales
                                         <textarea name="descripcion" class="form-control" ></textarea>
                                     </div>
 
+<!--
                                     <div class="form-group">
-                                        <h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6>          Foto 
+                                        <h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6> Foto 
                                         <input name="foto" type="file" class="form-control-file" id="exampleFormControlFile1">
                                     </div>
+-->
                                 </div>
 
 
