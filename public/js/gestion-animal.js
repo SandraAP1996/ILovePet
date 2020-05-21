@@ -206,7 +206,6 @@ function modificarAnimal(){
         data: $('.fichaAnimal form').serialize(),
         success: function(modificado){
             console.log(modificado);
-            console.log('modificado');
             var msgError='';
             if(modificado == 1){
                 msgError+='Se ha modificado correctamente el animal'; 

@@ -56,6 +56,8 @@ Route::group(['prefix' => 'gestion'], function(){
 
 Route::group(['prefix' => 'usuario'], function(){
     Route::middleware('auth')->get('/perfil', 'UserController@perfilUsuario');
+    Route::middleware('auth')->post('/perfil/modificar', 'UserController@modificarPerfil');
+    
 });
 
 

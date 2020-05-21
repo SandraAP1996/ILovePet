@@ -1,7 +1,7 @@
 @extends('layout.layout-master')
 
 @section('titulo')
-Gestión Animales
+Perfil
 @endsection
 @section('enlaces')
 <link rel="stylesheet" type="text/css" href="/css/usuarioPerfil.css">
@@ -10,7 +10,6 @@ Gestión Animales
 @endsection
 
 @section('contenido')
-
 <div class="perfilPersona">
 
     <div class="detalles">
@@ -18,33 +17,39 @@ Gestión Animales
             <span class="mr-auto"><h3>Perfil</h3></span> 
             <span><img src="/img/web/icons/edit-perfil.svg" alt="modificar" class="editar" title="Modificar Perfil"></span>
         </div>
-        <form class="formDetalles" action="" method="post">
-            <hr>
+        <hr>
+        <form class="formDetalles" action="#" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="row justify-content-center">
                 <div class="col-md-2">
-                    <img src="/img/perfil/avatar.jpg" alt="fotoPerfil" class="img-fluid">
-                </div>
+                    <div class="insertarImagen">
+                        <label for="file-input">
+                            <img src="/img/{{$persona[0]->img['ruta']}}{{$persona[0]->img['titulo']}}.{{$persona[0]->img['formato']}}" alt="foto" class="img-fluid">
+                        </label>
+                        <input id="file-input" type="file" name="foto" accept="image/png, image/jpeg">
+                    </div>
 
+                </div>
                 <div class="col-md-8">
                     <div class="form-row">
                         <div class="col-md-6 form-group nombre">
                             <label for="nombre" class="font-weight-bold">Nombre <span class="error"></span></label>
-                            <input type="text" name="nombre" class="form-control" value="{{$persona->nombre}}" id="nombre" required disabled>
+                            <input type="text" name="nombre" class="form-control" value="{{$persona[0]->nombre}}" id="nombre" required disabled>
                             <small></small>
                         </div>     
                         <div class="col-md-6 form-group apellidos">
                             <label for="apellidos" class="font-weight-bold">Apellidos<span class="error"></span></label>
-                            <input type="text" name="apellidos" class="form-control" value="{{$persona->apellidos}}" required disabled> 
+                            <input type="text" name="apellidos" class="form-control" value="{{$persona[0]->apellidos}}" required disabled> 
                             <small></small>
                         </div>
                         <div class="col-md-6 form-group email">
                             <label for="email" class="font-weight-bold">Email<span class="error"></span></label>
-                            <input type="email" name="email" class="form-control" value="{{$persona->email}}" required disabled> 
+                            <input type="email" name="email" class="form-control" value="{{$persona[0]->email}}" required disabled> 
                             <small></small>
                         </div>
                         <div class="col-md-6 form-group telefono">
                             <label for="telefono" class="font-weight-bold">Teléfono<span class="error"></span></label>
-                            <input type="text" name="telefono" class="form-control" value="{{$persona->telefono}}" required disabled>
+                            <input type="text" name="telefono" class="form-control" value="{{$persona[0]->telefono}}" required disabled>
                             <small></small> 
                         </div>
                     </div>
@@ -82,7 +87,11 @@ Gestión Animales
 
                 <div class="col-md-12">
                     <div class="d-flex">
-                        <span class="mr-auto"></span> 
+                        <span class="mr-auto">
+                            <ul class="error">
+
+                            </ul>
+                        </span> 
                         <span class="botonesModificar">
                             <button type="button" class="btn btn-sm guardar">{{__('Guardar')}}</button>
                             <button type="button" class="btn btn-sm cancelar">{{__('Cancelar')}}</button>
@@ -155,5 +164,27 @@ Gestión Animales
     @endif
 
 </div>
+
+
+<!-- MODAL INFORMATIVO -->
+
+
+<div class="modal fade" id="informacionModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!--         MODAL contenido-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 @endsection

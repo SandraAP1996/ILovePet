@@ -17,6 +17,15 @@ div.perfilPersona{
     color:#80725F;
 }
 
+/*IMAGEN*/
+.insertarImagen > input{
+    display: none;
+}
+
+.insertarImagen img{
+    cursor: pointer;
+}
+
 /*DETALLES PERSONA*/
 .perfilPersona .detalles{
     margin-left: 5%;
@@ -30,7 +39,8 @@ img.editar{
     cursor:pointer;
 }
 
-.error{
+.error,
+small{
     color: red;
 }
 
@@ -64,3 +74,33 @@ div.donacionCards{
 .animalCards .form-row{
     height: 140px;
 }
+
+.botonesModificar .guardar{
+    color:white;
+    background-color: #4DD295;     
+}
+
+
+
+/*Modal información*/
+#informacionModal{
+    margin-top: 15%;
+}
+
+#informacionModal{
+    color:#80725F;
+}
+#informacionModal .card-body{
+    font-size: 25px;
+}
+
+#informacionModal div.correcto .modal-header{
+    background-color: mediumseagreen;
+    color: white;
+}
+#informacionModal div.incorrecto .modal-header{
+    background-color:darkred;
+    color: white;
+}
+
+
