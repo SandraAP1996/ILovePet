@@ -6,11 +6,6 @@
 
 $(function(){
 
-    if($('.respuestaFoto').text() != ''){
-        var animal=$('.respuestaFoto').attr('id').split('idAnimal')[1];
-        console.log(animal);
-    }
-
     $('#filtroAnimal select[name="raza"]').empty();
     $('#filtroAnimal select[name="raza"]').append('<option value="todo"></option>');
 
@@ -46,9 +41,6 @@ $(function(){
 
             detallesAnimal(id[1]); 
         }
-
-
-
     });
 
     /* ACTIVAR EL MODAL ELIMINAR ANIMAL/FOTO */
@@ -136,10 +128,10 @@ $(function(){
 
         if($(this).hasClass('seleccionado') == true){
             $('span.botones button.eliminarFoto').css('visibility','visible');
-            $('span.botones button.subirFoto').css('visibility','hidden');
+            $('span.botones span.subirFoto').css('visibility','hidden');
         }else{
             $('span.botones button.eliminarFoto').css('visibility','hidden');
-            $('span.botones button.subirFoto').css('visibility','visible');
+            $('span.botones span.subirFoto').css('visibility','visible');
         }
     });
 
@@ -153,8 +145,91 @@ $(function(){
     $('div.fichaFotos span.botones .subirFoto').click(function(){
         $(this).css('display','none');
         $('.fichaFotos .seleccionarFoto').css('display','block');
+        $('.fileValor').text('# No se ha seleccionado nada');
+
+    });
+    /*COMPROBAR QUE HA SUBIDO ALGO*/
+    $('.insertarImagen input[name="foto"]').change(function(){
+        if($('.insertarImagen input[name="foto"]').val() != ''){
+            var img=$('.insertarImagen input[name="foto"]').val().split('\\');
+            $('.fileValor').text( '# Imagen seleccionado '+img[2]);
+        }
     });
 
+    /*SUBIR LA FOTO*/
+    $('.botonesInsertar .insertarFoto').click(function(){
+        var img=$('.insertarImagen input[name="foto"]').val().split('\\');
+
+        var msgError='';
+
+        if($('.insertarImagen input[name="foto"]').val() != ''){
+
+            $('#informacionModal div.modal-content').addClass('correcto');
+            $('#informacionModal div.modal-content').removeClass('incorrecto');
+
+            var formato=img[2].split('.');
+            if(formato[1] != 'jpg' && formato[1] != 'JPG' && formato[1] != 'png' && formato[1] != 'PNG'){
+                msgError+='El formato no es correcto, debe ser JPG o PNG'; 
+                $('#informacionModal div.modal-content').addClass('incorrecto');
+                $('#informacionModal div.modal-content').removeClass('correcto');
+            }
+
+        }else{
+            msgError+='No se ha insertado ninguna imagen'; 
+            $('#informacionModal div.modal-content').addClass('incorrecto');
+            $('#informacionModal div.modal-content').removeClass('correcto');
+        }
+
+        $('#informacionModal h4.modal-title').text('Insertar Foto');
+        $('#informacionModal div.card-body').text(msgError);
+
+        if(msgError != ''){
+            $("#informacionModal").modal("show");
+        }else{
+
+            var data = $('form.formFoto').serialize();
+
+            data = new FormData($('form.formFoto')[0]);
+            $.ajax({
+                url: "/gestion/animales/insertar/foto/"+$('.fichaAnimal').attr('id'),
+                processData: false,
+                contentType: false,
+                type: "POST",
+                data: data,
+                success: function(modificado){
+
+                    buscarPorFiltro();
+
+
+                    $('.id'+modificado.id).addClass('seleccionado');
+                    detallesAnimal(modificado.id);
+
+                    if(modificado.foto == true){
+                        msgError+='Se ha añadido correctamente la foto'; 
+                        $('#informacionModal div.modal-content').addClass('correcto');
+                        $('#informacionModal div.modal-content').removeClass('incorrecto');
+                    }else{
+                        msgError+='No se ha añadido correctamente la foto'; 
+                        $('#informacionModal div.modal-content').removeClass('correcto');
+                        $('#informacionModal div.modal-content').addClass('incorrecto');
+                    }
+
+                    $('div.fichaFotos span.botones .subirFoto').css('display','block');
+                    $('.fichaFotos .seleccionarFoto').css('display','none');
+
+                    $('#informacionModal h4.modal-title').text('Insertar Foto');
+
+                    $('#informacionModal div.card-body').text(msgError);
+
+                    $("#informacionModal").modal("show");
+
+
+
+                }
+            });
+
+        }
+    });
     /*CANCELAR FOTO*/
     $('div.fichaFotos .seleccionarFoto .cancelarFoto').click(function(){
         $('div.fichaFotos span.botones .subirFoto').css('display','block');
@@ -205,7 +280,6 @@ function modificarAnimal(){
         method: "POST",
         data: $('.fichaAnimal form').serialize(),
         success: function(modificado){
-            console.log(modificado);
             var msgError='';
             if(modificado == 1){
                 msgError+='Se ha modificado correctamente el animal'; 
@@ -224,8 +298,6 @@ function modificarAnimal(){
     $('.fichaBotones button.modificar').css('display','block');
     $('.fichaBotones button.eliminar').css('display','block');
     $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').css('display','none');
-
-    console.log($('.fichaAnimal').attr('id'));
 
     detallesAnimal($('.fichaAnimal').attr('id'));
     //    $("#informacionModal").modal("show");
@@ -368,10 +440,17 @@ function modificarAFormulario(){
 function insertarBD(){
 
     if($('#insertarModal form .error').length == 0){
+
+        var data = $('#formInsertarAnimal').serialize();
+        console.log(data);
+        data = new FormData($('#formInsertarAnimal')[0]);
+
         $.ajax({
             url: "/gestion/animales/insertar",
-            method: "POST",
-            data: $('#insertarModal form').serialize(),
+            processData: false,
+            contentType: false,
+            type: "POST",
+            data: data,
             success: function(insertado){
                 console.log(insertado);
                 var msgError='';
@@ -427,7 +506,6 @@ function validarModificar(){
         /*NOMBRE*/
         if($(inputs[i]).attr('name') == 'nombre'){
             if($(inputs[i]).val() == ''){
-                console.log($(inputs[i]).val());
                 $(inputs[i]).addClass('error');
 
             }else{
@@ -442,7 +520,6 @@ function validarModificar(){
         /*RAZA*/
         if($(inputs[i]).attr('name') == 'raza'){
             if($(inputs[i]).val() == ''){
-                console.log($(inputs[i]).val());
                 $(inputs[i]).addClass('error');
 
             }else{
@@ -619,7 +696,35 @@ function validaInsertar(modo,elemento){
 
             /*FOTO*/
             if($(inputs[i]).attr('name') == 'foto'){
-                //console.log($(inputs[i]).val());
+
+
+                if($(inputs[i]).val() == ''){
+                    $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                    $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+
+                }else{
+                    var img=$(inputs[i]).val().split('\\');
+                    var formato = img[2].split('.');
+                    if(formato[1] != 'jpg' && formato[1] != 'JPG' && formato[1] != 'png' && formato[1] != 'PNG'){
+                        $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
+                        $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
+                        $('ul.msgError li.'+$(inputs[i]).attr("name")+'').remove();
+                        msg+='<li class="'+$(inputs[i]).attr('name')+'">El campo '+$(inputs[i]).attr('name')+' solo admite los formatos JPG y PNG.</li>';
+
+                    }else{
+                        $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').removeClass('error');
+                        $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('');
+                        $('ul.msgError li.'+$(inputs[i]).attr("name")+'').remove();
+
+
+                    }
+
+                }
+
+
+
+
+
             }
 
         }
@@ -649,6 +754,10 @@ function validaInsertar(modo,elemento){
             $('.form-group .descripcionError span').text('');
         }
     }
+
+
+
+
     $('ul.msgError').append(msg);
 }
 
@@ -697,8 +806,11 @@ function eliminarFoto(id){
         url: "/gestion/animales/eliminar/foto/"+id,
         method: "GET", 
         success: function(eliminado){
-
             detallesAnimal($('.fichaAnimal').attr('id'));
+            $ref=$('.fichaAnimal').attr('id');
+            buscarPorFiltro();
+
+
             var msgError='';
             /*Comprobar si se ha eliminado correctamente y crear el mensaje de respuesta*/
             if(eliminado.length == 0){
@@ -736,10 +848,10 @@ function detallesAnimal(id){
 
     if($('div.fichaFotos div.d-flex img').hasClass('seleccionado') == true){
         $('span.botones button.eliminarFoto').css('visibility','visible');
-        $('span.botones button.subirFoto').css('visibility','hidden');
+        $('span.botones span.subirFoto').css('visibility','hidden');
     }else{
         $('span.botones button.eliminarFoto').css('visibility','hidden');
-        $('span.botones button.subirFoto').css('visibility','visible');
+        $('span.botones span.subirFoto').css('visibility','visible');
     }
     $.ajax({
         url: "/gestion/animales/id/"+id,
@@ -814,7 +926,7 @@ function buscarPorFiltro(){
             success: function(animales){
 
                 if(animales.length == 0){
-
+                    /*PONER UN ERROR*/
                 }else{
                     for(var i in animales){
                         var fotos=animales[i].img.length;

@@ -38,8 +38,9 @@ Route::group(['prefix' => 'animal'], function(){
 });
 
 /*GESTIÓN DEL EMPLEADO*/
-
 Route::group(['prefix' => 'gestion'], function(){
+
+    /*Rutas de Gestión de Animales*/
     Route::get('/animales', function () {
         return view('gestion.animales');
     });
@@ -49,15 +50,19 @@ Route::group(['prefix' => 'gestion'], function(){
     Route::get('/animales/eliminar/foto/{id}', 'AnimalController@eliminarFoto');
     Route::post('/animales/modificar/id/{id}', 'AnimalController@modificarAnimal');
     Route::post('/animales/insertar/foto/{id}', 'AnimalController@insertarFoto');
-
     Route::post('/animales/insertar', 'AnimalController@insertarAnimal');
+
+    /*Rutas de Gestión Usuarios*/
+    Route::get('/usuarios', function () {
+        return view('gestion.usuarios');
+    });
 });
 
 
 Route::group(['prefix' => 'usuario'], function(){
     Route::middleware('auth')->get('/perfil', 'UserController@perfilUsuario');
     Route::middleware('auth')->post('/perfil/modificar', 'UserController@modificarPerfil');
-    
+
 });
 
 

@@ -96,8 +96,9 @@
                             <a class="dropdown-item" href="{{url('/usuario/perfil')}}">{{__('Pérfil')}}</a>
                             @if(Auth::user()->rol == 'Empleado')
 
+                            <a class="dropdown-item" href="{{url('/gestion/animales')}}">Adopción/Acogida</a>
                             <a class="dropdown-item" href="{{url('/gestion/animales')}}">Gestionar Animales</a>
-                            <a class="dropdown-item" href="#">Gestionar Usuarios</a>
+                            <a class="dropdown-item" href="{{url('/gestion/usuarios')}}">Gestionar Usuarios</a>
 
 
                             <div class="dropdown-divider"></div>                            

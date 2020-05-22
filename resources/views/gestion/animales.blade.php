@@ -6,7 +6,6 @@ Gestión Animales
 @section('enlaces')
 <link rel="stylesheet" type="text/css" href="/css/gestionAnimales.css">
 <script src="/js/gestion-animal.js"></script>
-
 @endsection
 
 @section('contenido')
@@ -16,7 +15,7 @@ Gestión Animales
     <div id="filtro">
         <h3>Gestión Animales</h3>
         <div class="container-fluid">
-            <form method="PUT" action="#" id="filtroAnimal">
+            <form method="post" action="#" id="filtroAnimal">
                 <div class="row justify-content-center">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -78,7 +77,7 @@ Gestión Animales
                     </span> 
                 </div>
 
-                <form  method="post" action="#">
+                <form  method="post" action="#" >
                     <div class="row justify-content-center">
                         <div class="fichaDescripcion col-md-9">
                         </div>
@@ -92,31 +91,33 @@ Gestión Animales
                 </form>
                 <div class="fichaFotos col-md-12">
                     <hr>
-                    <form  method="post" action="{{url('/gestion/animales/insertar/foto')}}" enctype="multipart/form-data">
+                    <form class="formFoto" method="post" action="" enctype="multipart/form-data">
                         @csrf
                         <div class="d-flex">
                             <span class="mr-auto"><h5>Fotos</h5></span> 
                             <span class="botones">
                                 <!-- Foto -->
-                                <button type="button" class="btn btn-sm  subirFoto">{{__('Subir Foto')}}</button>
+                                <div class="insertarImagen">
+                                    <label for="file-input">
+                                        <span class="btn btn-sm subirFoto">{{__('Subir Foto')}}</span>
+                                    </label>
+                                    <input id="file-input" type="file" name="foto" accept="image/png, image/jpeg">
+                                </div>
                                 &nbsp<button type="button" class="btn btn-sm eliminarFoto">{{__('Eliminar')}}</button></span><br>   
                         </div>
                         <div class="seleccionarFoto">
                             <hr>
-
                             <div class="d-flex">
-                                <span class="mr-auto"><h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6> 
-                                    <input name="foto" type="file" class="form-control-file" accept="image/png, image/jpeg">
-
+                                <span class="mr-auto">
+                                    <small class="fileValor"></small>
                                 </span> 
                                 <span class="botonesInsertar">
                                     <!-- Foto -->
-                                    <button type="submit" class="btn btn-sm insertarFoto">{{__('Insertar')}}</button>
+                                    <button type="button" class="btn btn-sm insertarFoto">{{__('Insertar')}}</button>
                                     <button type="button" class="btn btn-sm cancelarFoto">{{__('Cancelar')}}</button>
                                 </span><br>   
                             </div>
                         </div>
-
                     </form>
 
                     <div class="galeria border">
@@ -130,7 +131,7 @@ Gestión Animales
                     <span class="tipo"><h3><!-- CONTENIDO DE JQuery--></h3></span>
                 </div>
                 <div id="descripcionASD" class="fichaDescripcion col-md-9">
-                   <!-- CONTENIDO DE JQuery-->
+                    <!-- CONTENIDO DE JQuery-->
                 </div>
             </div>
         </div>
@@ -162,7 +163,7 @@ Gestión Animales
 <div class="modal fade" id="insertarModal" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- MODAL contenido-->
-        <form method="POST" action="{{url('/gestion/animales/insertar')}}" enctype="multipart/form-data">
+        <form id="formInsertarAnimal" method="POST" action="" enctype="multipart/form-data">
             @csrf
 
             <div class="modal-content">
@@ -280,12 +281,12 @@ Gestión Animales
                                         <textarea name="descripcion" class="form-control" ></textarea>
                                     </div>
 
-<!--
+
                                     <div class="form-group">
-                                        <h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6> Foto 
-                                        <input name="foto" type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        <h6 class="fotoError"><label for="inputState">{{__('Selecciona una Foto')}}</label><span></span></h6>
+                                        <input name="foto" type="file" class="form-control-file" accept="image/png, image/jpeg">
                                     </div>
--->
+
                                 </div>
 
 
@@ -356,7 +357,6 @@ Gestión Animales
 
 <!-- MODAL INFORMATIVO -->
 
-
 <div class="modal fade" id="informacionModal" role="dialog">
     <div class="modal-dialog modal-lg">
         <!--         MODAL contenido-->
@@ -372,11 +372,5 @@ Gestión Animales
         </div>
     </div>
 </div>
-
-
-
-
-
-
 
 @endsection

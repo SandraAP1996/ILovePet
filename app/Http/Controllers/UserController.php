@@ -196,13 +196,6 @@ class UserController extends Controller{
         }
 
         return $modfoto;
-//
-//        if(count($direccion) == 1 && $modpersona == 1 && $modfoto == 1){
-//            return 1;
-//        }else{
-//            return 0;
-//        }
-
 
     }
 }

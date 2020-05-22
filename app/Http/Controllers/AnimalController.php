@@ -10,7 +10,7 @@ use DB;
 class AnimalController extends Controller{
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | INICIO - inicio.blade.php
 |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ class AnimalController extends Controller{
             ->with('animales',$animales);
     }
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | FILTRO ANIMALES - filtrar-animal.blade.php
 |--------------------------------------------------------------------------
@@ -348,8 +348,10 @@ class AnimalController extends Controller{
      * @return objeto $animal->save()
      */
     public static function insertarAnimal(Request $request){
+
+
+
         $animal = new Animal;
-        //        return $animal->chip;
         $animal->chip = $request->chip;
         $animal->nombre = $request->nombre;
         $animal->raza = $request->raza;
@@ -362,51 +364,71 @@ class AnimalController extends Controller{
         $animal->situacion = $request->situacion;
         $animal->estado = $request->estado;
 
-        return $animal->save();
+        $conf=$animal->save();
 
-//        $titulo=Photo::all();
-//        $titulo=$titulo->last()->titulo+1;
-//
-//        $imagen = $request->file('foto');
-//        $photo = new Photo;
-//        $photo->ruta = 'animal/';
-//        $photo->titulo=$titulo;
-//        $photo->formato='jpg';
-//        $photo->id_animal = 1;
-//        $photo->principal=1;
-//        $imagen->move('img/animal/', $titulo.'.'.$imagen->getClientOriginalExtension());
-//        return $photo->save();
+      
+        if($request->foto != null){
 
+            $titulo = Photo::select('photo.titulo')
+                ->join('animal','animal.id','=','photo.id_animal')
+                ->get();
 
+            $titulo=$titulo->last()->titulo+1;
 
+            $imagen = $request->foto;
+
+            $photo = new Photo;
+            $photo->ruta = 'animal/';
+            $photo->titulo=$titulo;
+            $photo->formato= $imagen->getClientOriginalExtension();
+            $photo->id_animal = $animal->id;
+            $photo->principal=1;
+            $imagen->move('img/animal/', $titulo.'.'.$imagen->getClientOriginalExtension());
+
+            $photo->save();
+
+        }
+        return $conf;
     }
 
     public static function insertarFoto(Request $request, $id){
 
-        $titulo=Photo::all();
+        $titulo = Photo::select('photo.titulo')
+            ->join('animal','animal.id','=','photo.id_animal')
+            ->get();
+
         $titulo=$titulo->last()->titulo+1;
+
 
         $principal = DB::select('SELECT * FROM photo p, animal a WHERE p.id_animal = a.id AND a.id = '.$id.' AND p.principal=1;');
 
-        $imagen = $request->file('foto');
-        $photo = new Photo;
-        $photo->ruta = 'animal/';
-        $photo->titulo=$titulo;
-        $photo->formato='jpg';
-        $photo->id_animal = $id;
+        if($request->foto != null){
 
-        //        return count($principal);
+            $imagen = $request->foto;
 
-        if(count($principal) == 1){
-            $photo->principal=0;
-        }else{
-            $photo->principal=1;
+
+            $photo = new Photo;
+            $photo->ruta = 'animal/';
+            $photo->titulo=$titulo;
+            $photo->formato= $imagen->getClientOriginalExtension();
+            $photo->id_animal = $id;
+
+            if(count($principal) == 1){
+                $photo->principal=0;
+            }else{
+                $photo->principal=1;
+            }
+
+            $imagen->move('img/animal/', $titulo.'.'.$imagen->getClientOriginalExtension());
+
+            $photo=$photo->save();
+
         }
 
-        $imagen->move('img/animal/', $titulo.'.'.$imagen->getClientOriginalExtension());
-        return view('gestion.animales')
-            ->with('foto',$photo->save())
-            ->with('idAnimal',$id);
+        $confirma = ['foto' => $photo , 'id' => $id];
+
+        return $confirma;
+
 
     }
 
