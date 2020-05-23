@@ -4,3 +4,223 @@
 |--------------------------------------------------------------------------
 */
 
+div.contenedor{
+    margin: 30px;
+    padding: 20px;
+}
+
+div#filtro h3{
+    color:#80725F;
+    margin: 10px;
+}
+
+div#filtro{
+    padding: 10px;
+    background-color: #DCC7AA;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+#filtro .container{
+    margin: 0px;
+    width: auto;
+}
+
+
+#filtro .botones{
+    margin-left: 10%;
+}
+
+.botones{
+    float: right;    right: 0;
+}
+
+#filtroPersona small{
+    color: red;
+}
+
+input.error,
+select.error,
+textarea.error{
+    box-shadow: 2px 2px 2px 1px red;
+}
+
+/*
+|---------------
+| FICHA
+|---------------
+*/
+
+div#ficha p{
+    margin-left: 15px;
+}
+div.fichaTitulo{
+    padding: 5px;
+    color:white;
+    background-color: #526071;
+}
+
+div.fichaTitulo img{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    cursor:pointer;
+
+}
+
+div#ficha{
+    margin-bottom: 25px;
+/*    display: none;*/
+}
+
+a.insertar{
+    background-color: #4DD295;
+}
+
+button.insertar,
+button.insertarFoto,
+.subirFoto,
+.fichaBotones .guardar{
+    color:white;
+    background-color: #4DD295; 
+}
+
+button.eliminarFoto,
+.fichaBotones .eliminar{
+    background-color:red;
+    color: white;
+}
+
+button.insertar:hover,
+button.buscar:hover{
+    box-shadow: 2px 2px 10px #444F5B;        /* Sombra normal */
+}
+
+.fichaPersona{
+    padding: 0px;
+}
+
+
+div.fichaDescripcion span.titulo{
+    font-weight: bold;
+}
+div.fichaAnimal,
+div.fichaPersona{
+    display: none;
+    margin-right: 10px;
+}
+div.fichaPersona{
+    margin-bottom: 25px;
+    padding: 0px;
+    opacity: 0.80;
+}
+
+div.fichaPersona .fichaDescripcion,
+div.fichaAnimal .fichaDescripcion,
+div.fichaPersona .fichaBotones{
+    padding-top: 10px;
+}
+div.fichaAnimal{
+    height: 50%;
+}
+
+
+button.elimianar{
+    background-color: red;
+}
+
+
+/*Modificar Animal*/
+.fichaBotones {
+    margin-bottom: 25px;
+}
+
+.fichaBotones .modificar{
+    background-color: #EEF495;
+}
+
+
+.fichaBotones button.guardar,
+.fichaBotones button.cancelarModificar{
+    display: none
+}
+.fichaDescripcion span.descripcion textarea{
+    width: 100%;
+}
+
+/*
+|---------------
+| FICHA ANIMAL/DONACIÓN
+|---------------
+*/
+.card{
+    display: none;
+}
+.card a{
+    cursor:pointer;
+}
+
+.text-center {
+    text-align: left!important;
+}
+
+.donacionCards,
+.animalCards{
+    padding: 2%;
+}
+.situacion h5{
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.animalCards .form-row{
+    height: 140px;
+}
+
+/*
+|---------------
+| TABLA
+|---------------
+*/
+#resultado table{
+    text-align: center;
+
+}
+thead.cabecera{
+    background-color: #80725F;
+    color: white;
+}
+tbody tr:hover{
+    background-color: #F4F6F8;
+}
+tbody tr{
+    cursor: pointer;
+}
+
+#resultado span{
+    border-radius: 15px;
+    padding: 5px;
+}
+
+span.normal{
+    background-color: #EEF495;
+}
+span.urgente{
+    background-color: #FF1717;
+}
+
+span.nuevo{
+    background-color: #A9FBFF;
+    color: black;
+}
+tr.seleccionado:hover{
+    background-color: #DCC7AA;
+
+}
+tr.seleccionado{
+    background-color:#DCC7AA ;
+}
+
+img.papelera{
+    width: 25px;
+    height: 25px;
+}

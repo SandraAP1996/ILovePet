@@ -56,13 +56,16 @@ Route::group(['prefix' => 'gestion'], function(){
     Route::get('/usuarios', function () {
         return view('gestion.usuarios');
     });
+    Route::get('/usuarios/buscar', 'UserController@buscarUsuarios');
+    Route::get('/usuarios/id/{id}', 'UserController@fichaPersona');
+
+
 });
 
 
 Route::group(['prefix' => 'usuario'], function(){
     Route::middleware('auth')->get('/perfil', 'UserController@perfilUsuario');
     Route::middleware('auth')->post('/perfil/modificar', 'UserController@modificarPerfil');
-
 });
 
 

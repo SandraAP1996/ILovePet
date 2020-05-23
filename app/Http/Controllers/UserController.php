@@ -194,8 +194,100 @@ class UserController extends Controller{
 
             }
         }
-
         return $modfoto;
+    }
+
+    /*
+|--------------------------------------------------------------------------
+| GESTIÓN USUARIOS - usuarios.blade.php
+|--------------------------------------------------------------------------
+*/
+
+    /**
+     * Función para sacar todos los usuarios tipo 'Usuario', más adopciones, acogidas, y donaciones.
+     *
+     * @param  Request $request
+     * @return objeto $usuarios
+     */
+    public static function buscarUsuarios(Request $request){
+
+        $nif=$request->nif;
+        $nombre=$request->nombre;
+        $apellidos=$request->apellidos;
+        $email=$request->email;
+        $telefono=$request->telefono;
+
+        $consulta="";
+
+        if($nif != null){
+            $consulta .="AND u.nif = ".$nif."";
+        }
+
+        if($nombre != null){
+            $consulta .=" AND u.nombre LIKE '%".$nombre."%'";
+        }
+
+        if($apellidos != null){
+            $consulta .=" AND u.apellidos  LIKE '%".$apellidos."%'";
+        }
+
+        if($email != null){
+            $consulta .=" AND u.email = '".$email."'";
+        }
+
+        if($telefono != null){
+
+            $consulta .=" AND u.telefono = '".$telefono."'";
+        }
+
+        $usuarios = DB::select('SELECT * FROM users u WHERE u.rol="Usuario" '.$consulta.';');
+
+        for($i = 0; $i<count($usuarios) ; $i++){
+
+            $adoptado = DB::select('SELECT * FROM animal a WHERE a.id_persona = '.$usuarios[$i]->id.' AND a.situacion = "adoptado";');
+
+            $acogida = DB::select('SELECT * FROM animal a WHERE a.id_persona = '.$usuarios[$i]->id.' AND a.situacion = "acogida";');
+
+            $usuarios[$i]->animal = ["adoptado" => count($adoptado), "acogida" => count($acogida)];
+
+
+            $donacion = DB::select('SELECT * FROM donation d WHERE d.id_persona = '.$usuarios[$i]->id.';');
+
+            $usuarios[$i]->donacion = count($donacion);
+
+        }
+        return $usuarios;
+    }
+
+    /**
+     * Función para sacar todos los datos de la Persona.
+     *
+     * @param  int $id
+     * @return objeto $usuarios
+     */
+    public static function fichaPersona($id){
+
+
+        $usuario = DB::select('SELECT * FROM users u WHERE u.rol="Usuario" AND u.id='.$id.';');
+
+        for($i = 0; $i<count($usuario) ; $i++){
+
+            $adoptado = DB::select('SELECT * FROM animal a, photo p WHERE a.id_persona = '.$id.' AND a.id=p.id_animal AND a.situacion = "adoptado";');
+
+            $acogida = DB::select('SELECT * FROM animal a, photo p WHERE a.id_persona = '.$id.' AND a.id=p.id_animal AND a.situacion = "acogida";');
+
+            
+            $usuario[$i]->animal = ["adoptado" => $adoptado, "acogida" => $acogida];
+
+
+            $donacion = DB::select('SELECT * FROM donation d WHERE d.id_persona = '.$id.';');
+
+            $usuario[$i]->donacion = $donacion;
+
+        }
+        return $usuario;
 
     }
+
+
 }

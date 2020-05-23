@@ -10,7 +10,6 @@ Gestión Animales
 
 @section('contenido')
 
-<span id="idAnimal{{$idAnimal ?? ''}}" class="respuestaFoto" style="display:none">{{$foto ?? ''}}</span>
 <div class="contenedor">
     <div id="filtro">
         <h3>Gestión Animales</h3>
