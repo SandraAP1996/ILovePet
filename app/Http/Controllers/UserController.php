@@ -276,7 +276,7 @@ class UserController extends Controller{
 
             $acogida = DB::select('SELECT * FROM animal a, photo p WHERE a.id_persona = '.$id.' AND a.id=p.id_animal AND a.situacion = "acogida";');
 
-            
+
             $usuario[$i]->animal = ["adoptado" => $adoptado, "acogida" => $acogida];
 
 
@@ -284,10 +284,131 @@ class UserController extends Controller{
 
             $usuario[$i]->donacion = $donacion;
 
+            $direccion = DB::select('SELECT * FROM address a WHERE a.id_persona = '.$id.';');
+
+            $usuario[$i]->direccion = $direccion;
+
         }
         return $usuario;
-
     }
 
+    /**
+     * Función para eliminar un usuario a partir del id.
+     *
+     * @param  int $id
+     * @return objeto $existe
+     */
+    public static function eliminarPersona($id){
+
+        $persona = User::find($id);
+        $persona->delete();
+        $existe = User::find($id);
+
+        return $existe;
+    }
+
+    /**
+     * Función para modificar un usuario a partir del id.
+     *
+     * @param  int $id
+     * @return objeto $existe
+     */
+    public static function modificarPersona(Request $request,$id){
+
+        $direccion= Address::where('id_persona', $id)->get()->first();
+
+        if($direccion != null){
+
+            if($request->provincia != $direccion->provincia){
+                $direccion->provincia=$request->provincia;
+            }
+
+            if($request->localidad != $direccion->localidad){
+                $direccion->localidad=$request->localidad;
+            }
+
+            if($request->calle != $direccion->calle){
+                $direccion->calle=$request->calle;
+            }
+
+            if($request->postal != $direccion->cod_postal){
+                $direccion->cod_postal=$request->postal;
+            }
+
+            if($request->numero != $direccion->numero){
+                $direccion->numero=$request->numero;
+            }
+
+            $direccion->save();
+
+        }else{
+            $nuevaDireccion = new Address;
+            $nuevaDireccion->provincia=$request->provincia;
+            $nuevaDireccion->localidad=$request->localidad;
+            $nuevaDireccion->calle=$request->calle;
+            $nuevaDireccion->cod_postal=$request->postal;
+            $nuevaDireccion->numero=$request->numero;
+            $nuevaDireccion->id_persona=$id;
+            $nuevaDireccion->save();
+        }
+
+        $persona = User::find($id);
+
+        if($request->nif != $persona->nif){
+            $persona->nif=$request->nif;
+        }
+        if($request->nombre != $persona->nombre){
+            $persona->nombre=$request->nombre;
+        }
+
+        if($request->apellidos != $persona->apellidos){
+            $persona->apellidos=$request->apellidos;
+        }
+
+        if($request->telefono != $persona->telefono){
+            $persona->telefono=$request->telefono;
+        }
+        
+        if($request->fecha != $persona->fecha_nacimiento){
+            $persona->fecha_nacimiento=$request->fecha;
+        }
+
+        if($request->email != $persona->email){
+            $persona->email=$request->email;
+        }
+
+        return $persona->save();
+    }
+
+    public static function insertarUsuario(Request $request){
+
+        $usuario = new User;
+        $usuario->nif=$request->nif;
+        $usuario->nombre=$request->nombre;
+        $usuario->apellidos=$request->apellidos;
+        $usuario->telefono=$request->telefono;
+        $usuario->fecha_nacimiento=$request->fecha;
+        $usuario->email=$request->email;
+        $usuario->password = bcrypt($request->nif);
+        $usuario->rol='Usuario';
+
+        $usuario->save();
+
+        if($request->provincia != null && $request->localidad != null && $request->calle != null && $request->postal != null && $request->numero != null ){
+
+            $direccion = new Address;
+            $direccion->provincia = $request->provincia;
+            $direccion->localidad = $request->localidad;
+            $direccion->calle = $request->calle;
+            $direccion->cod_postal = $request->postal;
+            $direccion->numero = $request->numero;
+            $direccion->id_persona = $usuario->id;
+            $direccion->save();
+        }
+        
+        $existe= User::where('id', $usuario->id)->get();
+
+        return count($existe);
+    }
 
 }

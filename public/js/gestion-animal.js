@@ -24,6 +24,7 @@ $(function(){
     /*Reiniciar el Formulario*/
     $('#filtroAnimal button.reiniciar').click(function(){
         $('#filtroAnimal')[0].reset();
+        $('#filtroAnimal select').prop('selectedIndex',0);
         validarFormulario();
         buscarPorFiltro();
     });
@@ -85,8 +86,6 @@ $(function(){
         $('#insertarModal form')[0].reset();
         $('#insertarModal form .error').removeClass('error');
         $('.form-group h6 span').text('');
-
-
     });
 
 
@@ -112,7 +111,6 @@ $(function(){
             $(this).removeClass('foto');
             eliminarFoto($('div.galeria img.seleccionado').attr('id').split('foto')[1]);
         }
-
     });
 
 
@@ -199,9 +197,8 @@ $(function(){
                 success: function(modificado){
 
                     buscarPorFiltro();
-
-
                     $('.id'+modificado.id).addClass('seleccionado');
+                    
                     detallesAnimal(modificado.id);
 
                     if(modificado.foto == true){
@@ -298,9 +295,9 @@ function modificarAnimal(){
     $('.fichaBotones button.modificar').css('display','block');
     $('.fichaBotones button.eliminar').css('display','block');
     $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').css('display','none');
-
     detallesAnimal($('.fichaAnimal').attr('id'));
-    //    $("#informacionModal").modal("show");
+    detallesAnimal($('.fichaAnimal').attr('id'));
+    $("#informacionModal").modal("show");
 }
 
 
@@ -323,7 +320,6 @@ function modificarAFormulario(){
     var especie=$('.fichaDescripcion span.especie').text();
     var tipo=$('.fichaDescripcion span.tipo').text();
     var estado=$('.fichaDescripcion span.estado').text();
-    //    var situacion=$('.fichaDescripcion span.situacion').text();
     var talla=$('.fichaDescripcion span.talla').text();
     var descripcion=$('.fichaDescripcion span.descripcion').text();
 
@@ -336,31 +332,17 @@ function modificarAFormulario(){
     var arrayEstado = ['urgente','normal','nuevo'];
 
 
-    $('.fichaDescripcion span.chip').html('<input type="text" name="chip" value="'+chip+'">');
-    $('.fichaDescripcion span.nombre').html('<input type="text" name="nombre" value="'+nombre+'">');
+    $('.fichaDescripcion span.chip').html('<input class="form-control" type="text" name="chip" value="'+chip+'">');
+    $('.fichaDescripcion span.nombre').html('<input class="form-control" type="text" name="nombre" value="'+nombre+'">');
 
-    $('.fichaDescripcion span.fecha').html('<input type="date" name="fecha" value="'+fecha+'">');
-    $('.fichaDescripcion span.raza').html('<input type="text" name="raza" value="'+raza+'">');
-    $('.fichaDescripcion span.descripcion').html('<textarea name="descripcion" >'+descripcion+'</textarea>');
+    $('.fichaDescripcion span.fecha').html('<input class="form-control" type="date" name="fecha" value="'+fecha+'">');
+    $('.fichaDescripcion span.raza').html('<input class="form-control" type="text" name="raza" value="'+raza+'">');
+    $('.fichaDescripcion span.descripcion').html('<textarea class="form-control" name="descripcion" >'+descripcion+'</textarea>');
 
-    /*SITUACION*/
-    //    if(situacion != 'adoptado'){
-    //        $('.fichaDescripcion span.situacion').empty();
-    //        var select=$('.fichaDescripcion span.situacion').append('<select name="situacion"></select>');
-    //        for(var i in arraySituacion){
-    //
-    //
-    //            if(arraySituacion[i] != situacion ){
-    //                $('.fichaDescripcion span.situacion select').append('<option value="'+arraySituacion[i]+'">'+arraySituacion[i]+'</option>');
-    //            }else{
-    //                $('.fichaDescripcion span.situacion select').append('<option value="'+arraySituacion[i]+'" selected>'+situacion+'</option>');
-    //            }
-    //        }
-    //
-    //    }
+
     /*ESTADO*/
     $('.fichaDescripcion span.estado').empty();
-    var select=$('.fichaDescripcion span.estado').append('<select name="estado"></select>');
+    var select=$('.fichaDescripcion span.estado').append('<select class="form-control" name="estado"></select>');
     for(var i in arrayEstado){
 
         if(arrayEstado[i] != estado ){
@@ -372,7 +354,7 @@ function modificarAFormulario(){
 
     /*ESPECIE*/
     $('.fichaDescripcion span.especie').empty();
-    var select=$('.fichaDescripcion span.especie').append('<select name="especie"></select>');
+    var select=$('.fichaDescripcion span.especie').append('<select class="form-control" name="especie"></select>');
     for(var i in arrayEspecie){
 
         if(arrayEspecie[i] != especie ){
@@ -384,7 +366,7 @@ function modificarAFormulario(){
 
     /*TIPO*/
     $('.fichaDescripcion span.tipo').empty();
-    var select=$('.fichaDescripcion span.tipo').append('<select name="tipo"></select>');
+    var select=$('.fichaDescripcion span.tipo').append('<select class="form-control" name="tipo"></select>');
     for(var i in arrayTipo){    
         if(arrayTipo[i] != tipo ){
             $('.fichaDescripcion span.tipo select').append('<option value="'+arrayTipo[i]+'" value="'+arrayTipo[i]+'">'+arrayTipo[i]+'</option>');
@@ -394,7 +376,7 @@ function modificarAFormulario(){
     }
     /*SEXO*/
     $('.fichaDescripcion span.sexo').empty();
-    var select=$('.fichaDescripcion span.sexo').append('<select name="sexo"></select>');
+    var select=$('.fichaDescripcion span.sexo').append('<select class="form-control" name="sexo"></select>');
     for(var i in arraySexo){
         if(arraySexo[i] != sexo ){
             $('.fichaDescripcion span.sexo select').append('<option value="'+arraySexo[i]+'">'+arraySexo[i]+'</option>');
@@ -407,7 +389,7 @@ function modificarAFormulario(){
 
     /*EDAD*/
     $('.fichaDescripcion span.edad').empty();
-    var select=$('.fichaDescripcion span.edad').append('<select name="edad"></select>');
+    var select=$('.fichaDescripcion span.edad').append('<select class="form-control" name="edad"></select>');
 
     for(var i in arrayEdad){
         if(arrayEdad[i] != edad ){
@@ -420,7 +402,7 @@ function modificarAFormulario(){
 
     /*TALLA*/
     $('.fichaDescripcion span.talla').empty();
-    var select=$('.fichaDescripcion span.talla').append('<select name="talla"></select>');
+    var select=$('.fichaDescripcion span.talla').append('<select class="form-control" name="talla"></select>');
 
     for(var i in arrayTalla){
         if(arrayTalla[i] != talla ){
@@ -442,7 +424,6 @@ function insertarBD(){
     if($('#insertarModal form .error').length == 0){
 
         var data = $('#formInsertarAnimal').serialize();
-        console.log(data);
         data = new FormData($('#formInsertarAnimal')[0]);
 
         $.ajax({
@@ -452,7 +433,6 @@ function insertarBD(){
             type: "POST",
             data: data,
             success: function(insertado){
-                console.log(insertado);
                 var msgError='';
                 if(insertado == 1){
                     msgError+='Se ha insertado correctamente el animal'; 
@@ -494,7 +474,7 @@ function validarModificar(){
                 $(inputs[i]).addClass('error');
 
             }else{
-                if($(inputs[i]).val().match(/^[0-9]+$/) && 11 >= $(inputs[i]).val().length){
+                if($(inputs[i]).val().match(/^[0-9]{3,11}$/)){
                     $(inputs[i]).removeClass('error');
                 }else{
                     $(inputs[i]).addClass('error');
@@ -509,7 +489,7 @@ function validarModificar(){
                 $(inputs[i]).addClass('error');
 
             }else{
-                if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]+$/) && 25 >= $(inputs[i]).val().length){
+                if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]{3,25}$/)){
                     $(inputs[i]).removeClass('error');
                 }else{
                     $(inputs[i]).addClass('error');
@@ -523,7 +503,7 @@ function validarModificar(){
                 $(inputs[i]).addClass('error');
 
             }else{
-                if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]+$/) && 40 >= $(inputs[i]).val().length){
+                if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]{3,40}$/) ){
                     $(inputs[i]).removeClass('error');
                 }else{
                     $(inputs[i]).addClass('error');
@@ -857,6 +837,8 @@ function detallesAnimal(id){
         url: "/gestion/animales/id/"+id,
         method: "GET", 
         success: function(animal){
+            console.log(animal);
+
             /*FICHA del ANIMAL*/
             if(animal.length == 1){
                 /*Visualizar la ficha de animal*/

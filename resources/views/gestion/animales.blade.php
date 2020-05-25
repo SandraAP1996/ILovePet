@@ -307,30 +307,6 @@ Gestión Animales
 
     </div>
 </div>
-<!-- MODAL MODIFICAR ANIMALES -->
-
-<div class="modal fade" id="modificarAnimal" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <!-- MODAL contenido-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Modificar Animal</h4>
-            </div>
-            <div class="modal-body">
-                <div class="card-body">
-                    <form >
-
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default acepta">{{__('Aceptar')}}</button><button type="button" class="btn btn-default" data-dismiss="modal">{{__('Cancelar')}}</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
 
 <!-- MODAL ELIMINAR ANIMALES -->
 

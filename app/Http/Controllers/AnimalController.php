@@ -213,7 +213,6 @@ class AnimalController extends Controller{
         $animal= Animal::select()
             ->where('animal.id',$id)
             ->get();
-
         $imagenes = DB::select('SELECT *  FROM photo p WHERE p.id_animal = "'.$id.'";');
         for($i = 0; $i<count($animal) ; $i++){
 
@@ -232,10 +231,10 @@ class AnimalController extends Controller{
      */
 
     public static function eliminarAnimal($id){
-        $animal = Animal::find($id);
+        $animal = Animal::where('id', $id)->get()->first();
         $animal->delete();
 
-        $existe = Animal::find($id);
+        $existe = Animal::where('id', $id)->get()->first();
 
         return $existe;
     }
@@ -294,7 +293,11 @@ class AnimalController extends Controller{
      */
     public static function modificarAnimal(Request $request,$id){
 
-        $animal = Animal::find($id);
+
+
+        $animal = Animal::where('id', $id)->get()->first();
+
+        //        $animal = Animal::find($id);
 
         if($request->chip != $animal->chip){
             $animal->chip=$request->chip;
@@ -366,7 +369,7 @@ class AnimalController extends Controller{
 
         $conf=$animal->save();
 
-      
+
         if($request->foto != null){
 
             $titulo = Photo::select('photo.titulo')

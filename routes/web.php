@@ -58,7 +58,9 @@ Route::group(['prefix' => 'gestion'], function(){
     });
     Route::get('/usuarios/buscar', 'UserController@buscarUsuarios');
     Route::get('/usuarios/id/{id}', 'UserController@fichaPersona');
-
+    Route::get('/usuarios/eliminar/id/{id}', 'UserController@eliminarPersona');
+    Route::post('/usuarios/modificar/id/{id}', 'UserController@modificarPersona');
+    Route::post('/usuarios/insertar', 'UserController@insertarUsuario');
 
 });
 

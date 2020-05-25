@@ -274,7 +274,7 @@ function validarForm(modo,elemento){
                 $('form.formDetalles input[name='+$(inputs[i]).attr("name")+']').addClass("errorInput");
                 $('.form-row .'+$(inputs[i]).attr("name")+' span').text('*');
             }else{
-                if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ/\s]{3,25}$/)){
+                if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ\/\s]{3,25}$/)){
                     $('form.formDetalles input[name='+$(inputs[i]).attr("name")+']').removeClass("errorInput");
                     $('.form-row .'+$(inputs[i]).attr("name")+' span').text('');
                     $('ul.error li.'+$(inputs[i]).attr("name")).remove();

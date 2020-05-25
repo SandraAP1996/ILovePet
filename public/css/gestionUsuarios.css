@@ -69,7 +69,7 @@ div.fichaTitulo img{
 
 div#ficha{
     margin-bottom: 25px;
-/*    display: none;*/
+    /*    display: none;*/
 }
 
 a.insertar{
@@ -113,7 +113,9 @@ div.fichaPersona{
     padding: 0px;
     opacity: 0.80;
 }
-
+div.fichaDescripcion small{
+    color: red;
+}
 div.fichaPersona .fichaDescripcion,
 div.fichaAnimal .fichaDescripcion,
 div.fichaPersona .fichaBotones{
@@ -223,4 +225,65 @@ tr.seleccionado{
 img.papelera{
     width: 25px;
     height: 25px;
+}
+
+/*
+|---------------
+| MODALS
+|---------------
+*/
+
+/*Modal Eliminar Animal*/
+
+#eliminarModal,
+#informacionModal{
+    margin-top: 15%;
+}
+
+#eliminarModal,
+#informacionModal,
+#insertarModal{
+    color:#80725F;
+}
+#eliminarModal .card-body,
+#informacionModal .card-body{
+    font-size: 25px;
+}
+/*Modal Eliminar Persona - Insertar Persona*/
+#eliminarModal .modal-header,
+#insertarModal .modal-header{
+    background-color: #F7882F;
+    color: white;
+}
+
+/*Modal información*/
+#informacionModal div.correcto .modal-header{
+    background-color: mediumseagreen;
+    color: white;
+}
+#informacionModal div.incorrecto .modal-header{
+    background-color:darkred;
+    color: white;
+}
+
+/* Insertar Usuario*/
+#insertarModal input,
+#insertarModal select{
+    width: 70%;
+}
+#insertarModal input[name=sexo]{
+    width: auto;
+}
+#insertarModal input[name=fecha]{
+    width: 90%;
+}
+#insertarModal textarea{
+    width: 100%;
+}
+#insertarModal h6 span{
+    color:red;
+}
+
+#formInsertarUsuario small{
+    color:red;
 }

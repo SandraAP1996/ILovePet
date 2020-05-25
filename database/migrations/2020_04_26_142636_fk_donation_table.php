@@ -14,8 +14,8 @@ class FkDonationTable extends Migration
     public function up()
     {
         Schema::table('donation', function (Blueprint $table) {
-            $table->foreign('id_evento')->references('id')->on('event')->onDelete('cascade');
-            $table->foreign('id_persona')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_evento')->references('id')->on('event')->onDelete('set null');
+            $table->foreign('id_persona')->references('id')->on('users')->onDelete('set null');
         });
     }
 
