@@ -30,15 +30,17 @@ Route::get('buscar/{campo}/{filtro}', function ($campo,$filtro) {
         ->with('filtro',$filtro);
 });
 
-
+/*ANIMALES*/
 Route::group(['prefix' => 'animal'], function(){
-    //Route::get('buscar/{filtro}', 'AnimalController@buscarAnimal');
     Route::get('buscar/', 'AnimalController@buscarAnimal');
     Route::get('detalle/{id}', 'AnimalController@detalleAnimal');
 });
 
 /*GESTIÓN DEL EMPLEADO*/
-Route::group(['prefix' => 'gestion'], function(){
+Route::group([
+    'middleware' => 'gestion',
+    'prefix' => 'gestion'
+], function () {
 
     /*Rutas de Gestión de Animales*/
     Route::get('/animales', function () {
@@ -61,6 +63,17 @@ Route::group(['prefix' => 'gestion'], function(){
     Route::get('/usuarios/eliminar/id/{id}', 'UserController@eliminarPersona');
     Route::post('/usuarios/modificar/id/{id}', 'UserController@modificarPersona');
     Route::post('/usuarios/insertar', 'UserController@insertarUsuario');
+
+    /*Rutas de Gestión Adopciones*/
+    Route::get('/tramite', 'AnimalController@tablasAdopcion');
+    Route::get('/tramite/actualizar', 'AnimalController@actualizarAdopcion');
+    Route::get('/tramite/persona/id/{id}', 'UserController@personaAdopcion');
+    Route::get('/tramite/animal/id/{id}', 'AnimalController@animalAdopcion');
+    Route::get('/tramite/{tipo}/animal/{animal}/persona/{persona}','AnimalController@tramiteAdoptar');
+    Route::get('/tramite/cancelar/id/{id}','AnimalController@cancelarAdopcion');
+
+
+
 
 });
 

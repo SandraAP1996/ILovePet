@@ -348,7 +348,7 @@ class AnimalController extends Controller{
      * Función para insertar un animal a al BD
      *
      * @param  Request $request
-     * @return objeto $animal->save()
+     * @return objeto $conf
      */
     public static function insertarAnimal(Request $request){
 
@@ -394,6 +394,13 @@ class AnimalController extends Controller{
         return $conf;
     }
 
+    /**
+     * Función para insertar una foto asociado a un animal
+     *
+     * @param  Request $request
+     * @param  int $id
+     * @return objeto $confirma
+     */
     public static function insertarFoto(Request $request, $id){
 
         $titulo = Photo::select('photo.titulo')
@@ -432,6 +439,108 @@ class AnimalController extends Controller{
 
         return $confirma;
 
+
+    }
+
+    /*
+|--------------------------------------------------------------------------
+| GESTIÓN ADOPCIÓN/ACOGIDA - adopcionAcogida.blade.php
+|--------------------------------------------------------------------------
+*/
+
+    /**
+     * Función para sacar todos lo datos de los animales y las perosonas
+     *
+     * @param  void
+     * @return objeto $datos
+     */
+    public static function tablasAdopcion(){
+
+        $animales=Animal::all();
+        $personas=User::all();
+
+        for($i = 0; $i<count($personas) ; $i++){
+
+            $adoptado = DB::select('SELECT * FROM animal a WHERE a.id_persona = '.$personas[$i]->id.' AND a.situacion = "adoptado";');
+
+            $acogida = DB::select('SELECT * FROM animal a WHERE a.id_persona = '.$personas[$i]->id.' AND a.situacion = "acogida";');
+
+            $personas[$i]->animal = ["adoptado" => count($adoptado), "acogida" => count($acogida)];
+
+        }
+
+            return view('gestion.adopcionAcogida')
+                ->with('animales',$animales)
+                ->with('personas',$personas);
+               
+    }
+    /**
+     * Función para sacar todos lo datos de los animales y las perosonas
+     *
+     * @param  void
+     * @return objeto $datos
+     */
+    public static function actualizarAdopcion(){
+
+        $animales=Animal::all();
+        $personas=User::all();
+
+        for($i = 0; $i<count($personas) ; $i++){
+
+            $adoptado = DB::select('SELECT * FROM animal a WHERE a.id_persona = '.$personas[$i]->id.' AND a.situacion = "adoptado";');
+
+            $acogida = DB::select('SELECT * FROM animal a WHERE a.id_persona = '.$personas[$i]->id.' AND a.situacion = "acogida";');
+
+            $personas[$i]->animal = ["adoptado" => count($adoptado), "acogida" => count($acogida)];
+
+        }
+
+            return $tabla=['personas'=>$personas,'animales' => $animales];
+        
+    }
+
+
+    /**
+     * Función para sacar la información del animal y la persona.
+     *
+     * @param  int $id
+     * @return objeto $datos
+     */
+    public static function animalAdopcion($id){
+        $datos=Animal::where('id',$id)->get()->first();
+        $persona=User::where('id',$datos->id_persona)->get()->first();
+
+        $datos->persona = $persona;
+
+        return $datos;
+    }
+
+    /**
+     * Función para cambiar campos del animal para poner en adopcion o acogida.
+     *
+     * @param  string $tipo
+     * @param  int $idanimal
+     * @param  int $idpersona
+     * @return objeto $datos
+     */
+    public static function tramiteAdoptar($tipo,$idanimal,$idpersona){
+        $animal=Animal::where('id',$idanimal)->get()->first();
+        $animal->id_persona=$idpersona;
+        $animal->situacion=$tipo;
+        return $animal->save();
+    }
+    /**
+     * Función para cambiar campos del animal para quitarle la adopción o acogida.
+     *
+     * @param  int $idanimal
+     * @return objeto $datos
+     */
+    public static function cancelarAdopcion($idanimal){
+        $animal=Animal::where('id',$idanimal)->get()->first();
+
+        $animal->id_persona=null;
+        $animal->situacion='centro';
+        return $animal->save();
 
     }
 

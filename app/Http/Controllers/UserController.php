@@ -368,7 +368,7 @@ class UserController extends Controller{
         if($request->telefono != $persona->telefono){
             $persona->telefono=$request->telefono;
         }
-        
+
         if($request->fecha != $persona->fecha_nacimiento){
             $persona->fecha_nacimiento=$request->fecha;
         }
@@ -380,6 +380,12 @@ class UserController extends Controller{
         return $persona->save();
     }
 
+    /**
+     * Función para insertar un nuevo usuario.
+     *
+     * @param  Request $request
+     * @return objeto $existe
+     */
     public static function insertarUsuario(Request $request){
 
         $usuario = new User;
@@ -405,10 +411,27 @@ class UserController extends Controller{
             $direccion->id_persona = $usuario->id;
             $direccion->save();
         }
-        
+
         $existe= User::where('id', $usuario->id)->get();
 
         return count($existe);
+    }
+
+    /**
+     * Función para sacar la información de la persona y de los animales sacados.
+     *
+     * @param  int $id
+     * @return objeto $datos
+     */
+    public static function personaAdopcion($id){
+        $datos=User::where('id',$id)->get()->first();
+
+        $animal = DB::select('SELECT * FROM animal a WHERE a.id_persona = '.$id.';');
+
+        $datos->animal = $animal;
+
+        return $datos;
+
     }
 
 }

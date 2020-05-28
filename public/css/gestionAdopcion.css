@@ -1,0 +1,141 @@
+/*
+|--------------------------------------------------------------------------
+| GESTIÓN ADOPCIÓN - Estilo para la vista adopcionAcogida.blade.php
+|--------------------------------------------------------------------------
+*/
+.container{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+/*
+|---------------
+| FICHA PERSONA
+|---------------
+*/
+
+
+div.fichaTitulo{
+    padding: 5px;
+    color:white;
+    background-color: #526071;
+}
+
+div.fichaTitulo img{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    cursor:pointer;
+
+}
+
+
+span.titulo{
+    font-weight: bold;
+}
+.fichaDescripcion{
+    padding-top: 10px;
+}
+
+.animalCards .card{
+    padding: 0px;
+}
+
+/*
+|---------------
+| FICHA ANIMAL
+|---------------
+*/
+
+.fichaPersona button.cancelar{
+    background-color: red;
+    color: white;
+}
+
+
+/*
+|---------------
+| TABLAS
+|---------------
+*/
+/*
+div.container-fluid{
+    margin-top:100px;
+}
+*/
+
+table{
+    text-align: center;
+
+}
+thead.cabecera{
+    background-color: #80725F;
+    color: white;
+}
+
+tbody tr:hover{
+    background-color: #F4F6F8;
+}
+
+tbody tr{
+    background-color:white;
+    cursor: pointer;
+}
+
+tr.seleccionado:hover{
+    background-color: #DCC7AA;
+
+}
+tr.seleccionado{
+    background-color:#DCC7AA ;
+}
+
+tr.seleccionadoNuevo{
+    background-color:#F8F0E4 ;
+
+}
+
+/*FILTRO*/
+.tablas h2, p{
+    color: #80725F;
+}
+
+/*
+|---------------
+| MODALS
+|---------------
+*/
+
+/*Modal Eliminar Animal*/
+
+#eliminarModal,
+#informacionModal{
+    margin-top: 15%;
+}
+
+#eliminarModal,
+#informacionModal,
+#insertarModal{
+    color:#80725F;
+}
+#eliminarModal .card-body,
+#informacionModal .card-body{
+    font-size: 25px;
+}
+/*Modal Eliminar Animal*/
+#eliminarModal .modal-header,
+#insertarModal .modal-header{
+    background-color: #F7882F;
+    color: white;
+}
+
+/*Modal información*/
+#informacionModal div.correcto .modal-header{
+    background-color: mediumseagreen;
+    color: white;
+}
+#informacionModal div.incorrecto .modal-header{
+    background-color:darkred;
+    color: white;
+}
+

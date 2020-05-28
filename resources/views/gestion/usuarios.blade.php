@@ -125,7 +125,6 @@ Gestión Usuarios
                 </div>
             </div>
         </div>
-
     </div>
     <div id="resultado" class="table-responsive">
         <table class="table">
