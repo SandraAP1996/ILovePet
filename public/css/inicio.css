@@ -1,0 +1,433 @@
+/*
+|--------------------------------------------------------------------------
+| Página Principal - Estilo de la página de inicio
+|--------------------------------------------------------------------------
+*/
+
+/*
+|---------------
+| GENERAL 
+|---------------
+*/
+
+.container{
+    margin:0px;
+}
+.row{
+    margin-right: 0px;
+    margin-left: 0px;    
+}
+.grid {
+    position: relative;
+    padding: 1em 0 4em;
+    max-width: 1000px;
+    list-style: none;
+    text-align: center;
+}
+
+
+/*
+|---------------
+| CAROUSEL 
+|---------------
+*/
+#carouselInicio{
+    background:#F7882F;
+}
+
+
+.carousel-item .img-fluid{
+    width: 100%;
+}
+
+#carouselInicio .cajaCarousel{
+    width: 20%;
+    height: 70%;
+    background-color: rgba(255,255,255,0.6);
+    color: black;
+    text-align: center;
+    justify-content: center;
+    padding: 1%;
+    margin-bottom: 2.5%;
+}
+#carouselInicio .cajaCarousel a{
+    opacity: 1;
+    width: 100%;
+
+}
+#carouselInicio .cajaCarousel h3{
+    font-family: 'Amatic SC';
+    color: #687A8F;
+    font-weight: bold;
+    font-size: 500%;    
+}
+#carouselInicio .cajaCarousel p{
+    color: #687A8F;
+    font-size: 90%;    
+
+}
+#carouselInicio .cajaCarousel a{
+    background-color: #687A8F;
+    border-color: #687A8F;
+    color: white;
+}
+#carouselInicio .cajaCarousel a:hover{
+    background-color: #526071;
+    border-color: #687A8F;
+    color: white;
+}
+/*
+|---------------
+| Titulos y Párrafos
+|---------------
+*/
+#contenedorUrgentes{
+    margin-top: 3.5%;
+    margin-left: 20%;
+}
+
+#contenedorUrgentes h1,
+#contenedorCategoria h1,
+#contenedorDonaciones h1{
+    font-family: 'Amatic SC';
+    color: #9E8E78;
+    font-size: 600%;
+    margin-bottom: 3%;
+    margin-left: 4%;
+    margin-right: 5%;
+
+}
+
+#contenedorUrgentes h1 img,
+#contenedorCategoria img{
+    width: 10%;
+    height: 10%;
+}
+
+#contenedorDonaciones h1 img{
+    width: 5%;
+    height: 5%;
+}
+#contenedorDonaciones .row img{
+    width: auto;
+    height: auto;
+}
+#contenedorDonaciones .container-fluid img{
+    width: auto;
+    height: auto;
+}
+#contenedorDonaciones .container-fluid{
+    color: #80725F;
+    text-align: justify;
+}
+/*
+|---------------
+| TARJETAS
+|---------------
+*/
+
+#exposicionAnimal{
+    list-style: none;
+    text-align: center;
+}
+
+#tarjetaAnimal{
+    margin-bottom: 2%;
+    margin-left: 0.2%;
+    margin-top: 0.1%;
+}
+
+.grid{
+    padding: 0px;
+}
+
+.grid figure {
+    position: relative;
+    float: left;
+    overflow: hidden;
+    min-width: 320px;
+    max-width: 480px;
+    max-height: 360px;
+    width: 48%;
+    background: gray;
+    text-align: center;
+    cursor: pointer;
+}
+
+.grid figure img {
+    position: relative;
+    display: block;
+    min-height: 100%;
+    max-width: 100%;
+    opacity: 0.8;
+    width: 370px;
+    height: 305px;
+}
+
+.grid figure figcaption {
+    padding: 2em;
+    color: #fff;
+    font-size: 1.25em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.grid figure figcaption h2{
+
+    text-transform: uppercase;
+}
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+    pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.grid figure figcaption > a {
+    z-index: 1000;
+    text-indent: 200%;
+    white-space: nowrap;
+    font-size: 0;
+    opacity: 0;
+}
+
+.grid figure h2 {
+    word-spacing: -0.15em;
+    font-weight: 300;
+}
+
+.grid figure h2 span {
+    font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+    margin: 0;
+}
+
+.grid figure p {
+    letter-spacing: 1px;
+    font-size: 68.5%;
+}
+
+/* Efectos */
+figure.effect-card img {
+    max-width: none;
+    width: -webkit-calc(100% + 50px);
+    width: calc(100% + 50px);
+    opacity: 0.7;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: translate3d(-40px,0, 0);
+    transform: translate3d(-40px,0,0);
+}
+
+figure.effect-card figcaption {
+    text-align: left;
+}
+
+figure.effect-card figcaption > div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    width: 100%;
+    height: 35%;
+}
+
+figure.effect-card h2,
+figure.effect-card p {
+    -webkit-transform: translate3d(0,40px,0);
+    transform: translate3d(0,40px,0);
+}
+
+figure.effect-card h2 {
+    -webkit-transition: -webkit-transform 0.35s;
+    transition: transform 0.35s;
+}
+
+figure.effect-card p {
+    -webkit-transition: opacity 0.2s, -webkit-transform 0.35s;
+    transition: opacity 0.2s, transform 0.35s;
+}
+
+figure.effect-card:hover img,
+figure.effect-card:hover p {
+    opacity: 1;
+}
+
+figure.effect-card:hover img,
+figure.effect-card:hover h2,
+figure.effect-card:hover p {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+figure.effect-card:hover p {
+    -webkit-transition-delay: 0.05s;
+    transition-delay: 0.05s;
+    -webkit-transition-duration: 0.35s;
+    transition-duration: 0.35s;
+}
+
+figure.effect-card:hover .descripcion{
+    background-color: rgba(255,255,255,0.6);
+    visibility:visible;
+    color: #687A8F;
+}
+
+div.descripcion{
+    visibility: hidden;
+}
+
+/*
+|---------------
+| CATEGORIAS
+|---------------
+*/
+#contenedorCategoria{
+    margin-left: 5%;
+}
+#contenedorCategoria hr,
+#contenedorDonaciones hr{
+    width: 95%;
+    margin-left: 30px;
+}
+/*
+#contenedorCategoria .row{
+height: 400px;
+margin-bottom: 2%;
+}
+*/
+#contenedorCategoria .row div{
+    margin-left: 0.5%;
+}
+.descripcionCategoria span{
+    font-weight: 800;
+    font-size: 350%;
+}
+.descripcionCategoria p{
+    font-size: 0.7vw;
+}
+
+.descripcionCategoria{
+    padding-top: 210px;
+    height: 100%;
+    width: 100%;
+}
+
+
+.descripcionCategoria a{
+    background-color: #F7882F;
+    text-decoration:none;
+    color: white;
+}
+.descripcionCategoria a:hover{
+    text-decoration:none;
+    background-color: #F7882F;
+    color: white;
+
+}
+
+/*IMAGENES*/
+#contenedorCategoria .pajarosCategoria{
+    background-image: url(/img/web/pagina/categoria-pajaros.jpg);
+    background-size: cover;
+    height: 400px;
+    background-position: center;
+}
+
+#contenedorCategoria .gatosCategoria{
+    background-image: url(/img/web/pagina/categoria-gatos.jpg);
+    background-size: cover;
+    height: 400px;
+    background-position: center;
+
+}
+#contenedorCategoria .perrosCategoria{
+    background-image: url(/img/web/pagina/categoria-perros.jpg);
+    background-size: cover;
+    height: 400px;
+    background-position: center;
+
+}
+#contenedorCategoria .ganadoCategoria{
+    background-image: url(/img/web/pagina/categoria-ganado.jpg);
+    background-size: cover;
+    height: 400px;
+    background-position: center;
+
+}
+#contenedorCategoria .roedoresCategoria{
+    background-image: url(/img/web/pagina/categoria-roedores.jpg);
+    background-size: cover;
+    height: 400px;
+    background-position:center;
+
+}
+#contenedorCategoria .exoticosCategoria{
+    background-image: url(/img/web/pagina/categoria-exoticos.jpg);
+    background-size: cover;
+    height: 400px;
+    background-position:right;
+
+}
+#contenedorCategoria .adopcionCategoria{
+    background-image: url(/img/web/pagina/categoria-adopcion.jpg);
+    background-size: cover;
+    height: 400px;
+
+}
+
+#contenedorCategoria .adopcionCategoria .descripcionCategoria{
+    background-color: rgba(104,122,143,0.5);
+    padding-left: 5%;
+
+}#contenedorCategoria .adopcionCategoria{
+    padding: 0px;    
+}
+
+/*DONACION*/
+
+#contenedorDonaciones{
+    color:#9E8E78;
+    text-align: justify;
+}
+#contenedorDonaciones .botonDonar{
+    color: white;
+    background-color: #687A8F;
+}
+#contenedorDonaciones .botonDonar:hover{
+    color: white;
+    background-color: #526071;
+}
+
+/*
+|---------------
+| MODALS
+|---------------
+*/
+
+/*Modal confirmar anonimo*/
+
+#confirmarModal{
+    margin-top: 15%;
+}
+
+#confirmarModal{
+    color:#80725F;
+}
+#confirmarModal .card-body{
+    font-size: 25px;
+}
+
+#confirmarModal .modal-header{
+    background-color: #F7882F;
+    color: white;
+}

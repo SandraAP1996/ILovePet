@@ -29,8 +29,16 @@ Route::get('buscar/{campo}/{filtro}', function ($campo,$filtro) {
         ->with('campo',$campo)
         ->with('filtro',$filtro);
 });
+/*DONACIONES*/
+Route::get('/grafico/donaciones', 'UserController@graficoDonaciones');
 
-/*ANIMALES*/
+Route::get('/donacion',function () {
+    return view('usuario.donacion');
+});
+Route::post('/tramite/donacion', 'UserController@donacionPersona');
+
+
+/*VER ANIMALES*/
 Route::group(['prefix' => 'animal'], function(){
     Route::get('buscar/', 'AnimalController@buscarAnimal');
     Route::get('detalle/{id}', 'AnimalController@detalleAnimal');
@@ -77,7 +85,7 @@ Route::group([
 
 });
 
-
+/*USUARIOS*/
 Route::group(['prefix' => 'usuario'], function(){
     Route::middleware('auth')->get('/perfil', 'UserController@perfilUsuario');
     Route::middleware('auth')->post('/perfil/modificar', 'UserController@modificarPerfil');
@@ -85,7 +93,7 @@ Route::group(['prefix' => 'usuario'], function(){
 
 
 
-
+/*INFORMACIÓN*/
 Route::group(['prefix' => 'informacion'], function(){
 
     Route::get('/conocenos', function () {

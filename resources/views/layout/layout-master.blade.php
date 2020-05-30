@@ -75,7 +75,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{__('Donaciones')}}</a>
+                        <a class="nav-link" href="http://localhost.ilovepet/#contenedorDonaciones">{{__('Donaciones')}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/informacion/conocenos')}}">{{__('Conocenos')}}</a>
@@ -90,7 +90,7 @@
                         @else
                         <a class="nav-link " data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false" style="cursor:pointer;">
-                            <img id="login" class="redes" src="/img/web/icons/perfil2.png" alt="foto perfil" title="Login">
+                            <img id="login" class="redes" src="/img/web/icons/perfil2.png" alt="foto perfil" title="Perfil">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-default">
                             <a class="dropdown-item" href="{{url('/usuario/perfil')}}">{{__('Pérfil')}}</a>
@@ -292,9 +292,6 @@
             }).addTo(map);
             L.control.scale().addTo(map);
             L.marker([39.4735858, -0.4090515],{draggable: false}).addTo(map);
-
-
-
         </script>
 
     </body>

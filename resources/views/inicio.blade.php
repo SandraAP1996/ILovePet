@@ -4,7 +4,18 @@
 Inicio
 @endsection
 @section('enlaces')
-<link rel="stylesheet" type="text/css" href="/css/pagina-principal.css">
+
+<link rel="stylesheet" type="text/css" href="/css/inicio.css">
+<script type="text/javascript" src="/js/inicio.js"></script>       
+
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js" integrity="sha256-J2sc79NPV/osLcIpzL3K8uJyAD7T5gaEFKlLDM18oxY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>    
+
+
+
 @endsection
 
 
@@ -78,7 +89,7 @@ Inicio
     <h1>{{__('Adopciones URGENTES')}} <img src="/img/web/icons/huella-pulso.svg" alt="img12"></h1>
 
     <div id="exposicionAnimal" class="row">
-       
+
         @foreach($animales as $animal)
         <div id="tarjetaAnimal" class="col-md-3 grid">
             <figure class="effect-card">
@@ -100,65 +111,117 @@ Inicio
 <div id="contenedorCategoria">
     <hr>
     <h1>{{__('Categorias')}} <img src="/img/web/icons/huellas-de-garras-dark.svg" alt="img12"></h1>
-    <div class="row">
-        <div class="col-sm-12 col-md-3 adopcionCategoria">
-            <div class="descripcionCategoria">
-                <span>{{__('Adopción')}}</span>
-                <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar/todos/todos')}}" title="todos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-3 adopcionCategoria mb-3">
+                <div class="descripcionCategoria">
+                    <span>{{__('Adopción')}}</span>
+                    <p>Cosas que se dicen en este a partado</p>
+                    <a href="{{url('/buscar/todos/todos')}}" title="todos" class="btn btn-sm ">{{__('Ver más')}}</a>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-md-4 perrosCategoria">
-            <div class="descripcionCategoria">
-                <span>{{__('Perros')}}</span>
-                <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar/especie/perro')}}" title="perros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+            <div class="col-sm-12 col-md-4 perrosCategoria  mb-3">
+                <div class="descripcionCategoria">
+                    <span>{{__('Perros')}}</span>
+                    <p>Cosas que se dicen en este a partado</p>
+                    <a href="{{url('/buscar/especie/perro')}}" title="perros" class="btn btn-sm ">{{__('Ver más')}}</a>
 
+                </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-md-4 gatosCategoria"> 
-            <div class="descripcionCategoria">
-                <span>{{__('Gatos')}}</span>
-                <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar/especie/gato')}}" title="gatos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+            <div class="col-sm-12 col-md-4 gatosCategoria  mb-3"> 
+                <div class="descripcionCategoria">
+                    <span>{{__('Gatos')}}</span>
+                    <p>Cosas que se dicen en este a partado</p>
+                    <a href="{{url('/buscar/especie/gato')}}" title="gatos" class="btn btn-sm ">{{__('Ver más')}}</a>
 
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-4 pajarosCategoria" >
-            <div class="descripcionCategoria">
-                <span>{{__('Pájaros')}}</span>
-                <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar/especie/pajaro')}}" title="pajaros" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+            <div class="col-sm-12 col-md-4 pajarosCategoria mb-3" >
+                <div class="descripcionCategoria">
+                    <span>{{__('Pájaros')}}</span>
+                    <p>Cosas que se dicen en este a partado</p>
+                    <a href="{{url('/buscar/especie/pajaro')}}" title="pajaros" class="btn btn-sm ">{{__('Ver más')}}</a>
 
+                </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-md-7 ganadoCategoria" style="background-color:lavenderblush;">
-            <div class="descripcionCategoria">
-                <span>{{__('Ganado')}}</span>
-                <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar/tipo/granja')}}" title="ganado" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+            <div class="col-sm-12 col-md-7 ganadoCategoria mb-3" style="background-color:lavenderblush;">
+                <div class="descripcionCategoria">
+                    <span>{{__('Ganado')}}</span>
+                    <p>Cosas que se dicen en este a partado</p>
+                    <a href="{{url('/buscar/tipo/granja')}}" title="ganado" class="btn btn-sm ">{{__('Ver más')}}</a>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-6 roedoresCategoria" style="background-color:lavender;">
-            <div class="descripcionCategoria">
-                <span>{{__('Roedores')}}</span>
-                <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar/especie/roedor')}}" title="roedores" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+            <div class="col-sm-12 col-md-6 roedoresCategoria mb-3" style="background-color:lavender;">
+                <div class="descripcionCategoria">
+                    <span>{{__('Roedores')}}</span>
+                    <p>Cosas que se dicen en este a partado</p>
+                    <a href="{{url('/buscar/especie/roedor')}}" title="roedores" class="btn btn-sm ">{{__('Ver más')}}</a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-5 exoticosCategoria  mb-3" style="background-color:lavenderblush;">
 
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-5 exoticosCategoria" style="background-color:lavenderblush;">
-            <div class="descripcionCategoria">
-                <span>Exóticos</span>
-                <p>Cosas que se dicen en este a partado</p>
-                <a href="{{url('/buscar/tipo/exotico')}}" title="exoticos" class="btn btn-sm btn-outline-secondary">{{__('Ver más')}}</a>
+                <div class="descripcionCategoria">
+                    <span>Exóticos</span>
+                    <p>Cosas que se dicen en este a partado</p>
+                    <a href="{{url('/buscar/tipo/exotico')}}" title="exoticos" class="btn btn-sm">{{__('Ver más')}}</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<!-- DONACIONES -->
+<div class="container-fluid">
+    <div id="contenedorDonaciones" class="pt-5">
+        <hr>
+        <h1>{{__('Donaciones')}} <img src="/img/web/icons/donation.svg" alt="img12"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Las donaciones son una manera sencilla de poner nuestro granito de arena a la ayuda de los animales que esta asociacion lleva a cabo. Todo el dinero recaudado en evento o donaciones de particulares, ira directo a alimentación, necesidades ya sea camas o salud y demás. Además de todo ello ayudara a mantener el centro, para seguir dadno apoyo a los animales que lo necesiten.</p>
+            </div>
+            <div class="col-md-6">
+                <p>La siguiente gráfica es una muestra a las ultimas donaciones que se han realizado al centro, y gracias a ellos, muchos animales pueden tener una cama o comida decente.</p>
+                <canvas id="horizontalBar"></canvas>
+                <p> La mayor parte de estas asociaciones no cuentan con ningún tipo de ayuda pública, por lo que su funcionamiento está supeditado a la ayuda privada. De ahí la importancia de tender una mano para que puedan seguir rescatando animales en desamparo.</p>
+            </div>
+            <div class="col-md-6">
+                <p>En líneas generales, las donaciones para protectoras de animales son la principal fuente de sustento de estas entidades.</p>
+                <img class="img-fluid p-5" src="/img/web/pagina/infConocenos.gif">
+
+
+                <a href="#" class="botonDonar btn btn-lg btn-block">{{__('Haz una DONACIÓN')}}</a>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- MODAL COMPROBAR DONACIÓN -->
+
+<div class="modal fade" id="confirmarModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- MODAL contenido-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Donación Anonima</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    Nos hemos dado cuenta que no estas registrado, quieres continuar sin registro para una donación anonima?
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default acepta">{{__('Aceptar')}}</button><button type="button" class="btn btn-default cancelar" >{{__('Cancelar')}}</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
 
 @endsection

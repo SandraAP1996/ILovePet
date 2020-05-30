@@ -8,6 +8,7 @@ use App\Animal;
 use App\Address;
 use App\Donation;
 use App\Photo;
+use App\Event;
 use DB;
 
 use Auth;
@@ -431,6 +432,50 @@ class UserController extends Controller{
         $datos->animal = $animal;
 
         return $datos;
+
+    }
+
+    /**
+     * Función para sacar las ultimas 7 donaciones.
+     *
+     * @param  void
+     * @return objeto $donacion
+     */
+    public static function graficoDonaciones(){
+
+        $donacion=DB::select('SELECT d.cantidad, u.nombre as nombre , e.nombre as evento FROM ((donation d  LEFT JOIN  users u ON u.id=d.id_persona)LEFT JOIN event e ON e.id=d.id_evento) ORDER BY d.id DESC LIMIT 7;');
+
+        return $donacion;
+    }
+
+    /**
+     * Función para añadir donacion de una persona.
+     *
+     * @param  Request $request
+     * @return int $donacion
+     */
+    public static function donacionPersona(Request $request){
+
+        if($request->cantidad != ''){
+            $donacion = new Donation;
+            $donacion->cantidad=$request->cantidad;
+
+            if($request->anonimo == ''){
+                $donacion->id_persona=Auth::user()->id;
+            }else{
+                $donacion->id_persona=null;
+            }
+
+            return $donacion->save();
+
+
+
+        }else{
+            return 0;
+        }
+
+
+
 
     }
 
