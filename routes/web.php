@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/inicio', 'AnimalController@inicioTarjetas');
 Route::get('/', 'AnimalController@inicioTarjetas');
+Route::get('/inicio/perfil', 'UserController@fotoInicio');
+Route::get('/inicio/eventos', 'EventController@eventoInicio');
 
 
 Auth::routes();
@@ -29,6 +31,11 @@ Route::get('buscar/{campo}/{filtro}', function ($campo,$filtro) {
         ->with('campo',$campo)
         ->with('filtro',$filtro);
 });
+
+Route::get('/eventos',function () {
+    return view('informacion.eventos');
+});
+
 /*DONACIONES*/
 Route::get('/grafico/donaciones', 'UserController@graficoDonaciones');
 
@@ -79,8 +86,9 @@ Route::group([
     Route::get('/tramite/animal/id/{id}', 'AnimalController@animalAdopcion');
     Route::get('/tramite/{tipo}/animal/{animal}/persona/{persona}','AnimalController@tramiteAdoptar');
     Route::get('/tramite/cancelar/id/{id}','AnimalController@cancelarAdopcion');
-
-
+    
+    /*Rutas de Gestión Eventos*/
+    Route::get('/eventos', 'EventController@tablaEventos');
 
 
 });

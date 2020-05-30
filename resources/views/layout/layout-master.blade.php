@@ -70,7 +70,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{__('Eventos')}}
+                        <a class="nav-link" href="http://localhost.ilovepet/#contenedorEventos">{{__('Eventos')}}
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -86,11 +86,11 @@
                     <li class="nav-item dropdown">
 
                         @if(!Auth::user())
-                        <a class="navbar-brand" data-toggle="modal" data-target="#modalLogin"  style="cursor:pointer;"><img id="login" class="redes" src="/img/web/icons/perfil.svg" alt="foto huella" title="Login"></a>
+                        <a class="navbar-brand" data-toggle="modal" data-target="#modalLogin"  style="cursor:pointer;"><img id="login" class="imgPerfil" src="/img/web/icons/perfil.svg" alt="foto huella" title="Login"></a>
                         @else
                         <a class="nav-link " data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false" style="cursor:pointer;">
-                            <img id="login" class="redes" src="/img/web/icons/perfil2.png" alt="foto perfil" title="Perfil">
+                            <img id="login" class="imgPerfil" src="/img/perfil/avatar.jpg" alt="foto perfil" title="Perfil">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-default">
                             <a class="dropdown-item" href="{{url('/usuario/perfil')}}">{{__('Pérfil')}}</a>
@@ -99,6 +99,7 @@
                             <a class="dropdown-item" href="{{url('/gestion/tramite/')}}">Adopción/Acogida</a>
                             <a class="dropdown-item" href="{{url('/gestion/animales')}}">Gestionar Animales</a>
                             <a class="dropdown-item" href="{{url('/gestion/usuarios')}}">Gestionar Usuarios</a>
+                            <a class="dropdown-item" href="{{url('/gestion/eventos')}}">Gestionar Eventos</a>
 
 
                             <div class="dropdown-divider"></div>                            
@@ -242,10 +243,10 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#!">{{__('Eventos') }}</a>
+                                <a href="{{url('/eventos')}}">{{__('Eventos') }}</a>
                             </li>
                             <li>
-                                <a href="#!">{{__('Donaciones') }}</a>
+                                <a href="http://localhost.ilovepet/#contenedorDonaciones">{{__('Donaciones') }}</a>
                             </li>
                         </ul>
 

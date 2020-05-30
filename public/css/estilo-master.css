@@ -85,10 +85,16 @@ body{
     box-shadow: 2px 2px 10px #666;        /* Sombra normal */
 }
 
-img.redes{
+img.redes,
+img.imgPerfil{
     height: 40px;
     width: 40px;
 }
+
+img.imgPerfil{
+    border-radius: 25px;
+}
+
 #navegador #inicio:hover{
     content:url("/img/web/icons/huella-dark.svg");
 }

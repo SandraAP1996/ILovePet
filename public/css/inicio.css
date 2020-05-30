@@ -88,7 +88,8 @@
 
 #contenedorUrgentes h1,
 #contenedorCategoria h1,
-#contenedorDonaciones h1{
+#contenedorDonaciones h1,
+#contenedorEventos h1{
     font-family: 'Amatic SC';
     color: #9E8E78;
     font-size: 600%;
@@ -99,12 +100,14 @@
 }
 
 #contenedorUrgentes h1 img,
-#contenedorCategoria img{
+#contenedorCategoria img,
+#contenedorEventos h1 img{
     width: 10%;
     height: 10%;
 }
 
-#contenedorDonaciones h1 img{
+#contenedorDonaciones h1 img,
+#contenedorEventos h1 img{
     width: 5%;
     height: 5%;
 }
@@ -295,7 +298,8 @@ div.descripcion{
     margin-left: 5%;
 }
 #contenedorCategoria hr,
-#contenedorDonaciones hr{
+#contenedorDonaciones hr,
+#contenedorEventos hr{
     width: 95%;
     margin-left: 30px;
 }
@@ -395,7 +399,8 @@ margin-bottom: 2%;
 
 /*DONACION*/
 
-#contenedorDonaciones{
+#contenedorDonaciones,
+#contenedorEventos{
     color:#9E8E78;
     text-align: justify;
 }
@@ -407,6 +412,9 @@ margin-bottom: 2%;
     color: white;
     background-color: #526071;
 }
+/*EVENTOS*/
+
+
 
 /*
 |---------------

@@ -1,0 +1,41 @@
+/*
+|---------------
+| TABLAS
+|---------------
+*/
+/*
+div.container-fluid{
+    margin-top:100px;
+}
+*/
+
+table{
+    text-align: center;
+
+}
+thead.cabecera{
+    background-color: #80725F;
+    color: white;
+}
+
+tbody tr:hover{
+    background-color: #F4F6F8;
+}
+
+tbody tr{
+    background-color:white;
+    cursor: pointer;
+}
+
+tr.seleccionado:hover{
+    background-color: #DCC7AA;
+
+}
+tr.seleccionado{
+    background-color:#DCC7AA ;
+}
+
+/*FILTRO*/
+.tablas h2, p{
+    color: #80725F;
+}

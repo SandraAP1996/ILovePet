@@ -15,9 +15,37 @@ use Auth;
 
 class UserController extends Controller{
 
+
     /*
 |--------------------------------------------------------------------------
-| PERFIL - perfil.blade.php
+| INICIO - inicio.blade.php
+|--------------------------------------------------------------------------
+*/
+
+    public static function fotoInicio(){
+        $foto=Photo::select()
+            ->where('photo.id_persona',Auth::user()->id)
+            ->get();
+        return $foto;
+    }
+
+
+    /**
+     * Función para sacar las ultimas 7 donaciones.
+     *
+     * @param  void
+     * @return objeto $donacion
+     */
+    public static function graficoDonaciones(){
+
+        $donacion=DB::select('SELECT d.cantidad, u.nombre as nombre , e.nombre as evento FROM ((donation d  LEFT JOIN  users u ON u.id=d.id_persona)LEFT JOIN event e ON e.id=d.id_evento) ORDER BY d.id DESC LIMIT 7;');
+
+        return $donacion;
+    }
+
+    /*
+|--------------------------------------------------------------------------
+| PERFIL - usuario/perfil.blade.php
 |--------------------------------------------------------------------------
 */
 
@@ -200,7 +228,7 @@ class UserController extends Controller{
 
     /*
 |--------------------------------------------------------------------------
-| GESTIÓN USUARIOS - usuarios.blade.php
+| GESTIÓN USUARIOS - gestion/usuarios.blade.php
 |--------------------------------------------------------------------------
 */
 
@@ -435,18 +463,13 @@ class UserController extends Controller{
 
     }
 
-    /**
-     * Función para sacar las ultimas 7 donaciones.
-     *
-     * @param  void
-     * @return objeto $donacion
-     */
-    public static function graficoDonaciones(){
 
-        $donacion=DB::select('SELECT d.cantidad, u.nombre as nombre , e.nombre as evento FROM ((donation d  LEFT JOIN  users u ON u.id=d.id_persona)LEFT JOIN event e ON e.id=d.id_evento) ORDER BY d.id DESC LIMIT 7;');
 
-        return $donacion;
-    }
+    /*
+|--------------------------------------------------------------------------
+| DONACIONES - usuario/donacion.blade.php
+|--------------------------------------------------------------------------
+*/
 
     /**
      * Función para añadir donacion de una persona.
@@ -465,18 +488,10 @@ class UserController extends Controller{
             }else{
                 $donacion->id_persona=null;
             }
-
             return $donacion->save();
-
-
-
         }else{
             return 0;
         }
-
-
-
-
     }
 
 }

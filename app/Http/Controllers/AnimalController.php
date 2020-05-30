@@ -39,7 +39,7 @@ class AnimalController extends Controller{
 
     /*
 |--------------------------------------------------------------------------
-| FILTRO ANIMALES - filtrar-animal.blade.php
+| FILTRO ANIMALES - animal/filtrar-animal.blade.php
 |--------------------------------------------------------------------------
 */
 
@@ -87,7 +87,7 @@ class AnimalController extends Controller{
 
     /*
 |--------------------------------------------------------------------------
-| GESTIÓN ANIMALES - animales.blade.php
+| GESTIÓN ANIMALES - gestion/animales.blade.php
 |--------------------------------------------------------------------------
 */
 
@@ -444,7 +444,7 @@ class AnimalController extends Controller{
 
     /*
 |--------------------------------------------------------------------------
-| GESTIÓN ADOPCIÓN/ACOGIDA - adopcionAcogida.blade.php
+| GESTIÓN ADOPCIÓN/ACOGIDA - gestion/adopcionAcogida.blade.php
 |--------------------------------------------------------------------------
 */
 
