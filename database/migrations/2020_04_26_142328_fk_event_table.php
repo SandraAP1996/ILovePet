@@ -14,7 +14,7 @@ class FkEventTable extends Migration
     public function up()
     {
         Schema::table('event', function (Blueprint $table) {
-            $table->foreign('id_direccion')->references('id')->on('address')->onDelete('cascade');
+            $table->foreign('id_direccion')->references('id')->on('address')->onDelete('set null');
         });
     }
 

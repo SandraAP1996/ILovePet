@@ -11,7 +11,7 @@ Eventos
 @section('contenido')
 
 <!-- EVENTOS -->
-<div class="container-fluid mt-5 bodyEventos">
+<div class="container-fluid mt-5 bodyEventos mb-5">
     <div id="contenedorEventos" class=" px-5">
         <h1>{{__('Próximos Eventos')}} <img src="/img/web/icons/evento.svg" alt="img12"></h1>
         <div class="proximos pb-5">

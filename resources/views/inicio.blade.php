@@ -204,7 +204,7 @@ Inicio
 </div>
 
 <!-- EVENTOS -->
-<div class="container-fluid mt-5">
+<div class="container-fluid my-5">
     <div id="contenedorEventos" class="pt-5">
         <hr>
         <h1>{{__('Próximos Eventos')}} <img src="/img/web/icons/evento.svg" alt="img12"></h1>
@@ -222,7 +222,7 @@ Inicio
 
 <!-- MODAL COMPROBAR DONACIÓN -->
 
-<div class="modal fade" id="confirmarModal" role="dialog">
+<div class="modal fade " id="confirmarModal" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- MODAL contenido-->
         <div class="modal-content">

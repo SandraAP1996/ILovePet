@@ -5,7 +5,7 @@
 */
 /*
 div.container-fluid{
-    margin-top:100px;
+margin-top:100px;
 }
 */
 
@@ -35,7 +35,226 @@ tr.seleccionado{
     background-color:#DCC7AA ;
 }
 
+img.papelera{
+    width: 25px;
+    height: 25px;
+}
 /*FILTRO*/
 .tablas h2, p{
     color: #80725F;
 }
+span.pasado,
+span.proximo{
+    border-radius: 15px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right:10px;
+}
+span.pasado{
+    background-color:darkred;
+    color: white;
+}
+
+span.proximo{
+    background-color:forestgreen;
+    color: white;
+}
+
+button.insertar{
+    color:white;
+    background-color: #4DD295; 
+}
+button.insertar:hover{
+    box-shadow: 2px 2px 10px #444F5B;        /* Sombra normal */
+}
+
+
+
+div#filtro h3{
+    color:#80725F;
+    margin: 10px;
+}
+
+div#filtro{
+    padding: 10px;
+    background-color: #DCC7AA;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+#filtro .container{
+    margin: 0px;
+    width: auto;
+}
+
+
+#filtro .botones{
+    margin-left: 10%;
+}
+
+/*
+|---------------
+| FICHA
+|---------------
+*/
+
+div#ficha p{
+    margin-left: 15px;
+}
+div.fichaTitulo{
+    padding: 5px;
+    color:white;
+    background-color: #526071;
+}
+
+div.fichaTitulo img{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    cursor:pointer;
+
+}
+
+div#ficha{
+    margin-bottom: 25px;
+}
+
+a.insertar{
+    background-color: #4DD295;
+}
+
+button.insertar,
+button.insertarFoto,
+.subirFoto,
+.fichaBotones .guardar{
+    color:white;
+    background-color: #4DD295; 
+}
+
+button.eliminarFoto,
+.fichaBotones .eliminar{
+    background-color:red;
+    color: white;
+}
+
+
+button.insertar:hover,
+button.buscar:hover{
+    box-shadow: 2px 2px 10px #444F5B;        /* Sombra normal */
+}
+
+.fichaEvento{
+    padding: 0px;
+}
+div.fichaDescripcion span.titulo{
+    font-weight: bold;
+}
+div.fichaEvento{
+    margin-right: 10px;
+}
+
+div.fichaEvento .fichaDescripcion,
+div.fichaEvento .fichaBotones{
+    padding-top: 10px;
+}
+
+button.elimianar{
+    background-color: red;
+}
+/*Ficha FOTOS*/
+div.fichaFotos h5{
+    padding-left: 30px;
+}
+
+/*IMAGEN*/
+.insertarImagen > input{
+    display: none;
+}
+
+.insertarImagen button{
+    cursor: pointer;
+}
+
+.fileValor{
+    margin-left: 5%;
+    width: 300px;
+    color: gray;
+}
+
+/*Modificar Animal*/
+
+.fichaBotones .modificar{
+    background-color: #EEF495;
+}
+
+img.seleccionadoFoto{
+    border: 4px solid #444F5B;
+}
+
+/*FOTO*/
+div.galeria {
+    color: gray;
+    padding: 10px;
+
+}
+div.galeria img{
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+}
+/*Errores*/
+input.error,
+textarea.error{
+    box-shadow: 2px 2px 2px 1px red;
+}
+
+small.error{
+    color: red;
+}
+small.aviso{
+    background-color: #EEF495;
+}
+
+.seleccionarFoto .mr-auto{
+    width: 500px;
+}
+/*
+|---------------
+| MODALS
+|---------------
+*/
+
+/*Modal Eliminar Animal*/
+
+#eliminarModal,
+#informacionModal{
+    margin-top: 15%;
+}
+
+#eliminarModal,
+#informacionModal,
+#insertarModal{
+    color:#80725F;
+}
+#eliminarModal .card-body,
+#informacionModal .card-body{
+    font-size: 25px;
+}
+/*Modal Eliminar Evento - Insertar Evento*/
+#eliminarModal .modal-header,
+#insertarModal .modal-header{
+    background-color: #F7882F;
+    color: white;
+}
+
+/*Modal información*/
+#informacionModal div.correcto .modal-header{
+    background-color: mediumseagreen;
+    color: white;
+}
+#informacionModal div.incorrecto .modal-header{
+    background-color:darkred;
+    color: white;
+}
+
+
+

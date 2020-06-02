@@ -18,10 +18,10 @@ class CreateEventTable extends Migration
             $table->string('nombre')->nullable();
             $table->integer('aforo')->nullable();
             $table->date('fecha')->nullable();
-            $table->date('hora_inicio')->nullable();
-            $table->date('hora_fin')->nullable();
+            $table->time('hora_inicio')->nullable();
+            $table->time('hora_fin')->nullable();
             $table->string('descripcion')->nullable();
-            $table->bigInteger('id_direccion')->unsigned();
+            $table->bigInteger('id_direccion')->nullable()->unsigned();
             $table->timestamps();
         });
     }

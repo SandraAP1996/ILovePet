@@ -20,7 +20,7 @@ class CreateAddressTable extends Migration
             $table->string('calle')->nullable();
             $table->integer('cod_postal')->nullable();
             $table->integer('numero')->nullable();
-            $table->bigInteger('id_persona')->unsigned();
+            $table->bigInteger('id_persona')->nullable()->unsigned();
             $table->timestamps();
         });
     }

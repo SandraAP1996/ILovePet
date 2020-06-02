@@ -198,7 +198,7 @@ $(function(){
 
                     buscarPorFiltro();
                     $('.id'+modificado.id).addClass('seleccionado');
-                    
+
                     detallesAnimal(modificado.id);
 
                     if(modificado.foto == true){
@@ -485,16 +485,13 @@ function validarModificar(){
 
         /*NOMBRE*/
         if($(inputs[i]).attr('name') == 'nombre'){
-            if($(inputs[i]).val() == ''){
-                $(inputs[i]).addClass('error');
 
+            if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]{3,25}$/)){
+                $(inputs[i]).removeClass('error');
             }else{
-                if($(inputs[i]).val().match(/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]{3,25}$/)){
-                    $(inputs[i]).removeClass('error');
-                }else{
-                    $(inputs[i]).addClass('error');
-                }
+                $(inputs[i]).addClass('error');
             }
+
         }
 
         /*RAZA*/

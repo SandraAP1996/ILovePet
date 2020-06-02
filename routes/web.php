@@ -86,9 +86,22 @@ Route::group([
     Route::get('/tramite/animal/id/{id}', 'AnimalController@animalAdopcion');
     Route::get('/tramite/{tipo}/animal/{animal}/persona/{persona}','AnimalController@tramiteAdoptar');
     Route::get('/tramite/cancelar/id/{id}','AnimalController@cancelarAdopcion');
-    
+
     /*Rutas de Gestión Eventos*/
-    Route::get('/eventos', 'EventController@tablaEventos');
+    Route::get('/eventos',function () {
+        return view('gestion.eventos');
+    });
+
+    Route::get('/eventos/id/{id}', 'EventController@eventoId');
+    Route::get('/eventos/eliminar/id/{id}', 'EventController@eliminarEvento');
+    Route::post('/eventos/modificar/id/{id}', 'EventController@modificarEvento');
+    Route::post('/eventos/editar/foto/{id}', 'EventController@modificarFoto');
+    Route::post('/eventos/insertar', 'EventController@insertarEvento');
+
+    Route::get('/eventos/direcciones', 'EventController@direcciones');
+    Route::get('/eventos/direcciones/detalles/{id}', 'EventController@detallesDireccion');
+
+
 
 
 });
