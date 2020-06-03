@@ -10,6 +10,9 @@ $(function(){
     rellenarTablaFiltro();
     $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').hide();
 
+    $('.fichaPersona').hide();
+    $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').hide();
+    $('.card').hide();
     /*VALIDAR FILTRO de la tabla*/
     $('#filtroPersona input').blur(function(){
         validarFormulario();
@@ -51,8 +54,8 @@ $(function(){
     });
     /*FICHA*/
     $('.fichaTitulo .botones img').click(function(){
-        $('.fichaPersona').css('display','none');
-        $('.card').css('display','none');
+        $('.fichaPersona').hide('slow');
+        $('.card').hide('slow');
         $('tbody tr').removeClass('seleccionado');
     });
 
@@ -128,6 +131,7 @@ $(function(){
         $('#insertarModal form')[0].reset();
         $('#insertarModal form .error').removeClass('error');
         $('.form-group h6 span').text('');
+        $('#insertarModal input[name="email"] + small').remove();
     });
 
 });
@@ -139,16 +143,10 @@ function insertarUsuario(){
             method: "POST",
             data: $('#formInsertarUsuario').serialize(),
             success: function(insertado){
-                console.log(insertado);
-
-
-
                 var msgError='';
                 if(insertado == 1){
                     msgError+='Se ha añadido correctamente el usuario'; 
                     $('#informacionModal div.modal-content').addClass('correcto');
-                    rellenarTablaFiltro();
-                    detallesPersona($('.fichaPersona').attr('id').split('id')[1]);
 
                 }else{
                     msgError+='No se ha añadido correctamente el usuario'; 
@@ -238,7 +236,6 @@ function validarModificar(inputs){
             if($(inputs[i]).val().match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/)){
                 $(inputs[i]).removeClass('error');
                 $('span.'+$(inputs[i]).attr('name')+' small').remove();
-
             }else{
                 $(inputs[i]).addClass('error');
                 $('span.'+$(inputs[i]).attr('name')+' small').remove();
@@ -365,7 +362,6 @@ function modificarPersona(){
             method: "POST",
             data: $('form.formModificar').serialize(),
             success: function(modificado){
-                console.log(modificado);
                 var msgError='';
                 if(modificado == 1){
                     msgError+='Se ha modificado correctamente el usuario'; 
@@ -477,11 +473,23 @@ function validaInsertar(inputs){
         if($(inputs[i]).attr('name') == 'email'){
 
             if($(inputs[i]).val().match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/)){
-                $(inputs[i]).removeClass('error');
-                $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('');
-                $('input[name="'+$(inputs[i]).attr("name")+'"] + small').remove();
-
-
+                var email=$(inputs[i]).val();
+                $.ajax({
+                    url: "/usuario/email/"+email,
+                    method: "GET", 
+                    success: function(verificado){
+                        if(verificado.length == 0){
+                            $('#insertarModal input[name="email"]').removeClass('error');
+                            $('#insertarModal .form-group .emailError span').text('');
+                            $('#insertarModal input[name="email"] + small').remove();
+                        }else{
+                            $('#insertarModal input[name="email"]').addClass('error');
+                            $('#insertarModal .form-group .emailError span').text(' *');
+                            $('#insertarModal input[name="email"] + small').remove(); 
+                            $('h6.emailError').parent().append('<small># Este email ya existe.</small>');
+                        }
+                    }
+                });
             }else{
                 $(inputs[i]).addClass('error');
                 $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text(' *');
@@ -683,8 +691,8 @@ function eliminarPersona(id){
                 $('#informacionModal div.modal-content').addClass('correcto');
 
                 /*Eliminar la seleccion del animal eliminado*/
-                $('.fichaPersona').css('display','none');
-                $('.card').css('display','none');
+                $('.fichaPersona').hide('slow');
+                $('.card').hide('slow');
                 $('tbody tr').toggleClass('seleccionado'); /*MODIFICADO*/
             }else{
                 msgError+='No se ha eliminado correctamente el usuario'; 
@@ -712,8 +720,8 @@ function detallesPersona(id){
         success: function(persona){
             if(persona.length == 1){
                 $('.fichaPersona').attr('id','id'+persona[0].id);
-                $('div.fichaPersona').css('display','block');
-                $('.card').css('display','block');
+                $('div.fichaPersona').show('slow');
+                $('.card').show('slow');
                 $('div.fichaPersona .fichaDescripcion').empty();
 
                 var direccion='';
@@ -799,7 +807,7 @@ function detallesPersona(id){
                         $('.card .donacionCards').show("slow");
                     }
                 }else{
-                    $('.card').css('display','none');       
+                    $('.card').hide('slow');       
                 }
             }
         }

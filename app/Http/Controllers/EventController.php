@@ -103,14 +103,21 @@ class EventController extends Controller
             ->get();
 
         if(count($cuenta) == 1){
-
             $direccion = Address::select()
                 ->where('address.id',$evento->id_direccion)
                 ->get()
                 ->first();
             $direccion->delete();
-
         }
+
+
+        $foto=Photo::where('id_evento',$evento->id)->get()->first();
+
+        if($foto != 'Aleatorio1' || $foto != 'Aleatorio2' || $foto != 'Aleatorio3' || $foto != 'Aleatorio4'){
+            return 'holaaa';
+        }
+
+
 
         $evento->delete();
 
@@ -141,7 +148,7 @@ class EventController extends Controller
             ->first();
 
         $idDireccion=$direccion->id;
-        
+
         /*DIRECCIÓN*/
         if(count($cuenta)>1){
             if($request->provincia != $direccion->provincia || $request->localidad != $direccion->localidad || $request->calle != $direccion->calle || $request->numero != $direccion->numero){
@@ -177,7 +184,7 @@ class EventController extends Controller
             }
             $direccion->save();
         }
-        
+
         /*EVENTO*/
         if($request->nombre != $evento->nombre){
             $evento->nombre=$request->nombre;
@@ -258,9 +265,13 @@ class EventController extends Controller
             $foto->formato= $request->foto->getClientOriginalExtension();
             $foto->id_evento = $id;
 
-            $request->foto->move('img/evento/', 'evento'.$id.''.$foto->id.'.'.$request->foto->getClientOriginalExtension());
+            $request->foto->move('img/evento/', 'evento'.$id.'.'.$request->foto->getClientOriginalExtension());
 
         }else{
+            if($foto->titulo != 'Aleatorio1' && $foto->titulo != 'Aleatorio2' && $foto->titulo != 'Aleatorio3' && $foto->titulo != 'Aleatorio4'){
+                unlink('img/'.$foto->ruta.''.$foto->titulo.'.'.$foto->formato);
+            }
+
             $numero=rand(1,4);
             $foto->titulo='Aleatorio'.$numero;
             $foto->formato='jpg';

@@ -63,7 +63,7 @@ Inicio
                 <div>
                     <h3>{{__('Ayudales')}}</h3>
                     <p>{{__('En muchos casos hacerse responsable de un animal no es posible, pero si se tienen los medios existen otros metodos para ayudarles, el centro tiene muchas posibilidades de que esta gente pueda poner su granito de arena.')}}</p>
-                    <a class="btn btn-sm btn-secondary">{{__('Click aquí')}}</a>
+                    <a href="{{url('/informacion/ayudales')}}" class="btn btn-sm btn-secondary">{{__('Click aquí')}}</a>
                 </div>
             </div>
         </div>
@@ -209,7 +209,7 @@ Inicio
         <hr>
         <h1>{{__('Próximos Eventos')}} <img src="/img/web/icons/evento.svg" alt="img12"></h1>
 
-        <p>Las donaciones son una manera sencilla de poner nuestro granito de arena a la ayuda de los animales que esta asociacion lleva a cabo. Todo el dinero recaudado en evento o donaciones de particulares, ira directo a alimentación, necesidades ya sea camas o salud y demás. Además de todo ello ayudara a mantener el centro, para seguir dadno apoyo a los animales que lo necesiten. <a href="{{url('/eventos')}}" class="botonEvento btn btn-sm">{{__('Ver más')}}</a></p>
+        <p>Las donaciones son una manera sencilla de poner nuestro granito de arena a la ayuda de los animales que esta asociacion lleva a cabo. Todo el dinero recaudado en evento o donaciones de particulares, ira directo a alimentación, necesidades ya sea camas o salud y demás. Además de todo ello ayudara a mantener el centro, para seguir dadno apoyo a los animales que lo necesiten. <a href="{{url('/eventos')}}" class=" m-1 btn btn-sm btn-outline-secondary">{{__('Saber más')}}</a></p>
         
         <div class="eventoCards mt-5" class="card-body">
             <div class="row">

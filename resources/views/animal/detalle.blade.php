@@ -10,7 +10,6 @@ Detalle
 @endsection
 
 @section('contenido')
-
 <?php
 
 function calcular_edad($fecha){
@@ -29,7 +28,7 @@ $mes=$edad->format('%m');
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-6 order-1 order-md-1 order-sm-1 ">
-                <img id="imagenPrincipal" src="/img/{{$animal[0]->img[0]->ruta}}{{$animal[0]->img[0]->titulo}}.{{$animal[0]->img[0]->formato}}" alt="imgDetalle" title="Amplia">
+                <img id="imagenPrincipal" src="/img/{{$animal[0]->img[0]->ruta}}{{$animal[0]->img[0]->titulo}}.{{$animal[0]->img[0]->formato}}" alt="imgDetalle">
             </div>
             <div id="descripcion" class="col-sm-12 col-md-6 order-3 order-sm-3 order-md-2  border">
                 <h3>Nombre {{$animal[0]->nombre}}</h3>
@@ -62,14 +61,46 @@ $mes=$edad->format('%m');
 
             </div>
             <div class=" col-sm-12 col-md-6 order-4 order-sm-4 order-md-4">
-                <button type="button" class="btn btn-lg btn-block">Adopta</button>
+                <button type="button" class="btn btn-lg btn-block adoptar">Adopta</button>
             </div>
 
         </div>
     </div>
-
-
-
 </div>
+
+
+<!-- MODAL INSERTAR ANIMALES -->
+<div class="modal fade" id="adopcionModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- MODAL contenido-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Adoptar Animal</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="descripcion">
+
+                            <p>Para poder adoptar el animal es necesario que te pongas en contacto con el centro, a partir de ese momento te atendera un empleado y empezaria la adopción, dandote en todo momneto toda la información necesaria. <a href="{{url('/informacion/adoptar')}}">Saber más de la adopción</a>
+                            </p>
+                            <hr>
+                            <span class="titulo">Contacto</span><br>
+
+                            Dirección: Calle Ernesto Che Guevara, <br>Valencia, 46920<br>
+
+                            Teléfonos: 982465377 - 695483721<br>
+
+                            Email: ilovepet@gmail.com
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 @endsection

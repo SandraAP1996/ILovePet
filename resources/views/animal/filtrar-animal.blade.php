@@ -28,7 +28,12 @@ Buscar Animal
                 </select><br>
                 <h6><label for="inputState">{{__('Especie')}}</label></h6>
                 <select class="form-control especieAnimal" name="especie">
-                    <!--                    <option selected>{{__('Todos')}}</option>-->
+                    <!--  RELLENA EN JAQUERY-->
+                </select><br>
+                <h6><label for="inputState">{{__('Raza')}}</label></h6>
+                <select class="form-control razaAnimal" name="raza">
+                    <!--  RELLENA EN JAQUERY-->
+
                 </select>
                 <hr>
                 <h6><label for="inputState">{{__('Sexo')}}</label></h6>        <!-- Sexo -->
@@ -81,12 +86,12 @@ Buscar Animal
             <!-- PAGINACIÓN -->
             <div id="paginacionBusqueda" class="container">
                 <ul class="pagination">
-<!--
-                    <li class="page-item anterior"><a class="page-link" href="#">Anterior</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item seleccionado"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                    <!--
+<li class="page-item anterior"><a class="page-link" href="#">Anterior</a></li>
+<li class="page-item"><a class="page-link" href="#">1</a></li>
+<li class="page-item seleccionado"><a class="page-link" href="#">2</a></li>
+<li class="page-item"><a class="page-link" href="#">3</a></li>
+<li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
 -->
                 </ul>
             </div>

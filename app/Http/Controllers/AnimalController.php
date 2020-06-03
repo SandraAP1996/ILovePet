@@ -50,7 +50,10 @@ class AnimalController extends Controller{
      * @param  Request $request
      * @return objeto $animales
      */
-    public static function buscarAnimal(Request $request){
+    public static function buscarAnimal(Request $request, $pagina){
+        $max_tamanyo=$pagina*20;
+        $min_tamanyo= $max_tamanyo-20;
+
 
         $consulta="";
         $tipo = $request->tipo;
@@ -58,6 +61,7 @@ class AnimalController extends Controller{
         $sexo = $request->input('sexo');
         $talla = $request->talla;
         $edad = $request->edad;
+        $raza = $request->raza;
         $estado = $request->estado;
 
         if($tipo != 'Todos'){
@@ -78,12 +82,66 @@ class AnimalController extends Controller{
         if($estado != 'Todos'){
             $consulta .=" AND a.estado = '".$estado."'";
         }
+        if($raza != 'Todos' &&  $raza != null){
+            $consulta .=" AND a.raza = '".$raza."'";
+        }
 
 
-        $busqueda=DB::select("SELECT * FROM animal a INNER JOIN photo p ON a.id = p.id_animal WHERE a.situacion != 'adoptado' AND p.principal=1 ".$consulta.";");
+        $busqueda=DB::select("SELECT a.*, p.ruta, p.formato, p.titulo FROM animal a INNER JOIN photo p ON a.id = p.id_animal WHERE a.situacion != 'adoptado' AND p.principal=1 ".$consulta." LIMIT ".$min_tamanyo.",".$max_tamanyo.";");
+
+        if(count($busqueda) != 0){
+            $busqueda[0]->pagina=$pagina;
+
+        }
         return $busqueda;
 
     }
+
+    public static function paginacionAnimal(Request $request){
+        $consulta="";
+        $tipo = $request->tipo;
+        $especie = $request->especie;
+        $sexo = $request->input('sexo');
+        $talla = $request->talla;
+        $edad = $request->edad;
+        $raza = $request->raza;
+        $estado = $request->estado;
+
+        if($tipo != 'Todos'){
+            $consulta .=" AND a.tipo = '".$tipo."'";
+        }
+        if($especie != 'Todos'){
+            $consulta .=" AND a.especie = '".$especie."'";
+        }
+        if($sexo != 'Todos'){
+            $consulta .=" AND a.sexo = '".$sexo."'";
+        }
+        if($talla != 'Todos'){
+            $consulta .=" AND a.talla = '".$talla."'";
+        }
+        if($edad != 'Todos'){
+            $consulta .=" AND a.edad = '".$edad."'";
+        }
+        if($estado != 'Todos'){
+            $consulta .=" AND a.estado = '".$estado."'";
+        }
+        if($raza != 'Todos' &&  $raza != null){
+            $consulta .=" AND a.raza = '".$raza."'";
+        }
+
+
+        $cuenta=DB::select("SELECT COUNT(*) as tamanyo FROM animal a INNER JOIN photo p ON a.id = p.id_animal WHERE a.situacion != 'adoptado' AND p.principal=1 ".$consulta.";");
+        return $cuenta;
+    }
+
+
+
+
+    public static function buscarRazas(){
+        $razas = DB::select('SELECT DISTINCT a.raza FROM animal a ;');
+        return $razas;
+    }
+
 
     /*
 |--------------------------------------------------------------------------
@@ -191,7 +249,7 @@ class AnimalController extends Controller{
             $animal[$i]->img = $imagenes;
         }
 
-        $persona = DB::select('SELECT u.id, u.nif, u.nombre, u.apellidos, u.telefono, u.rol,u.tipo, u.email, d.localidad, d.provincia, d.cod_postal, d.numero,d.calle FROM animal a, users u,address d WHERE a.id_persona=u.id AND a.id='.$id.' AND u.id=d.id_persona;');
+        $persona = DB::select('SELECT u.id, u.nif, u.nombre, u.apellidos, u.telefono, u.rol, u.email, d.localidad, d.provincia, d.cod_postal, d.numero,d.calle FROM animal a, users u,address d WHERE a.id_persona=u.id AND a.id='.$id.' AND u.id=d.id_persona;');
 
         for($i = 0;$i<count($animal);$i++){
             $animal[$i]->persona = $persona;
@@ -277,7 +335,8 @@ class AnimalController extends Controller{
         }
 
         /*Eliminamos la foto*/
-        $foto = Photo::find($id);
+        $foto = Photo::where('id',$id)->get()->first();
+        unlink('img/'.$foto->ruta.''.$foto->titulo.'.'.$foto->formato);
         $foto->delete();
 
         /*Comprobamos que no exista*/
@@ -469,10 +528,10 @@ class AnimalController extends Controller{
 
         }
 
-            return view('gestion.adopcionAcogida')
-                ->with('animales',$animales)
-                ->with('personas',$personas);
-               
+        return view('gestion.adopcionAcogida')
+            ->with('animales',$animales)
+            ->with('personas',$personas);
+
     }
     /**
      * Función para sacar todos lo datos de los animales y las perosonas
@@ -495,8 +554,8 @@ class AnimalController extends Controller{
 
         }
 
-            return $tabla=['personas'=>$personas,'animales' => $animales];
-        
+        return $tabla=['personas'=>$personas,'animales' => $animales];
+
     }
 
 

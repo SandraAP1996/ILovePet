@@ -83,7 +83,7 @@ Gestión Animales
                         <div class="fichaBotones col-md-3">
                             <button type="button" class="btn btn-sm eliminar">{{__('Eliminar Animal')}}</button><br><br>
                             <button type="button" class="btn btn-sm modificar">{{__('Modificar')}}</button>
-                            <button type="button" class="btn btn-sm guardar">{{__('Guardar')}}</button><br>
+                            <button type="button" class="btn btn-sm guardar">{{__('Guardar')}}</button>
                             <button type="button" class="btn btn-sm cancelarModificar">{{__('Cancelar')}}</button>
                         </div>
                     </div>
@@ -278,6 +278,7 @@ Gestión Animales
                                     <div class="form-group">
                                         <h6 class="descripcionError"><label for="inputState">{{__('Descripción')}}</label><span></span></h6> 
                                         <textarea name="descripcion" class="form-control" ></textarea>
+                                        <span class="contador"></span>
                                     </div>
 
 

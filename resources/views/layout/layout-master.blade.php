@@ -86,7 +86,7 @@
                     <li class="nav-item dropdown">
 
                         @if(!Auth::user())
-                        <a class="navbar-brand" data-toggle="modal" data-target="#modalLogin"  style="cursor:pointer;"><img id="login" class="imgPerfil" src="/img/web/icons/perfil.svg" alt="foto huella" title="Login"></a>
+                        <a id="verificarLogin"class="navbar-brand" data-toggle="modal" data-target="#modalLogin"  style="cursor:pointer;"><img id="login" class="imgPerfil" src="/img/web/icons/perfil.svg" alt="foto huella" title="Login"></a>
                         @else
                         <a class="nav-link " data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false" style="cursor:pointer;">
@@ -137,7 +137,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('login') }}">
+                            <form id="formLogin" method="POST" action="{{ route('login') }}">
                                 @csrf
 
                                 <div class="form-group row">
@@ -148,7 +148,7 @@
 
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <strong>El correo o la contraseña no son correctos</strong>
                                         </span>
                                         @enderror
                                     </div>
@@ -162,12 +162,13 @@
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <strong>La contraseña no es correcta</strong>
                                         </span>
                                         @enderror
                                     </div>
                                 </div>
 
+<!--
                                 <div class="form-group row">
                                     <div class="col-md-6 offset-md-4">
                                         <div class="form-check">
@@ -179,17 +180,20 @@
                                         </div>
                                     </div>
                                 </div>
+-->
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4" id="inferiorLogin">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="iniciar btn btn-primary">
                                             {{ __('Iniciar') }}
                                         </button>
                                         <br>
                                         @if (Route::has('password.request'))
+<!--
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('¿Has olvidado la contraseña?') }}
                                         </a>
+-->
                                         @endif
 
                                         <a class="btn btn-link" href="{{ route('register') }}">{{ __('Crearme una cuenta') }}</a>
@@ -215,7 +219,7 @@
         </div>
 
         <!-- FOOTER -->
-        <footer class="page-footer font-small blue pt-4">
+        <footer id="footer-layaout" class=" page-footer font-small blue pt-4">
             <div class="container-fluid text-center text-md-left">
                 <div class="row">
                     <div class="col-md-6 mt-md-0 mt-3 row">
@@ -261,10 +265,10 @@
                                 <a href="{{url('/informacion/adoptar')}}">{{__('¿Por qué adoptar?') }}</a>
                             </li>
                             <li>
-                                <a href="#!">{{__('¿Qué son las donaciones?') }}</a>
+                                <a href="{{url('/informacion/donar')}}">{{__('¿Qué son las donaciones?') }}</a>
                             </li>
                             <li>
-                                <a href="#!">{{__('¿En que les puedes ayudar?') }}</a>
+                                <a href="{{url('/informacion/ayudales')}}">{{__('¿En que les puedes ayudar?') }}</a>
                             </li>
                         </ul>
                         <hr>

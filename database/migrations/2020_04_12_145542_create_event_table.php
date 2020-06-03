@@ -15,12 +15,12 @@ class CreateEventTable extends Migration
     {
         Schema::create('event', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre')->nullable();
+            $table->string('nombre',25)->nullable();
             $table->integer('aforo')->nullable();
             $table->date('fecha')->nullable();
             $table->time('hora_inicio')->nullable();
             $table->time('hora_fin')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->string('descripcion',255)->nullable();
             $table->bigInteger('id_direccion')->nullable()->unsigned();
             $table->timestamps();
         });

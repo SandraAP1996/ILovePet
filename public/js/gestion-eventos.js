@@ -32,6 +32,10 @@ $(function(){
         $('.msgTipo').text('Dirección nueva');
         $('.tipoExistente input').attr('disabled',false);
         $('.tipoExistente input').val('');
+        var total_letras=255;
+        var longitud = $('#insertarModal textarea[name="descripcion"]').val().length;
+        var resto = total_letras - longitud;
+        $('#insertarModal span.contador').html(resto+"/"+255);
         $('.recaudacion').hide();
         $('#insertarModal').modal('show');
         /*RELLENAR SELECT*/
@@ -53,6 +57,28 @@ $(function(){
                 }
             }
         });
+    });
+
+    /*CONTROLAR LONGITUD TEXTAREAS Modificar Ficha*/
+    $('.fichaDescripcion').on('keyup','textarea[name="descripcion"]',function() {
+        var total_letras = 255;
+        var longitud = $(this).val().length;
+        var resto = total_letras - longitud;
+        $('.fichaDescripcion span.contador').html(resto+"/"+255);
+        if(resto <= 0){
+            $('textarea[name="descripcion"]').attr("maxlength", 255);
+        }
+    });
+
+    /*CONTROLAR LONGITUD TEXTAREAS Insertar Animal*/
+    $('#insertarModal').on('keyup','textarea[name="descripcion"]',function() {
+        var total_letras = 255;
+        var longitud = $(this).val().length;
+        var resto = total_letras - longitud;
+        $('#insertarModal span.contador').html(resto+"/"+255);
+        if(resto <= 0){
+            $('textarea[name="descripcion"]').attr("maxlength", 255);
+        }
     });
 
     /*SELECCIONAR DIRECCIÓN*/
@@ -147,6 +173,9 @@ $(function(){
     });
     /*SELECCIONAR UNA FILA*/
     $('tbody').on('click', 'tr',function(){
+        $('.fichaBotones button.modificar').show('slow');
+        $('.fichaBotones button.eliminar').show('slow');
+        $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').hide('slow');
         $('tbody tr').removeClass('seleccionado'); 
         $(this).addClass('seleccionado');
 
@@ -222,6 +251,7 @@ $(function(){
                 type: "POST",
                 data: data,
                 success: function(modificado){
+                    console.log(modificado);
                     var msgError='';
 
                     mostrarFicha($('.fichaEvento').attr('id').split('id')[1]);
@@ -238,6 +268,7 @@ $(function(){
                         $('#informacionModal div.modal-content').addClass('incorrecto');
                     }
 
+                    $('input[name="foto"]').val('');
                     $('div.fichaFotos span.botones .subirFoto').show('slow');
                     $('.fichaFotos .seleccionarFoto').hide('slow');
 
@@ -978,6 +1009,8 @@ function modoModificar(){
 
 
     $('.fichaDescripcion span.nombre').html('<input class="form-control w-50" type="text" name="nombre" value="'+nombre+'">');
+
+
     $('.fichaDescripcion span.fecha').html('<input class="form-control w-50" type="date" name="fecha" value="'+fecha+'">');
 
     $('.fichaDescripcion span.inicio').html('<input class="form-control w-50" type="time" name="inicio" value="'+inicio+'">');
@@ -987,6 +1020,13 @@ function modoModificar(){
     $('.fichaDescripcion span.aforo').html('<input class="form-control w-50" type="text" name="aforo" value="'+aforo+'">');
 
     $('.fichaDescripcion span.descripcion').html('<textarea class="form-control w-100" name="descripcion">'+descripcion+'</textarea>');
+
+    $('.fichaDescripcion span.descripcion').parent().append('<span class="contador"></span>');
+    var total_letras=255;
+    var longitud = $('.fichaDescripcion textarea[name="descripcion"]').val().length;
+    var resto = total_letras - longitud;
+    $('.fichaDescripcion span.contador').html(resto+"/"+255);
+
 
     $('.fichaDescripcion span.provincia').html('<input class="form-control w-50" type="text" name="provincia" value="'+provincia+'">');
 

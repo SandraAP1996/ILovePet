@@ -189,7 +189,10 @@ div.fichaFotos h5{
 img.seleccionadoFoto{
     border: 4px solid #444F5B;
 }
-
+span.contador{
+    color:#80725F;
+    font-weight: bold;
+}
 /*FOTO*/
 div.galeria {
     color: gray;

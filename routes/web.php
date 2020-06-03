@@ -22,6 +22,8 @@ Route::get('/', 'AnimalController@inicioTarjetas');
 Route::get('/inicio/perfil', 'UserController@fotoInicio');
 Route::get('/inicio/eventos', 'EventController@eventoInicio');
 
+/*REGISTRO*/
+Route::get('/usuario/email/{email}', 'UserController@validarEmail');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -31,6 +33,8 @@ Route::get('buscar/{campo}/{filtro}', function ($campo,$filtro) {
         ->with('campo',$campo)
         ->with('filtro',$filtro);
 });
+
+
 
 Route::get('/eventos',function () {
     return view('informacion.eventos');
@@ -47,8 +51,12 @@ Route::post('/tramite/donacion', 'UserController@donacionPersona');
 
 /*VER ANIMALES*/
 Route::group(['prefix' => 'animal'], function(){
-    Route::get('buscar/', 'AnimalController@buscarAnimal');
+//    Route::get('buscar/', 'AnimalController@buscarAnimal');
+    Route::get('/buscar/pagina/{pagina}', 'AnimalController@buscarAnimal');
+    Route::get('paginacion/', 'AnimalController@paginacionAnimal');
+    Route::get('contador/', 'AnimalController@buscarAnimal');
     Route::get('detalle/{id}', 'AnimalController@detalleAnimal');
+    Route::get('razas/', 'AnimalController@buscarRazas');
 });
 
 /*GESTIÓN DEL EMPLEADO*/
@@ -78,6 +86,7 @@ Route::group([
     Route::get('/usuarios/eliminar/id/{id}', 'UserController@eliminarPersona');
     Route::post('/usuarios/modificar/id/{id}', 'UserController@modificarPersona');
     Route::post('/usuarios/insertar', 'UserController@insertarUsuario');
+
 
     /*Rutas de Gestión Adopciones*/
     Route::get('/tramite', 'AnimalController@tablasAdopcion');
@@ -122,5 +131,11 @@ Route::group(['prefix' => 'informacion'], function(){
     });
     Route::get('/adoptar', function () {
         return view('informacion.adoptar');
+    });
+    Route::get('/donar', function () {
+        return view('informacion.donar');
+    });
+    Route::get('/ayudales', function () {
+        return view('informacion.ayudar');
     });
 });

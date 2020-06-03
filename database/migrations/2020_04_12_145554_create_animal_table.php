@@ -15,12 +15,12 @@ class CreateAnimalTable extends Migration
     {
         Schema::create('animal', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->integer('chip')->nullable();
-            $table->string('raza');
+            $table->string('nombre',25);
+            $table->integer('chip')->length(11)->nullable();
+            $table->string('raza',40);
             $table->enum('tipo', ['Doméstico', 'Exótico', 'Granja']);
             $table->enum('especie', ['Perro', 'Gato', 'Pájaro', 'Reptil', 'Roedor', 'Ganado', 'Equino']);
-            $table->string('descripcion')->nullable();
+            $table->string('descripcion',400)->nullable();
             $table->enum('sexo', ['Hembra', 'Macho'])->nullable();
             $table->enum('talla', ['Pequeña', 'Media','Grande']);
             $table->enum('edad', ['Cachorro', 'Joven','Adulto']);

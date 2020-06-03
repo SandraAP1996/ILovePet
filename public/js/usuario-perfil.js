@@ -5,6 +5,9 @@
 */
 
 $(function(){
+
+    $('input[name="foto"]').prop("disabled",true);
+
     $('button.guardar').hide();
     $('button.cancelar').hide();
 
@@ -33,6 +36,8 @@ $(function(){
         $('button.guardar').show();
         $('button.cancelar').show();
         $(this).hide();
+        $('input[name="foto"]').prop("disabled",false);
+        $('.insertarImagen img').css('cursor','pointer');
 
         $('.perfilPersona input').prop('disabled',false);
 
@@ -81,22 +86,21 @@ function modificarPerfil(){
             type: "POST",
             data: data,
             success: function(modificado){
-                console.log(modificado);
 
-                //                if(modificado.direccion.length == 1 && modificado.persona == true ){
-                //                    $('button.guardar').hide();
-                //                    $('button.cancelar').hide();
-                //                    $('div.detalles img.editar').show();
-                //                    $('.perfilPersona input').prop('disabled',true);
-                //                    $('#informacionModal div.modal-content').addClass('correcto');
-                //                    $('#informacionModal div.modal-content').removeClass('incorrecto');
-                //                    msgError+='Se ha modificado correctamente el perfil'; 
-                //                }else{
-                //                    msgError+='No se ha modificado ningún campo de perfil'; 
-                //                    $('#informacionModal div.modal-content').addClass('incorrecto');
-                //                    $('#informacionModal div.modal-content').removeClass('correcto');
-                //
-                //                }
+                if(modificado == 0){
+                    $('button.guardar').hide();
+                    $('button.cancelar').hide();
+                    $('div.detalles img.editar').show();
+                    $('.perfilPersona input').prop('disabled',true);
+                    $('#informacionModal div.modal-content').addClass('correcto');
+                    $('#informacionModal div.modal-content').removeClass('incorrecto');
+                    msgError+='Se ha modificado correctamente el perfil, para ver los cambios deberá refrescar la página'; 
+                }else{
+                    msgError+='No se ha modificado ningún campo de perfil'; 
+                    $('#informacionModal div.modal-content').addClass('incorrecto');
+                    $('#informacionModal div.modal-content').removeClass('correcto');
+
+                }
 
                 $('#informacionModal h4.modal-title').text('Modificar Perfil');
                 $('#informacionModal div.card-body').text(msgError);

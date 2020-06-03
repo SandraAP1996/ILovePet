@@ -43,6 +43,18 @@ class UserController extends Controller{
         return $donacion;
     }
 
+
+    /**
+     * Función para validar que el correo pasado por parametros existe en la Base de Datos o no.
+     *
+     * @param  string $email
+     * @return objeto $valido
+     */
+    public static function validarEmail($email){
+        $valido= User::where('users.email',$email)->get();
+        return $valido;
+    }
+
     /*
 |--------------------------------------------------------------------------
 | PERFIL - usuario/perfil.blade.php
@@ -204,6 +216,8 @@ class UserController extends Controller{
 
         $modpersona=$persona->save();
         $modfoto=0;
+
+
         if($request->foto != null){
             $imagen = $request->foto;
             $foto = DB::select('SELECT * FROM photo p WHERE p.id_persona='.Auth::user()->id);
@@ -301,7 +315,7 @@ class UserController extends Controller{
 
         for($i = 0; $i<count($usuario) ; $i++){
 
-            $adoptado = DB::select('SELECT * FROM animal a, photo p WHERE a.id_persona = '.$id.' AND a.id=p.id_animal AND a.situacion = "adoptado";');
+            $adoptado = DB::select('SELECT * FROM animal a, photo p WHERE p.principal=1 AND a.id_persona = '.$id.' AND a.id=p.id_animal AND a.situacion = "adoptado";');
 
             $acogida = DB::select('SELECT * FROM animal a, photo p WHERE a.id_persona = '.$id.' AND a.id=p.id_animal AND a.situacion = "acogida";');
 

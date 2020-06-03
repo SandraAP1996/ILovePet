@@ -6,6 +6,12 @@
 
 $(function(){
 
+    /*OCULTACIÓNES*/
+    $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').hide();
+    $('div.fichaAnimal, div.fichaPersona').hide();
+
+    $('.fichaFotos .seleccionarFoto').hide();
+
     $('#filtroAnimal select[name="raza"]').empty();
     $('#filtroAnimal select[name="raza"]').append('<option value="todo"></option>');
 
@@ -32,17 +38,41 @@ $(function(){
     /*Añadir los detalles del animal*/
     $('body').on('click','tbody tr',function(){
         if($(this).hasClass('seleccionado') == false){
-
+            /*AQUIIII*/
+            $('.fichaBotones button.modificar').show('slow');
+            $('.fichaBotones button.eliminar').show('slow');
+            $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').hide('slow');
             var id=$(this).attr('class');
             $('tr').removeClass('seleccionado');    
             $(this).addClass('seleccionado');
             id=id.split('id');
             $('.fichaAnimal').attr('id',id[1]);
             $('.fichaFotos form').attr('action','http://localhost.ilovepet/gestion/animales/insertar/foto/'+id[1]);
-
             detallesAnimal(id[1]); 
         }
     });
+
+    /*CONTROLAR LONGITUD TEXTAREAS Modificar Ficha*/
+    $('.fichaDescripcion').on('keyup','textarea[name="descripcion"]',function() {
+        var total_letras = 400;
+        var longitud = $(this).val().length;
+        var resto = total_letras - longitud;
+        $('.fichaDescripcion span.contador').html(resto+"/"+400);
+        if(resto <= 0){
+            $('textarea[name="descripcion"]').attr("maxlength", 400);
+        }
+    });
+    /*CONTROLAR LONGITUD TEXTAREAS Insertar Animal*/
+    $('#insertarModal').on('keyup','textarea[name="descripcion"]',function() {
+        var total_letras = 400;
+        var longitud = $(this).val().length;
+        var resto = total_letras - longitud;
+        $('#insertarModal span.contador').html(resto+"/"+400);
+        if(resto <= 0){
+            $('textarea[name="descripcion"]').attr("maxlength", 400);
+        }
+    });
+
 
     /* ACTIVAR EL MODAL ELIMINAR ANIMAL/FOTO */
     /*ELIMINAR ANIMAL*/
@@ -71,6 +101,10 @@ $(function(){
     /* INSERTAR ANIMAL */
     $('#filtroAnimal button.insertar').click(function(){
         $("#insertarModal").modal("show");
+        var total_letras=400;
+        var longitud = $('#insertarModal textarea[name="descripcion"]').val().length;
+        var resto = total_letras - longitud;
+        $('#insertarModal span.contador').html(resto+"/"+400);
 
     });
 
@@ -135,14 +169,14 @@ $(function(){
 
     /*Comprobar si hace click en Cancelar Ficha Animal*/
     $('div.fichaTitulo img').click(function(){
-        $('div.fichaAnimal').css('display','none');
-        $('div.fichaPersona').css('display','none');
+        $('div.fichaAnimal').hide('slow');
+        $('div.fichaPersona').hide('slow');
         $('tr').removeClass('seleccionado'); 
     });
     /*SUBIR FOTO*/
     $('div.fichaFotos span.botones .subirFoto').click(function(){
-        $(this).css('display','none');
-        $('.fichaFotos .seleccionarFoto').css('display','block');
+        $(this).hide('slow');
+        $('.fichaFotos .seleccionarFoto').show('slow');
         $('.fileValor').text('# No se ha seleccionado nada');
 
     });
@@ -211,8 +245,8 @@ $(function(){
                         $('#informacionModal div.modal-content').addClass('incorrecto');
                     }
 
-                    $('div.fichaFotos span.botones .subirFoto').css('display','block');
-                    $('.fichaFotos .seleccionarFoto').css('display','none');
+                    $('div.fichaFotos span.botones .subirFoto').show('slow');
+                    $('.fichaFotos .seleccionarFoto').hide('slow');
 
                     $('#informacionModal h4.modal-title').text('Insertar Foto');
 
@@ -229,15 +263,15 @@ $(function(){
     });
     /*CANCELAR FOTO*/
     $('div.fichaFotos .seleccionarFoto .cancelarFoto').click(function(){
-        $('div.fichaFotos span.botones .subirFoto').css('display','block');
-        $('.fichaFotos .seleccionarFoto').css('display','none');
+        $('div.fichaFotos span.botones .subirFoto').show('slow');
+        $('.fichaFotos .seleccionarFoto').hide('slow');
     });
 
     /*MODIFICAR ANIMAL*/
     $('.fichaBotones button.modificar').click(function(){
-        $(this).css('display','none');
-        $('.fichaBotones button.eliminar').css('display','none');
-        $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').css('display','block');
+        $(this).hide('slow');
+        $('.fichaBotones button.eliminar').hide('slow');
+        $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').show('slow');
         modificarAFormulario();
     });
     /*GUARDAR MODIFICAR*/
@@ -255,9 +289,9 @@ $(function(){
 
     /*CANCELAR MODIFICAR*/
     $('.fichaBotones button.cancelarModificar').click(function(){
-        $('.fichaBotones button.modificar').css('display','block');
-        $('.fichaBotones button.eliminar').css('display','block');
-        $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').css('display','none');
+        $('.fichaBotones button.modificar').show('slow');
+        $('.fichaBotones button.eliminar').show('slow');
+        $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').hide('slow');
         detallesAnimal($('.fichaAnimal').attr('id'));
 
     });
@@ -292,9 +326,9 @@ function modificarAnimal(){
             $('#informacionModal div.card-body').text(msgError);
         }
     });
-    $('.fichaBotones button.modificar').css('display','block');
-    $('.fichaBotones button.eliminar').css('display','block');
-    $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').css('display','none');
+    $('.fichaBotones button.modificar').show('slow');
+    $('.fichaBotones button.eliminar').show('slow');
+    $('.fichaBotones button.guardar, .fichaBotones button.cancelarModificar').hide('slow');
     detallesAnimal($('.fichaAnimal').attr('id'));
     detallesAnimal($('.fichaAnimal').attr('id'));
     $("#informacionModal").modal("show");
@@ -338,7 +372,11 @@ function modificarAFormulario(){
     $('.fichaDescripcion span.fecha').html('<input class="form-control" type="date" name="fecha" value="'+fecha+'">');
     $('.fichaDescripcion span.raza').html('<input class="form-control" type="text" name="raza" value="'+raza+'">');
     $('.fichaDescripcion span.descripcion').html('<textarea class="form-control" name="descripcion" >'+descripcion+'</textarea>');
-
+    $('.fichaDescripcion span.descripcion').parent().append('<span class="contador"></span>');
+    var total_letras=400;
+    var longitud = $('.fichaDescripcion textarea[name="descripcion"]').val().length;
+    var resto = total_letras - longitud;
+    $('.fichaDescripcion span.contador').html(resto+"/"+400);
 
     /*ESTADO*/
     $('.fichaDescripcion span.estado').empty();
@@ -449,10 +487,10 @@ function insertarBD(){
             }
 
         });  
-
+        $("#informacionModal").modal("show");
+        $("#insertarModal").modal("hide");
     }
-    $("#informacionModal").modal("show");
-    $("#insertarModal").modal("hide");
+
 
 }
 /*
@@ -564,19 +602,14 @@ function validaInsertar(modo,elemento){
 
     var msg='';
 
-    //    $('ul.msgError').empty();
-
     /*INPUTS Validación*/
     if(modo == 'input' || modo == 'boton'){
         for(var i=0;i<inputs.length;i++){
 
             /*CHIP*/
             if($(inputs[i]).attr('name') == 'chip'){
-                if($(inputs[i]).val() == ''){
-                    $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').addClass('error');
-                    $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('*');
-                }else{
-                    if($(inputs[i]).val().match(/^[0-9]+$/) && 11 >= $(inputs[i]).val().length){
+            
+                    if($(inputs[i]).val().match(/^[0-9]{3,11}$/)){
                         $('#insertarModal .form-group input[name='+$(inputs[i]).attr("name")+']').removeClass('error');
                         $('.form-group .'+$(inputs[i]).attr("name")+'Error span').text('');
                         $('ul.msgError li.'+$(inputs[i]).attr("name")).remove();
@@ -587,7 +620,6 @@ function validaInsertar(modo,elemento){
                             msg+='<li class="chip">El campo '+$(inputs[i]).attr('name')+' no puede contener letras ni espacios y tiene que tener un maximo de 11 caracteres</li>';
                         }
                     }
-                }
             }
             /*NOMBRE*/
             if($(inputs[i]).attr('name') == 'nombre' ){
@@ -757,7 +789,7 @@ function eliminarAnimal(id){
                 $('#informacionModal div.modal-content').addClass('correcto');
 
                 /*Eliminar la seleccion del animal eliminado*/
-                $('div.fichaAnimal').css('display','none');
+                $('div.fichaAnimal').hide('slow');
                 $('tbody tr').toggleClass('seleccionado'); /*MODIFICADO*/
             }else{
                 msgError+='No se ha eliminado correctamente el animal'; 
@@ -795,7 +827,7 @@ function eliminarFoto(id){
                 $('#informacionModal div.modal-content').addClass('correcto');
 
                 /*Eliminar la seleccion del animal eliminado*/
-                $('div.fichaAnimal').css('display','none');
+                $('div.fichaAnimal').hide('slow');
                 $('tbody tr').removeClass('seleccionado');
                 $('tbody tr.id'+$('.fichaAnimal').attr('id')).addClass('seleccionado'); /*MODIFICADO*/
             }else{
@@ -834,12 +866,11 @@ function detallesAnimal(id){
         url: "/gestion/animales/id/"+id,
         method: "GET", 
         success: function(animal){
-            console.log(animal);
-
             /*FICHA del ANIMAL*/
             if(animal.length == 1){
                 /*Visualizar la ficha de animal*/
-                $('div.fichaAnimal').css('display','block');
+                $('div.fichaAnimal').show('slow');
+
                 $('div.fichaAnimal .fichaDescripcion').empty();
                 $('div.fichaAnimal .fichaDescripcion').append('<p><span class="titulo">Chip</span>&nbsp&nbsp<span class="chip">'+animal[0].chip+'</span> </p><p><span class="titulo">Nombre</span>&nbsp&nbsp <span class="nombre">'+animal[0].nombre+' </span></p><hr><p><span class="titulo">Tipo</span>&nbsp&nbsp <span class="tipo">'+animal[0].tipo+'</span></p><p><span class="titulo">Especie</span>&nbsp&nbsp <span class="especie">'+animal[0].especie+'</span></p><hr><p><span class="titulo">Edad</span>&nbsp&nbsp<span class="edad">'+animal[0].edad+'</span></p><p><span class="titulo">Fecha de nacimiento</span>&nbsp&nbsp <span class="fecha">'+animal[0].fecha_nacimiento+'</span> </p><hr><p><span class="titulo">Raza</span>&nbsp&nbsp <span class="raza">'+animal[0].raza+'</span></p><p><span class="titulo">Sexo</span>&nbsp&nbsp <span class="sexo">'+animal[0].sexo+'</span></p><p><span class="titulo">Talla</span>&nbsp&nbsp <span class="talla">'+animal[0].talla+'</span></p><hr><p><span class="titulo">Situación</span>&nbsp&nbsp <span class="situacion">'+animal[0].situacion+'</span></p><p><span class="titulo">Estado</span>&nbsp&nbsp <span class="estado">'+animal[0].estado+'</span></p><hr><p><span class="titulo">Descripción</span> <br><span class="descripcion">'+animal[0].descripcion+'</span> </p>');
 
@@ -866,7 +897,7 @@ function detallesAnimal(id){
             /*Ficha de la PERSONA*/
 
             if(animal[0].persona.length == 1){  
-                $('.fichaPersona').css('display','block');
+                $('.fichaPersona').show('slow');
                 $('div.fichaPersona .fichaDescripcion').empty();
 
                 if(animal[0].persona[0].tipo == ''){
@@ -881,7 +912,7 @@ function detallesAnimal(id){
                 $('div.fichaPersona .fichaDescripcion').append('<p><span class="titulo">NIF</span>&nbsp&nbsp<span>'+animal[0].persona[0].nif+'</span> </p><p><span class="titulo">Nombre</span>&nbsp&nbsp<span>'+animal[0].persona[0].nombre+'</span> </p><p><span class="titulo">Apellidos</span>&nbsp&nbsp <span >'+animal[0].persona[0].apellidos+' </span></p><hr><p><span class="titulo">Telefono</span>&nbsp&nbsp <span >'+animal[0].persona[0].telefono+'</span></p><p><span class="titulo">Email</span>&nbsp&nbsp <span >'+animal[0].persona[0].email+' </span></p><hr><p><span class="titulo">Dirección</span>&nbsp&nbsp <span >'+animal[0].persona[0].calle+', '+animal[0].persona[0].numero+'</span></p><p><span class="titulo">Codigo Postal</span>&nbsp&nbsp<span >'+animal[0].persona[0].cod_postal+'</span></p><p><span class="titulo">Localidad</span>&nbsp&nbsp <span >'+animal[0].persona[0].localidad+'</span> </p><p><span class="titulo">Provincia</span>&nbsp&nbsp <span >'+animal[0].persona[0].provincia+'</span></p>');
 
             }else{
-                $('.fichaPersona').css('display','none');
+                $('.fichaPersona').hide('slow');
             }
 
         }});
@@ -903,7 +934,6 @@ function buscarPorFiltro(){
             method: "GET",
             data: $("form#filtroAnimal").serialize(), 
             success: function(animales){
-
                 if(animales.length == 0){
                     /*PONER UN ERROR*/
                 }else{
@@ -916,7 +946,6 @@ function buscarPorFiltro(){
                     if(animales[0].razas.length >= $('select[name="raza"] option').length){
                         for(var i in animales[0].razas){
                             $('#filtroAnimal select[name="raza"]').append('<option value="'+animales[0].razas[i].raza+'">'+animales[0].razas[i].raza+'</option>');
-
                         }
                     }
 

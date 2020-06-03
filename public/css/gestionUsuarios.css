@@ -103,11 +103,12 @@ button.buscar:hover{
 div.fichaDescripcion span.titulo{
     font-weight: bold;
 }
-div.fichaAnimal,
+
 div.fichaPersona{
-    display: none;
+/*    display: none;*/
     margin-right: 10px;
 }
+
 div.fichaPersona{
     margin-bottom: 25px;
     padding: 0px;
@@ -141,10 +142,12 @@ button.elimianar{
 }
 
 
+/*
 .fichaBotones button.guardar,
 .fichaBotones button.cancelarModificar{
     display: none
 }
+*/
 .fichaDescripcion span.descripcion textarea{
     width: 100%;
 }
@@ -154,9 +157,11 @@ button.elimianar{
 | FICHA ANIMAL/DONACIÓN
 |---------------
 */
+/*
 .card{
     display: none;
 }
+*/
 .card a{
     cursor:pointer;
 }

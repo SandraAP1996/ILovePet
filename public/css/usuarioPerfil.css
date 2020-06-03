@@ -23,7 +23,7 @@ div.perfilPersona{
 }
 
 .insertarImagen img{
-    cursor: pointer;
+    cursor: default;
 }
 
 /*DETALLES PERSONA*/

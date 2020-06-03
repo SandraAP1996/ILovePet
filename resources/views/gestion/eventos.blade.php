@@ -25,7 +25,7 @@ Gestión Eventos
         <form method="post" action="#" id="formEvento">
             <div class="row justify-content-center">
                 <div class="col-md-5">
-                    <p>Type something in the input field to search the table for first names, last names or emails:</p> 
+                    <p>En el siguiente filtrado se puede buscar cualquier palabra o número que este dentro de la tabla para filtrar:</p> 
                     <input class="form-control" id="filtroEvento" type="text" placeholder="Buscar evento por...">
                 </div>       
                 <div class="col-md-2 offset-5 text-right">
@@ -246,6 +246,7 @@ Gestión Eventos
                                     <div class="form-group">
                                         <h6 class="descripcionError"><label for="inputState">{{__('Descripción')}}</label><span></span></h6> 
                                         <textarea name="descripcion" class="form-control" ></textarea>
+                                        <span class="contador"></span>
                                     </div>
 
                                     <div class="form-group">
